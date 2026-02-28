@@ -11,12 +11,10 @@ Yahan hum hackathon se pehle milkar projects banayenge, practice karenge aur tea
 - Ideas aur resources share karna  
 - Upcoming hackathons ki preparation 🏆 
 
-## ⚙️ Workflow
-1. Sabhi log apne branch mein work karenge
-2. Clean code likho  
-3. Proper commit message do  
-4. Pull Request bhejo  
-5. Review ke baad merge  
+### 🌿 Branch Rule
+- Har member apni branch me kaam karega
+- Direct main me push allowed nahi
+- Kaam complete hone par Pull Request bhejna hoga
 
 ## 📂 Repository Ka Use
 - Project code store karne ke liye  
