@@ -11,9 +11,10 @@
 </head>
 
 <body>
+        <!-- Navbar-Section -->
         <div class="outer_body">
                 <div class="logo_nav">
-                        <img src="img/nav_logo.jpeg" alt="">
+                        <img src="CSS/img/nav_logo.jpeg" alt="">
                 </div>
                 <div class="nav_icon">
                         <nav class="navbar navbar-expand-lg ">
@@ -41,7 +42,7 @@
                                                                 </a>
                                                         </li>
                                                         <div class="nav-item m-1 p-2">
-                                                                <a class="nav-link active bg-danger text-light btn-nav"
+                                                                <a class="nav-link active btn-nav"
                                                                         href="HTML/register.html">
                                                                         Register
                                                                 </a>
@@ -53,28 +54,70 @@
                 </div>
         </div>
 
-        <div id="carouselExampleFade" class="carousel slide carousel-fade">
+        <!-- Blood-Camp -->
+        <div class="banner">
+                <div class="banner-text">
+                        <p class="banner-p1">Save Life, Donate Blood</p>
+                        <p class="banner-p2">Every drop counts. Join our community of heroes today</p>
+                        <button class="bl-btn">Donate Blood</button>
+                        <button class="bl-btn">Get Blood</button>
+                </div>
+        </div>
+
+
+        <!-- Hero-Section -->
+        <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                        <div class="carousel-item active">
-                                <img src="img/s1.jpeg"class="d-block w-100" alt="...">
+                        <div class="carousel-item active" data-bs-interval="2000">
+                                <img src="CSS/img/s1.jpeg" class="d-block w-100" alt="...">
                         </div>
-                        <div class="carousel-item">
-                                <img src="img/s2.jpeg" class="d-block w-100" alt="...">
+                        <div class="carousel-item" data-bs-interval="2000">
+                                <img src="CSS/img/s2.jpeg" class="d-block w-100" alt="...">
                         </div>
-                        <div class="carousel-item">
-                                <img src="img/s3.jpeg" class="d-block w-100" alt="...">
+                        <div class="carousel-item" data-bs-interval="2000">
+                                <img src="CSS/img/s3.jpeg" class="d-block w-100" alt="...">
                         </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"
                         data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
                         data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                 </button>
+        </div>
+
+        <!-- Cards -->
+
+        <p class="card-t">Impotance of Blood Donation</p>
+        <div class="outer-card">
+                <div class="card" style="width: 18rem;">
+                        <img src="CSS/img/c4.jpeg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                                <p class="card-heading">Cannot Be Manufactured</p>
+                                <p class="card-text">Blood cannot be artificially created.
+                                        The only source is generous donors like you.</p>
+                        </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                        <img src="CSS/img/c2.jpeg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                                <p class="card-heading">Saves Lives</p>
+                                <p class="card-text">One donation can save up to three lives.
+                                        Your contribution directly impacts patients in critical need </p>
+                        </div>
+                </div>
+                <div class="card" style="width: 18rem;">
+                        <img src="CSS/img/c3.jpeg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                                <p class="card-heading">Helps patients</p>
+                                <p class="card-text">Blood is needed for surgeries, cancer treatment, chronic illnesses,
+                                        and traumatic injuries.</p>
+                        </div>
+                </div>
         </div>
 
 </body>

@@ -4,6 +4,7 @@
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Navbar */
 .outer_body {
         display: flex;
         justify-content: space-between;
@@ -11,10 +12,152 @@
         flex-direction: row;
         width: 100%;
         background-color: #f3f4f6;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.nav-link{
+        font-weight: 500;
 }
 
 .btn-nav {
         border: 1px solid rgb(180, 180, 197);
         border-radius: 8px;
+}
+
+.btn-nav:hover {
+        animation: fill-color 0.7s ease-in-out;
+        background-color: rgb(216, 21, 21);
+        color: white;
+}
+
+
+/* Banner */
+.banner {
+        background-image: url(img/head-img.jpeg);
+        background-size: cover;
+        height: 60vh;
+        padding: 8vh;
+}
+
+.banner-text {
+        text-align: center;
+}
+
+.bl-btn {
+        padding: 10px;
+        margin: 10px 10px;
+        border-radius: 8px;
+        border: 1px solid rgb(180, 180, 197);
+        background-color: white;
+        font-weight: bold;
+}
+
+.banner-p1 {
+        font-size: 63px;
+        font-weight: bold;
+}
+
+.banner-p2 {
+        font-size: 22px;
+}
+
+.bl-btn:hover {
+        background-color: rgb(216, 21, 21);
+        color: white;
+        animation: fill-color 0.7s ease-in-out;
+}
+
+@keyframes fill-color {
+        0% {
+                background-color: white;
+                color: black;
+        }
+
+        20% {
+                color: white;
+        }
+
+        100% {
+                background-color: rgb(216, 21, 21);
+                color: white;
+        }
+}
+
+@media (max-width:650px) {
+        .outer_body{
+                display: flexbox;
+                align-items: center;
+                justify-content: center;
+        }
+        .banner{
+                height: 40vh;
+                padding: 8vh;
+        }
+
+        .banner-p1 {
+                font-size: 21px;
+        }
+
+        .banner-p2 {
+                font-size: 10px;
+        }
+
+        .bl-btn {
+                padding: 5px;
+                margin: 5px 5px;
+                border-radius: 8px;
+                border: 1px solid rgb(180, 180, 197);
+                background-color: white;
+                font-weight: bold;
+                font-size: 9px;
+        }
+}
+
+@media (max-width:1000px){
+        .banner{
+                height: 40vh;
+        }
+
+        .outer-card{
+                flex-direction: column;
+        }
+
+        .card{
+                margin: 20px;
+        }
+
+        .card-t{
+                font-size: 30px;
+                text-align: center;
+                font-weight: bold;
+                margin: 10px;
+        }
+}
+
+@media (min-width:900px){
+        .card-t{
+               font-size: 52px;
+                text-align: center;
+                font-weight: bold;
+                margin: 30px; 
+        }
+}
+
+/* Cards */
+
+.outer-card{
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+}
+
+
+.card-heading{
+        text-align: center;
+        font-weight: bold;
+        font-size: 20px;
+}
+
+.card-text{
+        text-align: center;
 }
