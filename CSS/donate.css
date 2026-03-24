@@ -1,0 +1,162 @@
+* {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+        padding: 5px;
+}
+
+
+/* Nav */
+.outer_body {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+        width: 100%;
+        background-color: #f3f4f6;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+        position: fixed;
+        z-index: 999;
+        top: 0px;
+        margin-top: 0px;
+}
+
+.logo_nav img{
+        margin: 0px 0px 0px 80px;
+        height: 80px;
+}
+
+.n-l {
+        text-decoration: none;
+        color: black;
+        font-weight: 500;
+}
+
+.nav-item button{
+        border: none;
+        margin: 0px;
+}
+
+.n-l:hover {
+        color: rgb(216, 21, 21);
+}
+
+.nav-item{
+        text-align: center;
+        align-items: center;
+}
+
+.btn-nav {
+        border: 1px solid rgb(180, 180, 197);
+        border-radius: 8px;
+        font-weight: 500;
+        padding: 8px;
+        text-decoration: none;
+        color: black;
+}
+
+.btn-nav:hover {
+        animation: fill-color all 0.7s ease-in-out;
+        background:  linear-gradient(45deg,rgb(216, 21, 21),rgb(86, 21, 216));
+        color: white;
+}
+
+.collapse{
+        z-index: 999;
+        position: relative;
+}
+
+/* Form */
+.row {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        padding: 5px 0px;
+}
+
+.inner-img{
+        background: url(img/reg-img.png);
+        height: 650px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        position: relative ;
+        z-index: -1;
+        animation: fadeIn2 1s ease;
+}
+
+.login-box {
+        background: white;
+        padding: 2rem;
+        border: 2px solid black;
+        border-radius: 2rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+        from {
+                opacity: 0;
+                transform: translateY(40px);
+        }
+
+        to {
+                opacity: 1;
+                transform: translateY(0);
+        }
+}
+
+@keyframes fadeIn2 {
+        from {
+                opacity: 0;
+                transform: translateX(40px);
+        }
+
+        to {
+                opacity: 1;
+                transform: translateX(0);
+        }
+}
+
+.form-floating>label {
+        color: #777;
+}
+
+.form-control:focus {
+        border-color: #764ba2;
+        box-shadow: 0 0 0 0.2rem rgba(118, 75, 162, 0.25);
+}
+
+button[type="submit"] {
+        background: black;
+        border: none;
+}
+
+button[type="submit"]:hover {
+        background: linear-gradient(45deg,rgb(216, 21, 21),rgb(86, 21, 216));
+        animation: fill-color all 0.5s ease-in-out;
+}
+
+@keyframes fill-color {
+        0% {
+                background-color: white;
+                color: black;
+        }
+
+        20% {
+                color: white;
+        }
+
+        100% {
+               background: linear-gradient(45deg,rgb(216, 21, 21),rgb(86, 21, 216));
+                color: white;
+        }
+}
+
+.footer-text {
+        margin-top: 1rem;
+        text-align: center;
+        color: #666;
+        font-size: 0.9rem;
+}

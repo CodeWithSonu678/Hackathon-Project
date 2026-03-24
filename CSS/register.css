@@ -1,14 +1,16 @@
 body {
         min-height: 100vh;
-        -webkit-backdrop-filter: blur(5px);
-        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(3px);
+        backdrop-filter: blur(3px);
         display: flex;
         align-items: center;
         justify-content: center;
-        background-image: url(img/reg-bg.jpeg);
+        background-image: url(img/bg_login.jpeg);
         background-repeat: no-repeat;
-        background-size: cover;
+        background-size: contain;
         opacity: 1;
+        padding: 5px;
+        background-position: center;
 }
 
 .login-box {
