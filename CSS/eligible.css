@@ -82,15 +82,23 @@ body{
 
 .login-box {
         background: white;
-        padding: 2rem;
         border: 2px solid black;
-        border-radius: 2rem;
+        border-radius: 8px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         animation: fadeIn 1s ease;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
+}
+
+.h-txt {
+        color: white;
+        background-color: rgb(216, 21, 21);
+        font-size: 25px;
+        font-weight: bold;
+        width: 100%;
+        text-align: center;
 }
 
 @keyframes fadeIn {
@@ -129,6 +137,9 @@ body{
 button[type="submit"] {
         background: rgb(216, 21, 21);
         border: none;
+        width: 150px;
+        font-weight: bold;
+        font-size: 20px;
 }
 
 button[type="submit"]:hover {
