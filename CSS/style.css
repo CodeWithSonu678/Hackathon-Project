@@ -66,6 +66,56 @@ body{
         position: relative;
 }
 
+/* Map */
+
+.map-body{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+}
+
+.search-icon{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        margin-top: 20px;
+}
+
+.form-floating>label {
+        color: #777;
+}
+
+.form-control:focus {
+        border-color: #764ba2;
+        box-shadow: 0 0 0 0.2rem rgba(118, 75, 162, 0.25);
+}
+
+.search-tab{
+        width: 250px;
+}
+
+.search-icon button{
+        padding: 10px;
+        border-radius: 10px;
+}
+
+.donor-card{
+        display: none;
+}
+
+.donor-id{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-direction: row;
+        border: 1px solid black;
+        padding: px;
+        text-align: center;
+}
+
+
 /* Banner */
 .banner {
         background-image: url(img/head-img.jpeg);
