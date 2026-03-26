@@ -14,35 +14,37 @@ body{
         align-items: center;
         flex-direction: row;
         width: 100%;
-        background-color: #f3f4f6;
+        background-color: #880015;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
         position: fixed;
         z-index: 999;
         top: 0px;
         margin-top: 0px;
+        width: 100%;
 }
 
-.logo_nav img{
+.logo_nav img {
         margin: 0px 0px 0px 80px;
         height: 80px;
 }
 
 .n-l {
         text-decoration: none;
-        color: black;
+        color: white;
         font-weight: 500;
 }
 
-.nav-item button{
+.nav-item button {
         border: none;
         margin: 0px;
+        background-color: #880015;
 }
 
 .n-l:hover {
         color: rgb(216, 21, 21);
 }
 
-.nav-item{
+.nav-item {
         text-align: center;
         align-items: center;
 }
@@ -54,15 +56,16 @@ body{
         padding: 8px;
         text-decoration: none;
         color: black;
+        background-color: white;
 }
 
 .btn-nav:hover {
         animation: fill-color all 0.7s ease-in-out;
-        background:  linear-gradient(45deg,rgb(216, 21, 21),rgb(86, 21, 216));
+        background: linear-gradient(45deg, rgb(216, 21, 21), rgb(86, 21, 216));
         color: white;
 }
 
-.collapse{
+.collapse {
         z-index: 999;
         position: relative;
 }

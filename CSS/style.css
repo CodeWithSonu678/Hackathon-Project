@@ -2,8 +2,8 @@
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-body{
-        padding: 5px;
+body {
+        padding: 0px 5px 0px 5px;
 }
 
 /* Navbar */
@@ -13,35 +13,37 @@ body{
         align-items: center;
         flex-direction: row;
         width: 100%;
-        background-color: #f3f4f6;
+        background-color: #880015;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
         position: fixed;
         z-index: 999;
         top: 0px;
         margin-top: 0px;
+        width: 100%;
 }
 
-.logo_nav img{
+.logo_nav img {
         margin: 0px 0px 0px 80px;
         height: 80px;
 }
 
 .n-l {
         text-decoration: none;
-        color: black;
+        color: white;
         font-weight: 500;
 }
 
-.nav-item button{
+.nav-item button {
         border: none;
         margin: 0px;
+        background-color: #880015;
 }
 
 .n-l:hover {
         color: rgb(216, 21, 21);
 }
 
-.nav-item{
+.nav-item {
         text-align: center;
         align-items: center;
 }
@@ -57,25 +59,32 @@ body{
 
 .btn-nav:hover {
         animation: fill-color all 0.7s ease-in-out;
-        background:  linear-gradient(45deg,rgb(216, 21, 21),rgb(86, 21, 216));
+        background: linear-gradient(45deg, rgb(216, 21, 21), rgb(86, 21, 216));
         color: white;
 }
 
-.collapse{
+.collapse {
         z-index: 999;
         position: relative;
 }
 
+.hero-img {
+        background-image: url(img/s1.jpeg);
+        background-size: contain;
+        height: 800px;
+        background-repeat: no-repeat;
+}
+
 /* Map */
 
-.map-body{
+.map-body {
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
 }
 
-.search-icon{
+.search-icon {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -92,20 +101,20 @@ body{
         box-shadow: 0 0 0 0.2rem rgba(118, 75, 162, 0.25);
 }
 
-.search-tab{
+.search-tab {
         width: 250px;
 }
 
-.search-icon button{
+.search-icon button {
         padding: 10px;
         border-radius: 10px;
 }
 
-.donor-card{
+.donor-card {
         display: none;
 }
 
-.donor-id{
+.donor-id {
         display: flex;
         justify-content: space-evenly;
         align-items: center;
@@ -115,12 +124,42 @@ body{
         text-align: center;
 }
 
+/* Dash-Card */
+.outer-dash-card{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+}
+
+.d-card-body{
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+}
+
+.body-dash-card{
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        border: 2px solid black;
+        border-radius: 8px;
+        margin: 15px;
+}
+
+.dash-card-logo{
+        font-size: 40px;
+        margin: 5px 15px;
+}
+
+.dash-card-info{
+        margin: 5px;
+        width: 200px;
+}
+
 
 /* Banner */
 .banner {
-        background-image: url(img/head-img.jpeg);
-        background-size: cover;
-        height: 65vh;
+        height: 55vh;
         padding: 8vh;
         margin-top: 75px;
         margin-bottom: 10px;
@@ -149,7 +188,7 @@ body{
 }
 
 .bl-btn:hover {
-        background: linear-gradient(45deg,rgb(216, 21, 21),rgb(86, 21, 216));
+        background: linear-gradient(45deg, rgb(216, 21, 21), rgb(86, 21, 216));
         color: white;
         animation: fill-color all 0.7s ease-in-out;
 }
@@ -165,7 +204,7 @@ body{
         }
 
         100% {
-                background: linear-gradient(to right,rgb(216, 21, 21) 75%,rgb(86, 21, 216) 25%);
+                background: linear-gradient(to right, rgb(216, 21, 21) 75%, rgb(86, 21, 216) 25%);
                 color: white;
         }
 }
@@ -177,8 +216,6 @@ body{
         align-items: center;
         justify-content: space-evenly;
 }
-
-
 
 .card-heading {
         text-align: center;
@@ -202,71 +239,89 @@ body{
 
 /* Footer */
 
-.foot-body{
-        background-color: rgb(243, 245, 246);
+.foot-body {
+        background-color: #880015;
+        color: white;
         display: flex;
         align-items: center;
         justify-content: space-evenly;
 }
 
-.foot-img{
+.foot-img {
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: column;
 }
 
-.foot-img img{
+.foot-img img {
         height: 80px;
 }
 
-.foot-txt{
-        font-size: 16px;
+.foot-txt {
+        font-size: 18px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         font-weight: bold;
-        margin: 10px;
+        margin: 10px 10px 5px 10px;
         text-align: center;
 }
 
-.links-url li a{
+.links-url li a {
         text-decoration: none;
-        color: black;   
+        color: white;
         font-size: 30px;
-        margin: 10px;
+        margin: 8px;
 }
 
-.s-link{
+.s-link {
         text-align: center;
 }
 
-.link-head{
+.link-head {
         font-size: 35px;
         font-weight: bold;
-        margin-left: 30px;
+        margin-left: 0px;
 }
 
-ul{
+.q-links-urls{
+        list-style: none;
+        margin-left: 20px;
+}
+
+.q-links-urls li a{
+        text-decoration: none;
+        color: white;
+}
+
+.links-url {
         list-style: none;
         display: flex;
         align-items: center;
         justify-content: center;
         flex-direction: row;
+        margin-right: 20px;
 }
 
-.c-txt{
+.c-txt {
         text-align: center;
-        background-color: rgb(243, 245, 246);
+        background-color: #880015;
         font-weight: 100;
+        color: white;
 }
 
 @media (max-width:650px) {
         .outer_body {
-             flex-direction: column;   
+                flex-direction: column;
         }
 
-        .logo_nav img{
-        margin: 0px 50px 0px 80px;
-        height: 65px;
-}
+        .logo_nav img {
+                margin: 0px 50px 0px 80px;
+                height: 65px;
+        }
+
+        .hero-img{
+                height: 500px;
+        }
 
         .banner {
                 height: 30vh;
@@ -278,7 +333,7 @@ ul{
         }
 
         .banner-p2 {
-                font-size: 10px;
+                font-size: 20px;
         }
 
         .bl-btn {
@@ -291,16 +346,16 @@ ul{
                 font-size: 9px;
         }
 
-        .foot-body{
+        .foot-body {
                 flex-direction: column;
         }
 
-        .link-head{
+        .link-head {
                 font-size: 25px;
                 margin-left: 15px;
         }
 
-        .links-url li a{
+        .links-url li a {
                 font-size: 25px;
                 margin: 0px 15px 0px 0px;
         }
@@ -326,6 +381,14 @@ ul{
                 font-size: 15px;
                 text-align: center;
         }
+
+        .link-head{
+                font-size: 25px;
+        }
+
+        ul li{
+                font-size: 10px;
+        }
 }
 
 @media (min-width:900px) {
@@ -343,3 +406,30 @@ ul{
         }
 }
 
+@media (max-width: 1024px) {
+        .outer-dash-card{
+                flex-direction: column;
+        }
+        .body-dash-card{
+                width: 300px;
+        }
+}
+
+@media (max-width: 550px) {
+        .d-card-body{
+                flex-direction: column;
+        }
+        .body-dash-card{
+                width: 300px;
+        }
+
+        .donor-card-body{
+                width: 270px;
+        }
+        .donor-card-img{
+                font-size: 50px;
+        }
+        .donor-card-info{
+                width: 150px;
+        }
+}
