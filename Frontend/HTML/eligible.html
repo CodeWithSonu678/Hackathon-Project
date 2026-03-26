@@ -66,51 +66,53 @@
                         <div class="h-txt">
                         <p >Check Your Blood Donation Eligibility </p>
                         </div>
+                                <form action="#" method="post">
                                 <table style="margin: 15px 50px;">
                                         <tr style="border-bottom: 1px solid black;">
-                                                <th id="out"><label for="gen" class="mt-3 mb-1">Are you between 18 and 65 years
-                                                                old:</label></th>
+                                                <th id="out"><label for="q1_yes" class="mt-3 mb-1">Are you between 18 and 65 years old:</label></th>
                                                 <td>
-                                                        <input type="radio" name="med" id="gen" class="mt-3 mb-1">
-                                                        <label for="gen" style="font-weight: bold;" >Yes</label>
-                                                        <input type="radio" name="med" id="gen" class="mt-3 mb-1">
-                                                        <label for="gen" style="font-weight: bold;">No</label>
+                                                        <input type="radio" name="age_range" id="q1_yes" value="yes" class="mt-3 mb-1">
+                                                        <label for="q1_yes" style="font-weight: bold;" >Yes</label>
+                                                        <input type="radio" name="age_range" id="q1_no" value="no" class="mt-3 mb-1">
+                                                        <label for="q1_no" style="font-weight: bold;">No</label>
                                                 </td>
                                         </tr>
                                         <tr style="border-bottom: 1px solid black;">
-                                                <th id="out"><label for="gen" class="mt-3 mb-1">Do you weigh over 50 kg?:</label></th>
+                                                <th id="out"><label for="q2_yes" class="mt-3 mb-1">Do you weigh over 50 kg?:</label></th>
                                                 <td>
-                                                        <input type="radio" name="med" id="gen" class="mt-3 mb-1">
-                                                        <label for="gen" style="font-weight: bold;">Yes</label>
-                                                        <input type="radio" name="med" id="gen" class="mt-3 mb-1">
-                                                        <label for="gen" style="font-weight: bold;">No</label>
+                                                        <input type="radio" name="weight" id="q2_yes" value="yes" class="mt-3 mb-1">
+                                                        <label for="q2_yes" style="font-weight: bold;">Yes</label>
+                                                        <input type="radio" name="weight" id="q2_no" value="no" class="mt-3 mb-1">
+                                                        <label for="q2_no" style="font-weight: bold;">No</label>
                                                 </td>
                                         </tr>
                                         <tr style="border-bottom: 1px solid black;">
-                                                <th id="out"><label for="gen" class="mt-3 mb-1">Have you been ill in last two week?:</label></th>
+                                                <th id="out"><label for="q3_yes" class="mt-3 mb-1">Have you been ill in last two weeks?:</label></th>
                                                 <td>
-                                                        <input type="radio" name="med" id="gen" class="mt-3 mb-1">
-                                                        <label for="gen" style="font-weight: bold;">Yes</label>
-                                                        <input type="radio" name="med" id="gen" class="mt-3 mb-1">
-                                                        <label for="gen" style="font-weight: bold;">No</label>
+                                                        <input type="radio" name="recent_illness" id="q3_yes" value="yes" class="mt-3 mb-1">
+                                                        <label for="q3_yes" style="font-weight: bold;">Yes</label>
+                                                        <input type="radio" name="recent_illness" id="q3_no" value="no" class="mt-3 mb-1">
+                                                        <label for="q3_no" style="font-weight: bold;">No</label>
                                                 </td>
                                         </tr>
                                         <tr style="border-bottom: 1px solid black;" >
-                                                <th id="out"><label for="gen" class="mt-3 mb-1">Are you currently taking any medications?:</label></th>
+                                                <th id="out"><label for="q4_yes" class="mt-3 mb-1">Are you currently taking any medications?:</label></th>
                                                 <td>
-                                                        <input type="radio" name="med" id="gen" class="mt-3 mb-1">
-                                                        <label for="gen" style="font-weight: bold;">Yes</label>
-                                                        <input type="radio" name="med" id="gen" class="mt-3 mb-1">
-                                                        <label for="gen" style="font-weight: bold;">No</label>
+                                                        <input type="radio" name="medications" id="q4_yes" value="yes" class="mt-3 mb-1">
+                                                        <label for="q4_yes" style="font-weight: bold;">Yes</label>
+                                                        <input type="radio" name="medications" id="q4_no" value="no" class="mt-3 mb-1">
+                                                        <label for="q4_no" style="font-weight: bold;">No</label>
                                                 </td>
                                         </tr>
                                         <tr style="border-bottom: 1px solid black;" class="p-2">
-                                                <th id="out"><label for="gen" class="mt-3">Date of your last blood donation:</label></th>
+                                                <th id="out"><label for="last_donation" class="mt-3">Date of your last blood donation:</label></th>
                                                 <td >
-                                                        <input type="date" name="" id=""  class="mt-3 mb-1">
+                                                        <input type="date" name="last_donation" id="last_donation" class="mt-3 mb-1">
                                                 </td>
-                                        </tr> 
+                                        </tr>
                                 </table>
+                                
+                        </form>
                                 <button type="submit" class="btn btn-primary mt-2 mb-4">Submit</button>
                 </div>
 

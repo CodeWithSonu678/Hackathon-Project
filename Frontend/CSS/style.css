@@ -324,8 +324,8 @@ body {
         }
 
         .banner {
-                height: 30vh;
-                padding: 5vh;
+                margin-top: 100px;
+                height: 48vh;
         }
 
         .banner-p1 {
