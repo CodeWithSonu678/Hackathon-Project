@@ -1,0 +1,94 @@
+body {
+        min-height: 100vh;
+        -webkit-backdrop-filter: blur(3px);
+        backdrop-filter: blur(3px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-image: url(img/bg_login.jpeg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        opacity: 1;
+        padding: 5px;
+        background-position: center;
+}
+
+.login-box {
+        background: white;
+        padding: 2rem;
+        border-radius: 1rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+        from {
+                opacity: 0;
+                transform: translateY(40px);
+        }
+
+        to {
+                opacity: 1;
+                transform: translateY(0);
+        }
+}
+
+.form-floating>label {
+        color: #777;
+}
+
+.form-control:focus {
+        border-color: #764ba2;
+        box-shadow: 0 0 0 0.2rem rgba(118, 75, 162, 0.25);
+}
+
+.toggle-password {
+        position: absolute;
+        top: 50%;
+        right: 1rem;
+        transform: translateY(-50%);
+        cursor: pointer;
+        font-size: 0.875rem;
+        color: #666;
+}
+
+
+button[type="submit"] {
+        background: black;
+        border: none;
+}
+
+button[type="submit"]:hover {
+        background: linear-gradient(45deg,rgb(216, 21, 21),rgb(86, 21, 216));
+        animation: fill-color all 0.5s ease-in-out;
+}
+
+@keyframes fill-color {
+        0% {
+                background-color: white;
+                color: black;
+        }
+
+        20% {
+                color: white;
+        }
+
+        100% {
+               background: linear-gradient(45deg,rgb(216, 21, 21),rgb(86, 21, 216));
+                color: white;
+        }
+}
+
+.footer-text {
+        margin-top: 1rem;
+        text-align: center;
+        color: #666;
+        font-size: 0.9rem;
+}
+
+.check-box{
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-left: 10px;
+}
