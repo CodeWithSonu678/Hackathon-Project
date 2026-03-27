@@ -176,6 +176,10 @@ table{
                 margin-top: 100px;
         }       
 
+        .login-box{
+                font-size: 9px;
+        }
+
         .inner-img img{
                 display: none;
         }

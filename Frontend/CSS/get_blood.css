@@ -6,6 +6,7 @@ body{
         padding: 5px;
 }
 
+
 /* Nav */
 .outer_body {
         display: flex;
@@ -68,6 +69,7 @@ body{
         z-index: 999;
         position: relative;
 }
+
 /* Form */
 .row {
         width: 100%;
@@ -75,12 +77,11 @@ body{
         align-items: center;
         justify-content: space-evenly;
         padding: 5px 0px;
-        
 }
 
 .inner-img{
         background: url(img/reg-img.png);
-        height: 650px;
+        height: 400px;
         background-repeat: no-repeat;
         background-size: contain;
         position: relative ;
@@ -163,8 +164,16 @@ button[type="submit"]:hover {
         font-size: 0.9rem;
 }
 
-
 @media (max-width:1024px){
+
+        body{
+                padding-top: 70px;
+        }
+
+        .outer_body{
+                flex-direction: column;
+        }
+
         .inner-img{
                 flex-direction: row;
                 display: none;

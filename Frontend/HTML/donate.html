@@ -5,30 +5,27 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Donate Blood</title>
-        <link rel="stylesheet" href="../CSS/donate.css">
+        <link rel="stylesheet" href="../CSS/get_blood.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 
 <body>
 
-        <!-- Nav -->
+         <!-- Nav -->
         <div class="outer_body">
                 <div class="logo_nav">
-                        <img src="../CSS/img/new-logo.jpeg" alt="">
+                        <a href="../index.html"><img src="../CSS/img/new-logo.jpeg" alt="logo"></a>
                 </div>
-                <div class="nav_icon">
-                        <nav class="navbar navbar-expand-lg ">
+                <div class="nav_icon w-100">
+                        <nav class="navbar navbar-expand-lg navbar-dark">
                                 <div class="container-fluid">
-                                        <button class="navbar-toggler mt-2" type="button" data-bs-toggle="collapse"
-                                                data-bs-target="#navbarNav" aria-controls="navbarNav"
-                                                aria-expanded="false" aria-label="Toggle navigation">
+                                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                                                 <span class="navbar-toggler-icon"></span>
                                         </button>
                                         <div class="collapse navbar-collapse" id="navbarNav">
-                                                <ul class="navbar-nav">
+                                                <ul class="navbar-nav ms-auto">
                                                         <li class="nav-item m-1 p-2">
-                                                                <a class=" active n-l" aria-current="page"
-                                                                        href="../index.html">Home</a>
+                                                                <a class="active n-l" aria-current="page" href="../index.html">Home</a>
                                                         </li>
                                                         <li class="nav-item m-1 p-2">
                                                                 <a class="active n-l" href="#">About</a>
@@ -37,17 +34,11 @@
                                                                 <a class="active n-l" href="#">Contact</a>
                                                         </li>
                                                         <li class="nav-item m-1 p-2">
-                                                                <button><a class="active btn-nav bl-btn" style="margin: 0px;" href="HTML/loogin.html">
-                                                                        Login
-                                                                </a></button>
+                                                                <a class="btn-nav bl-btn" href="loogin.html">Login</a>
                                                         </li>
-                                                        <div class="nav-item m-1 p-2">
-                                                               <button><a class="active btn-nav bl-btn"
-                                                                style="margin: 0px;"
-                                                                        href="HTML/register.html">
-                                                                        Register
-                                                                </a></button>
-                                                        </div>
+                                                        <li class="nav-item m-1 p-2">
+                                                                <a class="btn-nav bl-btn" href="register.html">Register</a>
+                                                        </li>
                                                 </ul>
                                         </div>
                                 </div>
@@ -56,56 +47,56 @@
         </div>
 
         <!-- Form -->
-        <div class="row justify-content-center mt-5">
-                <div class="col-6 inner-img"></div>
-                <div class="col-6 login-box">
-                        <h3 class="text-center mb-4">Donate Blood</h3>
-                        <form id="loginForm" novalidate>
-                                <div class="form-floating mb-3 position-relative">
-                                        <input type="text" class="form-control" id="username" placeholder="Donar Name"
-                                                required>
-                                        <label for="username">Donor Name</label>
-                                </div>
-                                <div class="form-floating mb-3 position-relative">
-                                        <input type="tel" class="form-control" id="username" placeholder="Mobile Number"
-                                                required>
-                                        <label for="username">Mobile Number</label>
-                                </div>
+        <div class="container mt-5 pt-5">
+                <div class="row justify-content-center g-3">
+                        <div class="col-md-5 d-none d-md-block inner-img"></div>
+                        <div class="col-12 col-md-6 login-box">
+                                <h3 class="text-center mb-4">Donate Blood</h3>
+                                <form id="loginForm" novalidate>
+                                        <div class="form-floating mb-3 position-relative">
+                                                <input type="text" class="form-control" id="donorName" placeholder="Donor Name" required>
+                                                <label for="donorName">Donor Name</label>
+                                        </div>
 
-                                <div class="form-floating mb-3 position-relative">
-                                        <input type="tel" class="form-control" id="username" placeholder="Donar Age"
-                                                required>
-                                        <label for="username">Donor Age</label>
-                                </div>
+                                        <div class="form-floating mb-3 position-relative">
+                                                <input type="text" class="form-control" id="mobileNumber" placeholder="Mobile Number" required>
+                                                <label for="mobileNumber">Mobile Number</label>
+                                        </div>
 
-                                <div class="form-floating mb-3 position-relative">
-                                        <input type="tel" class="form-control" id="username" placeholder="Aadhar Number"
-                                                required>
-                                        <label for="username">Aadhar Number</label>
-                                </div>
+                                        <div class="form-floating mb-3 position-relative">
+                                                <input type="number" class="form-control" id="donorAge" placeholder="Donor Age" min="0" required>
+                                                <label for="donorAge">Donor Age</label>
+                                        </div>
 
-                                <div class="form-floating mb-3 position-relative">
-                                        <select name="" id="" class="form-control">
-                                                <option value="Select">Select</option>
-                                                <option value="A+">A+</option>
-                                                <option value="A+">A-</option>
-                                                <option value="A+">B+</option>
-                                                <option value="A+">B-</option>
-                                                <option value="A+">AB+</option>
-                                                <option value="A+">AB-</option>
-                                                <option value="A+">O+</option>
-                                                <option value="A+">O-</option>
-                                        </select>
-                                        <label for="username">Blood Group</label>
-                                </div>
+                                        <div class="form-floating mb-3 position-relative">
+                                                <input type="text" class="form-control" id="aadharNumber" placeholder="Aadhar Number" maxlength="12" required>
+                                                <label for="aadharNumber">Aadhar Number</label>
+                                        </div>
 
-                                <button type="submit" class="btn btn-primary w-100">Donate</button>
+                                        <div class="form-floating mb-3 position-relative">
+                                                <select class="form-control" id="bloodGroup" required>
+                                                        <option value="" disabled selected>Select</option>
+                                                        <option value="A+">A+</option>
+                                                        <option value="A-">A-</option>
+                                                        <option value="B+">B+</option>
+                                                        <option value="B-">B-</option>
+                                                        <option value="AB+">AB+</option>
+                                                        <option value="AB-">AB-</option>
+                                                        <option value="O+">O+</option>
+                                                        <option value="O-">O-</option>
+                                                </select>
+                                                <label for="bloodGroup">Blood Group</label>
+                                        </div>
 
-                                <div class="footer-text">Need Blood?<a href="get_blood.html">Get Blood</a></div>
-                        </form>
+                                        <button type="submit" class="btn btn-primary w-100">Search</button>
+
+                                        <div class="footer-text mt-3">Need Blood? <a href="donate.html">Get Blood</a></div>
+                                </form>
+                        </div>
                 </div>
-
         </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 

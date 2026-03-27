@@ -81,7 +81,7 @@ body{
 
 .inner-img{
         background: url(img/reg-img.png);
-        height: 650px;
+        height: 400px;
         background-repeat: no-repeat;
         background-size: contain;
         position: relative ;
@@ -165,6 +165,15 @@ button[type="submit"]:hover {
 }
 
 @media (max-width:1024px){
+
+         body{
+                padding-top: 70px;
+        }
+
+        .outer_body{
+                flex-direction: column;
+        }
+
         .inner-img{
                 flex-direction: row;
                 display: none;
