@@ -162,3 +162,11 @@ button[type="submit"]:hover {
         color: #666;
         font-size: 0.9rem;
 }
+
+
+@media (max-width:1024px){
+        .inner-img{
+                flex-direction: row;
+                display: none;
+        }
+}
