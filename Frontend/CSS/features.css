@@ -121,12 +121,49 @@ p{
         background-color: rgb(241,21,21);
 }
 
+/* Review Card */
+
+.review-card-outer{
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+}
+
+.review-card-body{
+        width: 250px;
+        height: 190px;
+        margin: 20px 0px;
+        border: 2px solid black;
+        border-radius: 8px;
+        padding: 15px;
+        display: flex;
+        align-items: start;
+        justify-content: space-evenly;
+        flex-direction: column;
+}
+
+.reviewer-profile{
+        display: flex;
+        align-items: start;
+        justify-content: center;
+}
+
+.reviewer-img{
+        font-size: 45px;
+        margin: 5px 8px 5px 0px;
+}
+
 @media (max-width: 1024px) {
         .outer-dash-card{
                 flex-direction: column;
         }
         .body-dash-card{
                 width: 300px;
+        }
+
+        .review-card-body{
+                width: 150px;
+                font-size: 12px;
         }
 }
 
@@ -146,5 +183,13 @@ p{
         }
         .donor-card-info{
                 width: 150px;
+        }
+
+        .review-card-outer{
+                flex-direction: column;
+        }
+        .review-card-body{
+                width: 200px;
+                font-size: 15px;
         }
 }
