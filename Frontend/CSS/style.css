@@ -526,6 +526,19 @@ body {
                 text-align: center;
         }
 
+        .banner {
+                min-height: 25vh;
+                padding: 4vh 1rem;
+        }
+
+         .banner-p1 {
+                font-size: 38px;
+        }
+
+        .banner-p2 {
+                font-size: 25px;
+        }
+
         .link-head {
                 font-size: 25px;
         }
