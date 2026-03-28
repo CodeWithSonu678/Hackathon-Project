@@ -1,5 +1,30 @@
+* {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+}
+
+html {
+        font-size: 16px;
+}
+
 body{
         padding: 5px;
+        font-size: 1rem;
+}
+
+/* Mobile First - Small devices (320px - 480px) */
+@media (max-width: 480px) {
+        html {
+                font-size: 14px;
+        }
+}
+
+/* Tablets (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+        html {
+                font-size: 15px;
+        }
 }
 
 /* Dash-Card */
@@ -25,7 +50,7 @@ body{
 }
 
 .dash-card-logo{
-        font-size: 40px;
+        font-size: 2.5rem;
         margin: 5px 15px;
 }
 
@@ -54,7 +79,7 @@ body{
 }
 
 .donor-card-img{
-        font-size: 60px;
+        font-size: 3.75rem;
 }
 
 p{
@@ -71,7 +96,7 @@ p{
 }
 
 .donor-card-badge{
-        font-size: 25px;
+        font-size: 1.5625rem;
 }
 
 /* Request */
@@ -102,7 +127,7 @@ p{
 }
 
 .b-request-img{
-        font-size: 40px;
+        font-size: 2.5rem;
         margin-right: 8px;
 }
 
@@ -149,7 +174,7 @@ p{
 }
 
 .reviewer-img{
-        font-size: 45px;
+        font-size: 2.8125rem;
         margin: 5px 8px 5px 0px;
 }
 
@@ -163,7 +188,7 @@ p{
 
         .review-card-body{
                 width: 150px;
-                font-size: 12px;
+                font-size: 0.75rem;
         }
 }
 
@@ -179,7 +204,7 @@ p{
                 width: 270px;
         }
         .donor-card-img{
-                font-size: 50px;
+                font-size: 3.125rem;
         }
         .donor-card-info{
                 width: 150px;
@@ -190,6 +215,42 @@ p{
         }
         .review-card-body{
                 width: 200px;
-                font-size: 15px;
+                font-size: 0.9375rem;
+        }
+}
+
+@media (max-width: 480px) {
+        .body-dash-card{
+                width: 280px;
+                margin: 10px;
+        }
+
+        .dash-card-logo{
+                font-size: 2rem;
+        }
+
+        .dash-card-info{
+                width: 150px;
+        }
+
+        .donor-card-body{
+                width: 240px;
+        }
+
+        .donor-card-img{
+                font-size: 2.5rem;
+        }
+
+        .donor-card-info{
+                width: 130px;
+        }
+
+        .b-request-body{
+                width: 280px;
+        }
+
+        .review-card-body{
+                width: 180px;
+                font-size: 0.8rem;
         }
 }

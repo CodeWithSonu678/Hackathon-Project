@@ -1,73 +1,160 @@
 * {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
 }
 
-body{
+html {
+        font-size: 16px;
+}
+
+body {
         padding: 5px;
+        font-size: 1rem;
+}
+
+/* Mobile First - Small devices (320px - 480px) */
+@media (max-width: 480px) {
+        html {
+                font-size: 14px;
+        }
+}
+
+/* Tablets (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+        html {
+                font-size: 15px;
+        }
 }
 
 
 /* Nav */
-.outer_body {
+.outer-navbody {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        flex-direction: row;
-        width: 100%;
+        justify-content: space-between;
         background-color: #880015;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
         position: fixed;
-        z-index: 999;
-        top: 0px;
-        margin-top: 0px;
+        top: 0;
         width: 100%;
+        z-index: 1000;
+        padding: 5px 0px;
 }
 
-.logo_nav img {
-        margin: 0px 0px 0px 80px;
-        height: 80px;
+.nav-logo-img img {
+        width: 150px;
 }
 
-.n-l {
+.nav-links-url ul {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        flex-direction: row;
+}
+
+.link-li li a {
         text-decoration: none;
         color: white;
-        font-weight: 500;
+        font-size: 15px;
+        font-weight: bold;
 }
 
-.nav-item button {
-        border: none;
-        margin: 0px;
-        background-color: #880015;
+.link-li {
+        padding: 0px;
 }
 
-.n-l:hover {
+.link-li li {
+        list-style: none;
+        margin: 0px 15px;
+}
+
+.link-li li a:hover {
         color: rgb(216, 21, 21);
+        transition: all 0.3s ease-in-out;
 }
 
-.nav-item {
-        text-align: center;
-        align-items: center;
+.nav-link-toggle {
+        display: none;
 }
 
-.btn-nav {
-        border: 1px solid rgb(180, 180, 197);
+.nav-link-toggle button {
+        font-size: 30px;
+        background-color: #880015;
+        border: 1px solid white;
+        color: white;
         border-radius: 8px;
-        font-weight: 500;
-        padding: 8px;
-        text-decoration: none;
-        color: black;
-        background-color: white;
 }
 
-.btn-nav:hover {
-        animation: fill-color all 0.7s ease-in-out;
+.nav-toggle-links {
+        display: none;
+}
+
+@media (max-width:768px) {
+        .outer-navbody {
+                display: flex;
+                align-items: center;
+                justify-content: space-evenly;
+        }
+
+        .nav-links-url ul {
+                display: none;
+        }
+
+        .nav-link-toggle {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+        }
+
+        .nav-toggle-links {
+                display: none;
+        }
+
+        .nav-toggle-links.active {
+                display: flex;
+                align-items: start;
+                justify-content: space-evenly;
+                flex-direction: column;
+                position: fixed;
+                z-index: 1000;
+                right: 5px;
+                background-color: #880015;
+                border-radius: 8px;
+                top: 80px;
+                font-weight: bold;
+        }
+
+        .toggle-li {
+                margin: 0px;
+        }
+
+        .toggle-li li a {
+                text-decoration: none;
+                color: white;
+                font-size: 15px;
+        }
+
+        .toggle-li li {
+                list-style: none;
+                margin: 20px 15px;
+        }
+
+}
+
+.bl-btn {
+        padding: 10px;
+        border-radius: 8px;
+        border: 1px solid rgb(180, 180, 197);
+        background-color: white;
+        font-weight: bold;
+}
+
+.bl-btn:hover {
         background: linear-gradient(45deg, rgb(216, 21, 21), rgb(86, 21, 216));
         color: white;
-}
-
-.collapse {
-        z-index: 999;
-        position: relative;
+        animation: fill-color all 0.7s ease-in-out;
+        transition: all 0.3s ease-in-out;
 }
 
 /* Form */
@@ -79,12 +166,12 @@ body{
         padding: 5px 0px;
 }
 
-.inner-img{
+.inner-img {
         background: url(img/reg-img.png);
         height: 400px;
         background-repeat: no-repeat;
         background-size: contain;
-        position: relative ;
+        position: relative;
         z-index: -1;
         animation: fadeIn2 1s ease;
 }
@@ -137,7 +224,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-        background: linear-gradient(45deg,rgb(216, 21, 21),rgb(86, 21, 216));
+        background: linear-gradient(45deg, rgb(216, 21, 21), rgb(86, 21, 216));
         animation: fill-color all 0.5s ease-in-out;
 }
 
@@ -152,7 +239,7 @@ button[type="submit"]:hover {
         }
 
         100% {
-               background: linear-gradient(45deg,rgb(216, 21, 21),rgb(86, 21, 216));
+                background: linear-gradient(45deg, rgb(216, 21, 21), rgb(86, 21, 216));
                 color: white;
         }
 }
@@ -164,18 +251,29 @@ button[type="submit"]:hover {
         font-size: 0.9rem;
 }
 
-@media (max-width:1024px){
+@media (max-width:1024px) {
 
-        body{
+        body {
                 padding-top: 70px;
         }
 
-        .outer_body{
+        .outer_body {
                 flex-direction: column;
         }
 
-        .inner-img{
+        .inner-img {
                 flex-direction: row;
                 display: none;
+        }
+}
+
+@media (max-width:480px) {
+        .n-l {
+                font-size: 0.875rem;
+        }
+
+        .btn-nav {
+                font-size: 0.75rem;
+                padding: 6px;
         }
 }

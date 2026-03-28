@@ -1,3 +1,13 @@
+* {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+}
+
+html {
+        font-size: 16px;
+}
+
 body {
         min-height: 100vh;
         -webkit-backdrop-filter: blur(3px);
@@ -11,6 +21,21 @@ body {
         opacity: 1;
         padding: 5px;
         background-position: center;
+        font-size: 1rem;
+}
+
+/* Mobile First - Small devices (320px - 480px) */
+@media (max-width: 480px) {
+        html {
+                font-size: 14px;
+        }
+}
+
+/* Tablets (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+        html {
+                font-size: 15px;
+        }
 }
 
 .login-box {
@@ -91,4 +116,22 @@ button[type="submit"]:hover {
         align-items: center;
         justify-content: flex-start;
         margin-left: 10px;
+        font-size: 0.9375rem;
+}
+
+@media (max-width: 480px) {
+        .login-box {
+                padding: 1.5rem;
+                border-radius: 0.75rem;
+        }
+
+        .check-box {
+                font-size: 0.8rem;
+        }
+}
+
+@media (max-width: 650px) {
+        .login-box {
+                padding: 1.5rem;
+        }
 }

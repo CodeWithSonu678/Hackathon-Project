@@ -12,38 +12,34 @@
 <body>
 
          <!-- Nav -->
-        <div class="outer_body">
-                <div class="logo_nav">
-                        <a href="../index.html"><img src="../CSS/img/new-logo.jpeg" alt="logo"></a>
+        <div class="outer-navbody">
+                <div class="nav-logo-img">
+                        <img src="../CSS/img/new-logo.jpeg" alt="">
                 </div>
-                <div class="nav_icon w-100">
-                        <nav class="navbar navbar-expand-lg navbar-dark">
-                                <div class="container-fluid">
-                                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                                                <span class="navbar-toggler-icon"></span>
-                                        </button>
-                                        <div class="collapse navbar-collapse" id="navbarNav">
-                                                <ul class="navbar-nav ms-auto">
-                                                        <li class="nav-item m-1 p-2">
-                                                                <a class="active n-l" aria-current="page" href="../index.html">Home</a>
-                                                        </li>
-                                                        <li class="nav-item m-1 p-2">
-                                                                <a class="active n-l" href="#">About</a>
-                                                        </li>
-                                                        <li class="nav-item m-1 p-2">
-                                                                <a class="active n-l" href="#">Contact</a>
-                                                        </li>
-                                                        <li class="nav-item m-1 p-2">
-                                                                <a class="btn-nav bl-btn" href="loogin.html">Login</a>
-                                                        </li>
-                                                        <li class="nav-item m-1 p-2">
-                                                                <a class="btn-nav bl-btn" href="register.html">Register</a>
-                                                        </li>
-                                                </ul>
-                                        </div>
-                                </div>
-                        </nav>
+                <div class="nav-links-url">
+                        <ul class="link-li">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="#about-us">About</a></li>
+                                <li><a href="">Contact</a></li>
+                                <li><a href="HTML/loogin.html"><button class="bl-btn">Login</button></a></li>
+                                <li><a href="HTML/register.html"><button class="bl-btn">Register</button></a></li>
+                        </ul>
                 </div>
+                <div class="nav-link-toggle">
+                        <button id="navToggleBtn" aria-label="Toggle navigation" aria-controls="navToggleLinks" aria-expanded="false">☰</button>
+
+                </div>
+
+
+        </div>
+        <div class="nav-toggle-links" id="navToggleLinks" aria-hidden="true">
+                <ul class="toggle-li">
+                        <li><a href="">Home</a></li>
+                        <li><a href="#about-us">About</a></li>
+                        <li><a href="">Contact</a></li>
+                        <li><a href="HTML/loogin.html"><button class="bl-btn">Login</button></a></li>
+                        <li><a href="HTML/register.html"><button class="bl-btn">Register</button></a></li>
+                </ul>
         </div>
 
         <!-- Form -->
