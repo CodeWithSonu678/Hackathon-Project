@@ -95,7 +95,7 @@ body {
         .outer-navbody {
                 display: flex;
                 align-items: center;
-                justify-content: space-evenly;
+                justify-content: space-around;
         }
 
         .nav-links-url ul {
