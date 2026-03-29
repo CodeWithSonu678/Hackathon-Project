@@ -350,6 +350,8 @@ button[type="submit"]:hover {
         color: white;
 }
 
+
+
 @media (max-width:650px) {
          .foot-body {
                 flex-direction: column;
