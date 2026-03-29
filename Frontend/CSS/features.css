@@ -12,15 +12,12 @@ body{
         padding: 5px;
         font-size: 1rem;
 }
-
-/* Mobile First - Small devices (320px - 480px) */
 @media (max-width: 480px) {
         html {
                 font-size: 14px;
         }
 }
 
-/* Tablets (481px - 768px) */
 @media (min-width: 481px) and (max-width: 768px) {
         html {
                 font-size: 15px;
