@@ -1,0 +1,223 @@
+.user-info-outer {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding: 20px;
+        margin-top: 9vh;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border-radius: 15px;
+        margin: 0vh 40px;
+}
+
+.user-info {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        gap: 50px;
+}
+
+.decImg {
+        width:250px;
+        height: 250px;;
+        border-radius: 15px;
+        object-fit: cover;
+}
+
+.info label {
+        color: rgb(137, 162, 184);
+        margin: 0px;
+        font-size: 14px;
+}
+
+.info p {
+        margin-top: 0px;
+}
+
+@media (max-width:800px) {
+        .user-info-outer {
+                flex-direction: column;
+                justify-content: start;
+                align-items: start;
+                margin: 0vh 20px;
+        }
+}
+
+@media (max-width:500px) {
+        .user-info {
+                flex-direction: column;
+                gap: 0px;
+                align-items: start;
+        }
+
+        body {
+                margin: 0%;
+                padding: 0%;
+        }
+}
+
+/* Request */
+
+.request-blood-card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        padding: 20px;
+        margin: 10px 40px;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+}
+
+.request-img i {
+        font-size: 60px;
+}
+
+.request-name {
+        display: flex;
+        flex-direction: column;
+}
+
+.request-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 50%;
+}
+
+.request-info p {
+        font-size: 14px;
+        margin: 10px;
+}
+
+.request-btn button {
+        padding: 5px 40px;
+        border-radius: 8px;
+        border: 1px solid rgb(180, 180, 197);
+        background-color: white;
+        font-weight: bold;
+        margin: 5px 10px;
+}
+
+.request-btn button:hover {
+        background: linear-gradient(45deg, rgb(216, 21, 21), rgb(86, 21, 216));
+        color: white;
+}
+
+h3 {
+        margin-left: 40px;
+}
+
+@media (max-width:940px) {
+        .request-blood-card {
+                flex-direction: column;
+        }
+
+        .request-inner {
+                width: 100%;
+        }
+
+}
+
+@media (max-width:550px) {
+        .request-inner {
+                flex-direction: column;
+                align-items: start;
+                margin: 0px;
+        }
+
+        .request-blood-card {
+                margin: 10px 20px;
+        }
+}
+
+/* Search Bar */
+
+.search-hospital-outer {
+        margin: 20px 40px;
+        padding: 20px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border-radius: 15px;
+}
+
+.search-header {
+        display: flex;
+        align-items: start;
+        justify-content: start;
+        padding: 5px;
+}
+
+.search-txt p {
+        margin: 0%;
+        font-size: 18px;
+}
+
+.search-icon i {
+        font-size: 30px;
+        padding: 5px 10px;
+}
+
+.search-bar input {
+        width: 100%;
+        border-radius: 8px;
+        padding: 5px 10px;
+}
+
+/* Tracker */
+
+.donar-tracker {
+        margin: 10px 40px;
+        padding: 20px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border-radius: 15px;
+        display: none;
+}
+
+
+.tracker-outer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+}
+
+
+.track-btn button {
+        background: none;
+        border: none;
+        padding: 5px 10px;
+}
+
+.track-btn i {
+        font-size: 25px;
+}
+
+.track-btn {
+        border: 1px solid black;
+        border-radius: 50%;
+}
+
+.line-div {
+        width: 150px;
+        height: 5px;
+}
+
+@media (max-width:400px){
+        .tracker-outer{
+                width: 230px;
+        }
+
+        .donar-tracker{
+                margin: 10px 20px;
+        }
+
+        .track-btn i{
+                font-size: 15px;
+        }
+
+        .track-btn button{
+                padding: 2px 7px;
+        }
+
+        .line-div{
+                width: 20px;
+        }
+}

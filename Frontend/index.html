@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
         <meta charset="UTF-8">
@@ -9,6 +9,8 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
         <link rel="stylesheet" href="CSS/style.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+        <link rel="icon" href="CSS/img/new-logo.jpeg">
 </head>
 
 <body>
@@ -20,14 +22,46 @@
                 <div class="nav-links-url">
                         <ul class="link-li">
                                 <li><a href="index.html">Home</a></li>
-                                <li><a href="#about-us">About</a></li>
+                                <li><a href="./HTML/dashboard.html">Dashboard</a></li>
+                                <li><a href="#aboutUs">About</a></li>
                                 <li><a href="#f-con">Contact</a></li>
-                                <li><a href="HTML/loogin.html"><button class="bl-btn">Login</button></a></li>
-                                <li><a href="HTML/register.html"><button class="bl-btn">Register</button></a></li>
+                                <li><a href="HTML/loogin.html"><button class="bl-btn" id="loginBtn">Login</button></a>
+                                </li>
+                                <li><a href="HTML/register.html"><button class="bl-btn"
+                                                        id="registerBtn">Register</button></a></li>
+
+                                <li id="profileSection" style="display: none;">
+                                        <div class="profile-container">
+
+                                                <!-- 🔥 icon -->
+                                                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"  id="profileBtn"
+                                                        class="profile-img"/>
+
+                                                <!-- 🔽 dropdown -->
+                                                <div class="profile-dropdown" id="profileDropdown">
+
+                                                        <div class="profile-info">
+                                                                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" 
+                                                                        id="profileLarge" class="profile-img-large" />
+
+                                                                <!-- 🔥 change image button -->
+                                                                <button id="changeImgBtn">Change Image</button>
+                                                                <input type="file" id="uploadImg" hidden />
+
+                                                                <h4 id="userName">Sonu Yadav</h4>
+                                                                <p id="userEmail">sonu@gmail.com</p>
+                                                        </div>
+
+                                                        <button onclick="logout()">Logout</button>
+
+                                                </div>
+                                        </div>
+                                </li>
                         </ul>
                 </div>
                 <div class="nav-link-toggle">
-                        <button id="navToggleBtn" aria-label="Toggle navigation" aria-controls="navToggleLinks" aria-expanded="false">☰</button>
+                        <button id="navToggleBtn" aria-label="Toggle navigation" aria-controls="navToggleLinks"
+                                aria-expanded="false">☰</button>
 
                 </div>
 
@@ -49,7 +83,7 @@
                         <p class="banner-p1">Save Life, Donate Blood</p>
                         <p class="banner-p2">Every drop counts. Join our community of heroes today</p>
                         <a href="HTML/eligible.html"> <button class="bl-btn">Donate Blood</button></a>
-                        <a href="HTML/get_blood.html"><button class="bl-btn ">Get Blood</button></a>
+                        <a href="#searchBlood"><button class="bl-btn ">Search Blood</button></a>
                 </div>
         </div>
 
@@ -61,48 +95,71 @@
 
         <!-- Map search -->
 
-        <div class="search-donor">
+        <div class="search-donor" id="searchBlood">
                 <div class="map-body">
-                        <div class="map-link" id="about-us">
-                                <img src="CSS/img/c4.jpeg" alt="" style="height: 50px;">
-                        </div>
+
                         <div class="search-icon">
                                 <div class="position-relative">
-                                        <select name="" id="" class="form-control search-tab p-2"
-                                                style="border: 1px solid black;">
-                                                <option value="Search Blood">Search Blood</option>
-                                                <option value="A+">A+</option>
-                                                <option value="A+">A-</option>
-                                                <option value="A+">B+</option>
-                                                <option value="A+">B-</option>
-                                                <option value="A+">AB+</option>
-                                                <option value="A+">AB-</option>
-                                                <option value="A+">O+</option>
-                                                <option value="A+">O-</option>
-                                        </select>
-                                </div>
-                                <button class="bl-btn">Search</button>
-                        </div>
-                </div>
+                                        <form id="searchDonor">
+                                                <input type="text" id="cityInput" placeholder="Enter city" required />
+                                                <select name="bloodGroup" id="bloodGroup"
+                                                        class="form-control search-tab p-2"
+                                                        style="border: 1px solid black;">
+                                                        <option value="Search Blood">Search Blood</option>
+                                                        <option value="A+">A+</option>
+                                                        <option value="A-">A-</option>
+                                                        <option value="B+">B+</option>
+                                                        <option value="B-">B-</option>
+                                                        <option value="AB+">AB+</option>
+                                                        <option value="AB-">AB-</option>
+                                                        <option value="O+">O+</option>
+                                                        <option value="O-">O-</option>
+                                                </select>
 
-                <div class="donor-card">
-                        <div class="donor-id">
-                                <i class="bi bi-person-circle" style="font-size: 60px;"></i>
-                                <p class="mt-3">Name</p>
-                                <a href=""><button class="bl-btn">Request</button></a>
-                                <a href=""><button class="bl-btn">More Info</button></a>
+                                                <button type="submit" class="bl-btn">Search</button>
+
+                                        </form>
+                                </div>
                         </div>
-                        <div class="donor-id">
-                                <i class="bi bi-person-circle" style="font-size: 60px;"></i>
-                                <p class="mt-3">Name</p>
-                                <a href=""><button class="bl-btn">Request</button></a>
-                                <a href=""><button class="bl-btn">More Info</button></a>
-                        </div>
+                        <div id="map"></div>
+
+                        <div id="donorContainer" style="display: none;"></div>
                 </div>
         </div>
 
+        <!-- donor info  -->
+        <div id="donorModal" class="modal">
+                <div class="modal-content">
+
+                        <!-- close button -->
+                        <span class="closeBtn" onclick="closeModal()">×</span>
+
+                        <h2>Donor Information</h2>
+
+                        <div class="donor-profile">
+
+                                <!-- left -->
+                                <div class="left-info">
+                                        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"  class="donor-img" />
+
+                                        <p><b>Name:</b> <span id="dName"></span></p>
+                                        <p><b>Email:</b> <span id="dEmail"></span></p>
+                                        <p><b>Phone:</b> <span id="dPhone"></span></p>
+                                        <p><b>Blood Group:</b> <span id="dBlood"></span></p>
+                                </div>
+
+                                <!-- right -->
+                                <div class="right-info">
+                                        <p><b>City:</b> <span id="dCity"></span></p>
+                                        <p><b>Distance:</b> <span id="dDistance"></span></p>
+                                </div>
+
+                        </div>
+
+                </div>
+        </div>
         <!-- Dash Card -->
-        <div class="outer-dash-card">
+        <div class="outer-dash-card" id="aboutUs">
                 <div class="d-card-body">
                         <div class="body-dash-card">
                                 <div class="dash-card-logo" style="color: rgb(216, 21, 21);">
@@ -179,98 +236,40 @@
         <!-- Review card -->
 
         <p class="card-t">Reviews</p>
-        <div class="review-card-outer">
-                <div class="review-card-body">
-                        <div class="review-star">
-                                <i class="bi bi-star-fill"></i>
-                                <hr>
-                        </div>
-                        <div class="review-txt">
-                                <span><i>"Donating blood has been one of the most fulfilling experiences. Knowing that
-                                                30
-                                                minutes of my time can save a life is incredible."</i></span>
-                                <hr>
-                        </div>
-                        <div class="reviewer-profile">
-                                <div class="reviewer-img">
-                                        <i class="bi bi-person-circle"></i>
-                                </div>
-                                <div class="reviwer-info">
-                                        <p style="margin: 0px;"><b>Sonu Yadav</b></p>
-                                        <p style="margin: 0px;">Regular Donor</p>
-                                </div>
-                        </div>
-                </div>
-                <div class="review-card-body">
-                        <div class="review-star">
-                                <i class="bi bi-star-fill"></i>
-                                <hr>
-                        </div>
-                        <div class="review-txt">
-                                <span><i>"I was in an accident and needed 4 units of O- blood immediately. Thanks to the
-                                                donors here, I am alive today to see my kids grow."</i></span>
-                                <hr>
-                        </div>
-                        <div class="reviewer-profile">
-                                <div class="reviewer-img">
-                                        <i class="bi bi-person-circle"></i>
-                                </div>
-                                <div class="reviwer-info">
-                                        <p style="margin: 0px;"><b>Kajal Pandey</b></p>
-                                        <p style="margin: 0px;">Regular Donor</p>
-                                </div>
-                        </div>
-                </div>
-                <div class="review-card-body">
-                        <div class="review-star">
-                                <i class="bi bi-star-fill"></i>
-                                <hr>
-                        </div>
-                        <div class="review-txt">
-                                <span><i>"This platform has revolutionized how we source blood during emergencies. It's
-                                                fast, reliable, and absolutely life-saving."</i></span>
-                                <hr>
-                        </div>
-                        <div class="reviewer-profile">
-                                <div class="reviewer-img">
-                                        <i class="bi bi-person-circle"></i>
-                                </div>
-                                <div class="reviwer-info">
-                                        <p style="margin: 0px;"><b>Atharv Keshari</b></p>
-                                        <p style="margin: 0px;">Regular Donor</p>
-                                </div>
-                        </div>
-                </div>
+        <div class="review-wrapper">
+                <div class="review-card-outer" id="reviewList"></div>
         </div>
 
+
+        <!-- add review form -->
         <div class="mes-outer">
                 <div class="mes-img">
                         <img src="CSS/img/c1.jpeg" alt="">
                 </div>
                 <div class="mes-body">
                         <p><b>Send Review</b></p>
-                        <form action="">
-                                <div class="form-floating mb-3 position-relative"
-                                        style="border: 1px solid black; border-radius: 8px;">
-                                        <input type="text" class="form-control" id="username" placeholder="Full Name"
-                                                required>
-                                        <label for="username">Your Name</label>
-                                </div>
-                                <div class="form-floating mb-3 position-relative"
-                                        style="border: 1px solid black; border-radius: 8px;">
-                                        <input type="email" class="form-control" id="username" placeholder="Email"
-                                                required>
-                                        <label for="username">Email</label>
-                                </div>
-                                <div class="form-floating mb-3 position-relative"
-                                        style="border: 1px solid black; border-radius: 8px;">
-                                        <textarea type="email" class="form-control" id="username" placeholder="Email"
-                                                required></textarea>
-                                        <label for="username">Write a Review</label>
+                        <div id="error-message" class="text-danger mb-3" role="alert" aria-live="polite"></div>
+                        <form id="reviewForm">
+                                
+                                <div class="star-rating" id="starRating">
+                                        <i class="bi bi-star-fill" data-value="1"></i>
+                                        <i class="bi bi-star-fill" data-value="2"></i>
+                                        <i class="bi bi-star-fill" data-value="3"></i>
+                                        <i class="bi bi-star-fill" data-value="4"></i>
+                                        <i class="bi bi-star-fill" data-value="5"></i>
                                 </div>
 
+                                <input type="text" id="starInput" hidden value="0"/>
+
+                                <div class="form-floating mb-3 position-relative"
+                                        style="border: 1px solid black; border-radius: 8px;">
+                                        <textarea type="email" class="form-control" id="reviewMessage"
+                                                placeholder="Email" required></textarea>
+                                        <label for="username">Write a Review</label>
+                                </div>
+                                <button class="bl-btn" type="submit">Submit</button>
                         </form>
-                        <a href=""><button class="bl-btn">Submit</button></a>
+
                 </div>
         </div>
 
@@ -318,17 +317,10 @@
 
 </body>
 
-<script>
-        const navToggleBtn = document.getElementById('navToggleBtn');
-        const navToggleLinks = document.getElementById('navToggleLinks');
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="./JS/home.js"></script>
+<script src="./JS/common.js"></script>
 
-        if (navToggleBtn && navToggleLinks) {
-                navToggleBtn.addEventListener('click', () => {
-                        const isOpen = navToggleLinks.classList.toggle('active');
-                        navToggleBtn.setAttribute('aria-expanded', String(isOpen));
-                        navToggleLinks.setAttribute('aria-hidden', String(!isOpen));
-                });
-        }
-</script>
 
 </html>

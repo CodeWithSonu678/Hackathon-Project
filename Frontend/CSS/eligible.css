@@ -41,7 +41,7 @@ body {
         padding: 5px 0px;
 }
 
-.nav-logo-img img {
+.nav-logo-img img{
         width: 150px;
 }
 
@@ -59,7 +59,7 @@ body {
         font-weight: bold;
 }
 
-.link-li {
+.link-li{
         padding: 0px;
 }
 
@@ -89,9 +89,87 @@ body {
         display: none;
 }
 
-@media (max-width:768px) {
+/* profile image */
+.profile-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+}
 
-        .outer-navbody {
+/* dropdown */
+.profile-dropdown {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  width: 220px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  padding: 15px;
+
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.profile-dropdown.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.profile-container {
+  position: relative;
+}
+
+/* profile info */
+.profile-info {
+  text-align: center;
+}
+
+.profile-info h4 {
+  margin: 8px 0 2px;
+  font-size: 18px;
+}
+
+.profile-info p {
+  margin: 0;
+  font-size: 13px;
+  color: #666;
+}
+.profile-img-large {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.profile-dropdown button {
+  width: 100%;
+  margin-top: 10px;
+  padding: 8px;
+  border: none;
+  background: red;
+  color: white;
+  border-radius: 6px;
+}
+
+#changeImgBtn {
+  margin-top: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  border: none;
+  background: #444;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  display: inline-block;
+}
+@media (max-width:768px) {
+        .outer-navbody{
                 display: flex;
                 align-items: center;
                 justify-content: space-around;
@@ -111,7 +189,7 @@ body {
                 display: none;
         }
 
-        .nav-toggle-links.active {
+        .nav-toggle-links.active{
                 display: flex;
                 align-items: start;
                 justify-content: space-evenly;
@@ -125,7 +203,7 @@ body {
                 font-weight: bold;
         }
 
-        .toggle-li {
+        .toggle-li{
                 margin: 0px;
         }
 
@@ -138,6 +216,20 @@ body {
         .toggle-li li {
                 list-style: none;
                 margin: 20px 15px;
+        }
+
+        .banner {
+                margin-top: 90px;
+                min-height: 40vh;
+                padding: 5vh 1rem;
+        }
+
+        .banner-p1 {
+                font-size: 42px;
+        }
+
+        .banner-p2 {
+                font-size: 18px;
         }
 }
 
