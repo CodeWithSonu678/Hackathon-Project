@@ -229,6 +229,8 @@ const errorMessage = document.getElementById("error-message");
 const stars = document.querySelectorAll("#starRating i");
 const starInput = document.getElementById("starInput");
 
+alert(localStorage.getItem("token"));
+
 stars.forEach((star) => {
   star.addEventListener("click", () => {
     const value = star.getAttribute("data-value");
