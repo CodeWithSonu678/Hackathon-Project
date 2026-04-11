@@ -59,7 +59,7 @@ form.addEventListener("submit", async (event) => {
   };
 
   try {
-    const res = await fetch("https://hackathon-project.onrender.com/api/auth/register", {
+    const res = await fetch("https://hackathon-project-9jun.onrender.com/api/auth/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

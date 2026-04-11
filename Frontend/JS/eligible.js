@@ -129,7 +129,7 @@ if (eligibleForm) {
 }
 
     try {
-      const res = await fetch("https://hackathon-project.onrender.com/api/auth/eligibility", {
+      const res = await fetch("https://hackathon-project-9jun.onrender.com/api/auth/eligibility", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

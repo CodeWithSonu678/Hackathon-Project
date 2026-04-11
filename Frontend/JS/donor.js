@@ -46,24 +46,24 @@ const profileLarge = document.getElementById("profileLarge");
 
 
 
-// 🔽 ONLY dropdown open
+//  ONLY dropdown open
 profileBtn.addEventListener("click", (e) => {
   e.stopPropagation();
   dropdown.classList.toggle("active");
 });
 
-// ❌ outside click close
+//  outside click close
 document.addEventListener("click", () => {
   dropdown.classList.remove("active");
 });
 
-// 📸 ONLY button triggers upload
+//  ONLY button triggers upload
 changeImgBtn.addEventListener("click", (e) => {
   e.stopPropagation();
   fileInput.click();
 });
 
-// 📸 upload logic
+//  upload logic
 fileInput.addEventListener("change", (e) => {
   const file = e.target.files[0];
 
@@ -81,7 +81,7 @@ fileInput.addEventListener("change", (e) => {
   }
 });
 
-// 🔄 load image
+//  load image
 window.addEventListener("load", () => {
   const savedImg = localStorage.getItem("profileImg");
 
@@ -91,7 +91,7 @@ window.addEventListener("load", () => {
   }
 });
 
-// 🚪 logout
+//  logout
 function logout() {
   localStorage.removeItem("isloginIn");
   window.location.reload();
@@ -130,7 +130,7 @@ donorForm.addEventListener("submit",async (e) => {
   };
 
   try {
-    const res = await fetch("https://hackathon-project.onrender.com/api/auth/donate-form",{
+    const res = await fetch("https://hackathon-project-9jun.onrender.com/api/auth/donate-form",{
         method:"POST",
         headers:{
             "Content-Type":"application/json"

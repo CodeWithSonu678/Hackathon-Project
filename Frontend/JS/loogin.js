@@ -26,13 +26,13 @@ form.addEventListener("submit", async (event) => {
   };
 
   try {
-    const res = await fetch("https://hackathon-project.onrender.com/api/auth/login", {
+    const res = await fetch("https://hackathon-project-9jun.onrender.com/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(data),
-      credentials: "include" 
+      credentials: "include",
+      body: JSON.stringify(data)
     });
 
     const result = await res.json();
