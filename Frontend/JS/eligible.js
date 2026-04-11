@@ -167,3 +167,19 @@ if (eligibleForm) {
     }
   });
 }
+
+const questionBlood = document.getElementById('donate-date');
+const hideDate = document.getElementById('q5_no');
+const showDate = document.getElementById('q5_yes');
+
+if(questionBlood && hideDate){
+  hideDate.addEventListener('click', () => {
+    questionBlood.style.display = 'none';
+  } );
+}
+
+if(questionBlood && showDate){
+  showDate.addEventListener('click', () => {
+    questionBlood.style.display = 'flex';
+  } );
+}

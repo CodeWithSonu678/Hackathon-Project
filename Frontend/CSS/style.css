@@ -350,7 +350,6 @@ body {
 .donor-card {
   border: 1px solid #ccc;
   width:100%;
-
   padding: 5px;
   margin-bottom: 10px;
   border-radius: 10px;
@@ -587,11 +586,14 @@ body {
 
 /* animation */
 @keyframes scroll {
-  from {
+  0%{
     transform: translateX(0);
   }
-  to {
+  50% {
     transform: translateX(-50%);
+  }
+  100%{
+        transform: translateX(50%);
   }
 }
 
@@ -735,7 +737,7 @@ body {
         }
 
         .hero-img {
-                min-height: 45vh;
+                min-height: 35vh;
                 max-height: 550px;
                 height: auto;
         }

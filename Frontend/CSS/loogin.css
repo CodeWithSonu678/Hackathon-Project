@@ -119,6 +119,11 @@ button[type="submit"]:hover {
         font-size: 0.9375rem;
 }
 
+.form-floating button{
+        background: none;
+        border: none;
+}
+
 @media (max-width: 480px) {
         .login-box {
                 padding: 1.5rem;

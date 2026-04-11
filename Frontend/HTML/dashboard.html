@@ -12,19 +12,86 @@
 </head>
 
 <body>
-        <h3><b>User Dashboard</b></h3>
+        <!-- Nav -->
+        <div class="outer-navbody">
+                <div class="nav-logo-img">
+                        <img src="../CSS/img/new-logo.jpeg" alt="logo">
+                </div>
+                <div class="nav-links-url">
+                        <ul class="link-li">
+                                <li><a href="../index.html">Home</a></li>
+                                <li><a href="../index.html#aboutUs">About</a></li>
+                                <li><a href="#f-con">Contact</a></li>
+                                <li><a href="loogin.html"><button class="bl-btn" id="loginBtn">Login</button></a>
+                                </li>
+                                <li><a href="register.html"><button class="bl-btn"
+                                                        id="registerBtn">Register</button></a></li>
+
+                                <li id="profileSection" style="display: none;">
+                                        <div class="profile-container">
+
+                                                <!--  icon -->
+                                                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                                                        id="profileBtn" class="profile-img" />
+
+                                                <!-- 🔽 dropdown -->
+                                                <div class="profile-dropdown" id="profileDropdown">
+
+                                                        <div class="profile-info">
+                                                                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                                                                        id="profileLarge" class="profile-img-large" />
+
+                                                                <!-- 🔥 change image button -->
+                                                                <button id="changeImgBtn">Change Image</button>
+                                                                <input type="file" id="uploadImg" hidden />
+
+                                                                <h4 id="userName">Sonu Yadav</h4>
+                                                                <p id="userEmail">sonu@gmail.com</p>
+                                                        </div>
+
+                                                        <button onclick="logout()">Logout</button>
+
+                                                </div>
+                                        </div>
+                                </li>
+                        </ul>
+                </div>
+                <div class="nav-link-toggle">
+                        <button id="navToggleBtn" aria-label="Toggle navigation" aria-controls="navToggleLinks"
+                                aria-expanded="false">☰</button>
+
+                </div>
+
+
+        </div>
+        <div class="nav-toggle-links" id="navToggleLinks" aria-hidden="true">
+                <ul class="toggle-li">
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../index.html#about-us">About</a></li>
+                        <li><a href="#f-con">Contact</a></li>
+                        <li><a href="loogin.html"><button class="bl-btn">Login</button></a></li>
+                        <li><a href="register.html"><button class="bl-btn">Register</button></a></li>
+                </ul>
+        </div>
+
+
+
+        <div class="b-head">
+                <h3><b>User Dashboard</b></h3>
+        </div>
         <div class="user-info-outer" id="info-section">
-                
+
         </div>
 
 
         <!-- Blood Request -->
 
-
-        <h3><b>Blood Request</b></h3>
+        <div class="b-head2">
+                <h3><b>Blood Request</b></h3>
+        </div>
         <div class="request-blood-outer">
                 <div class="request-blood-card" id="request-container">
-                
+
                 </div>
 
                 <!-- Search Bar -->
@@ -114,6 +181,57 @@
                 </div>
         </div>
 
+
+
+        <!-- Footer -->
+        <div class="f-out">
+                <div class="foot-body mt-5" id="f-con">
+                        <div class="foot-img">
+                                <img src="../CSS/img/new-logo.jpeg" alt="">
+                                <p class="foot-txt">A small drop can make a big difference</p>
+                                <span class="foot-txt" style="font-size: 12px; font-weight: 300;">Our Mission <i
+                                                class="bi bi-bullseye" style="font-size: 15px;"></i>:-We are dedicated
+                                        to
+                                        connecting blood donors with those in need. <br> Our mission is to make blood
+                                        donation
+                                        easy, safe, and accessible for everyone.</span>
+
+                        </div>
+                        <div class="q-links">
+                                <p class="link-head">
+                                        Quick Link
+                                </p>
+                                <ul class="q-links-urls">
+                                        <li><a href="../index.html"><i class="bi bi-house"></i> Home</a></li>
+                                        <li><a href="../index.html #about-us"><i class="bi bi-exclamation-lg"></i>
+                                                        About</a>
+                                        </li>
+                                        <li><a href="#f-con"><i class="bi bi-telephone-fill"></i> Contact</a></li>
+                                        <li><a href="HTML/loogin.html"><i class="bi bi-house-lock-fill"></i> Login</a>
+                                        </li>
+                                        <li><a href="HTML/register.html"><i class="bi bi-journal-check"></i>
+                                                        Register</a></li>
+
+                                </ul>
+                        </div>
+                        <div class="s-link">
+                                <p class="link-head">
+                                        Social Media
+                                </p>
+                                <ul class="links-url">
+                                        <li><a href="https://chat.whatsapp.com/D0td9Sy5TrHFyftcLrOdMt"><i
+                                                                class="bi bi-whatsapp"></i></a></li>
+                                        <li><a href="https://www.facebook.com/share/18Av318QEt/"><i
+                                                                class="bi bi-facebook"></i></a></li>
+                                        <li><a href="https://www.instagram.com/codewithsonu678?igsh=MXF1czJtbGRlOWx3cg=="><i
+                                                                class="bi bi-instagram"></i></a></li>
+                                </ul>
+                        </div>
+                </div>
+
+
+                <p class="c-txt"><i class="bi bi-c-circle"></i> 2026 Blood Bank | All right reserved</p>
+        </div>
         <script src="../JS/dashboard.js"></script>
 </body>
 

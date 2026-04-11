@@ -257,6 +257,20 @@ body {
         flex-direction: column; 
 }
 
+.e-form tr{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 70px;
+}
+
+#donate-date{
+        display: none;
+        align-items: center;
+        justify-content: space-between;
+        gap: 70px;
+}
+
 .form-body {
         display: flex;
         align-items: center;
@@ -383,7 +397,7 @@ table {
 @media (max-width:480px) {
         .login-box {
                 font-size: 0.75rem;
-                padding: 1rem;
+                padding: 0rem;
         }
 
         .h-txt {
@@ -393,6 +407,10 @@ table {
         button[type="submit"] {
                 font-size: 0.875rem;
                 width: 120px;
+        }
+
+        .e-form tr{
+                width: 100%;
         }
 }
 
