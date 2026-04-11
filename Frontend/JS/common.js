@@ -1,7 +1,7 @@
 // logout function
 async function logout() {
   try {
-    const res = await fetch("http://127.0.0.1:3000/api/auth/logout", {
+    const res = await fetch("https://hackathon-project.onrender.com/api/auth/logout", {
       method: "GET",
       credentials: "include"
     });

@@ -147,7 +147,7 @@ searchDonor.addEventListener("submit", async (e) => {
   const bloodGroup = document.getElementById("bloodGroup").value;
 
   try {
-    const res = await fetch("http://127.0.0.1:3000/api/auth/donor", {
+    const res = await fetch("https://hackathon-project.onrender.com/api/auth/donor", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -206,7 +206,7 @@ searchDonor.addEventListener("submit", async (e) => {
       donorContainer.innerHTML += donorCard;
     });
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
   }
 });
 
@@ -245,7 +245,7 @@ reviewForm.addEventListener("submit", async (e) => {
   };
 
   try {
-    const res = await fetch("http://127.0.0.1:3000/api/auth/review", {
+    const res = await fetch("https://hackathon-project.onrender.com/api/auth/review", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -285,7 +285,7 @@ reviewForm.addEventListener("submit", async (e) => {
 //load review users
 async function loadReviews() {
   try {
-    const res = await fetch("http://127.0.0.1:3000/api/auth/reviews");
+    const res = await fetch("https://hackathon-project.onrender.com/api/auth/reviews");
     const result = await res.json();
 
     const reviews = result.data;
@@ -324,7 +324,7 @@ async function loadReviews() {
       container.appendChild(card);
     });
   } catch (error) {
-    console.log(error.msg);
+    console.log(error);
   }
 }
 
