@@ -89,9 +89,13 @@ window.addEventListener("load", () => {
 });
 
 //  logout
-function logout() {
+async function logout() {
   localStorage.removeItem("isloginIn");
   window.location.reload();
+  const res = await fetch("https://hackathon-project-9jun.onrender.com/api/auth/logout", {
+    method: "GET",
+    credentials: "include",
+  });
 }
 
 //donor info show
