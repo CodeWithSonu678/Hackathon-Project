@@ -93,7 +93,8 @@ res.cookie("token", token, {
   res.status(200).json({
     msg:"User logined successfull",
     token,
-    success:true
+    success:true,
+    user
   })
 }
 

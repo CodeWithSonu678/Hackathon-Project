@@ -38,6 +38,8 @@ form.addEventListener("submit", async (event) => {
 
     const result = await res.json();
 
+    console.log(result);
+
     if (res.ok && result.success === true) {
       localStorage.setItem("isloginIn", "true");
       localStorage.setItem("token", result.token);
