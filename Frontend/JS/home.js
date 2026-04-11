@@ -134,7 +134,7 @@ async function getCordination(city) {
       return null;
     }
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
     return null;
   }
 }
@@ -285,7 +285,7 @@ reviewForm.addEventListener("submit", async (e) => {
       }
     }
   } catch (error) {
-    console.log(error.msg);
+    console.log(error);
   }
 });
 
