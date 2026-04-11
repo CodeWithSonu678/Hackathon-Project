@@ -258,6 +258,7 @@ reviewForm.addEventListener("submit", async (e) => {
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include",
       body: JSON.stringify(data),
     });
 
@@ -293,7 +294,13 @@ reviewForm.addEventListener("submit", async (e) => {
 //load review users
 async function loadReviews() {
   try {
-    const res = await fetch("https://hackathon-project-9jun.onrender.com/api/auth/reviews");
+    const res = await fetch("https://hackathon-project-9jun.onrender.com/api/auth/reviews",{
+      method:"GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    });
     const result = await res.json();
 
     const reviews = result.data;
