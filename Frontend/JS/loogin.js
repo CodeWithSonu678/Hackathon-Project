@@ -49,7 +49,7 @@ form.addEventListener("submit", async (event) => {
     } else {
       errorMessage.className = "text-danger";
 
-      if(result.errors && errors.length >=0){
+      if(result.errors && result.errors.length >0){
         errorMessage.textContent = result.errors[0].msg || "Login failed ❌";
       }
       else if(result.msg){
