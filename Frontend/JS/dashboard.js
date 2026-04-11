@@ -91,7 +91,7 @@ async function loadAllRequest(){
                 data.allRequest.forEach(req => {
                 
                 const card = document.createElement("div"); 
-                card.className = "request-blood-card";
+                card.className = "request-cards";
 
                 card.innerHTML = `
                         <div class="request-inner" style="margin-left: 18px;">
