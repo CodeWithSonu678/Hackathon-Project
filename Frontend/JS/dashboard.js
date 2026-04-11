@@ -13,7 +13,7 @@ window.addEventListener("load", () => {
 //dashboard info load
 const loadInfoUser = async () => {
   try {
-    const res = await fetch("https://hackathon-project.onrender.com/api/auth/get-user-info", {
+    const res = await fetch("https://hackathon-project-9jun.onrender.com/api/auth/get-user-info", {
       method: "GET",
       credentials: "include",
     });
@@ -82,7 +82,7 @@ async function loadAllRequest(){
         const card = document.getElementById("request-container");
 
         try {
-                const res = await fetch("https://hackathon-project.onrender.com/api/auth/all-request", {
+                const res = await fetch("https://hackathon-project-9jun.onrender.com/api/auth/all-request", {
                         method: "GET",
                         credentials: "include"
                 });
