@@ -147,7 +147,7 @@ searchDonor.addEventListener("submit", async (e) => {
   const bloodGroup = document.getElementById("bloodGroup").value;
 
   try {
-    const res = await fetch("https://hackathon-project.onrender.com/api/auth/donor", {
+    const res = await fetch("https://hackathon-project-9jun.onrender.com/api/auth/donor", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -245,7 +245,7 @@ reviewForm.addEventListener("submit", async (e) => {
   };
 
   try {
-    const res = await fetch("https://hackathon-project.onrender.com/api/auth/review", {
+    const res = await fetch("https://hackathon-project-9jun.onrender.com/api/auth/review", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -285,7 +285,7 @@ reviewForm.addEventListener("submit", async (e) => {
 //load review users
 async function loadReviews() {
   try {
-    const res = await fetch("https://hackathon-project.onrender.com/api/auth/reviews");
+    const res = await fetch("https://hackathon-project-9jun.onrender.com/api/auth/reviews");
     const result = await res.json();
 
     const reviews = result.data;
