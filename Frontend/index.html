@@ -34,14 +34,14 @@
                                         <div class="profile-container">
 
                                                 <!-- 🔥 icon -->
-                                                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"  id="profileBtn"
-                                                        class="profile-img"/>
+                                                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                                                        id="profileBtn" class="profile-img" />
 
                                                 <!-- 🔽 dropdown -->
                                                 <div class="profile-dropdown" id="profileDropdown">
 
                                                         <div class="profile-info">
-                                                                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" 
+                                                                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
                                                                         id="profileLarge" class="profile-img-large" />
 
                                                                 <!-- 🔥 change image button -->
@@ -95,29 +95,30 @@
 
         <!-- Map search -->
 
-        <div class="search-donor" id="searchBlood">
-                <div class="map-body">
-
-                        <div class="search-icon">
+        <div class="search-donar-outer" id="searchBlood">
+                <div class="map-body mt-5">
+                        <div class="search-icon mb-3">
+                                <h1 style="font-weight: 600;">Search Blood</h1>
                                 <div class="position-relative">
-                                        <form id="searchDonor" class="search-donor">
-                                                <input type="text" id="cityInput" placeholder="Enter city" required />
-                                                <select name="bloodGroup" id="bloodGroup"
-                                                        class="form-control search-tab p-2"
-                                                        style="border: 1px solid black;">
-                                                        <option value="Search Blood">Search Blood</option>
-                                                        <option value="A+">A+</option>
-                                                        <option value="A-">A-</option>
-                                                        <option value="B+">B+</option>
-                                                        <option value="B-">B-</option>
-                                                        <option value="AB+">AB+</option>
-                                                        <option value="AB-">AB-</option>
-                                                        <option value="O+">O+</option>
-                                                        <option value="O-">O-</option>
-                                                </select>
-
+                                        <form id="searchDonor" class="s-donar ">
+                                                <div class="search-donar">
+                                                        <input type="text" id="cityInput" placeholder="Enter city"
+                                                                required />
+                                                        <select name="bloodGroup" id="bloodGroup"
+                                                                class="form-control search-tab p-2"
+                                                                style="border: 1px solid black;">
+                                                                <option value="Search Blood">Search Blood</option>
+                                                                <option value="A+">A+</option>
+                                                                <option value="A-">A-</option>
+                                                                <option value="B+">B+</option>
+                                                                <option value="B-">B-</option>
+                                                                <option value="AB+">AB+</option>
+                                                                <option value="AB-">AB-</option>
+                                                                <option value="O+">O+</option>
+                                                                <option value="O-">O-</option>
+                                                        </select>
+                                                </div>
                                                 <button type="submit" class="bl-btn">Search</button>
-
                                         </form>
                                 </div>
                         </div>
@@ -140,7 +141,8 @@
 
                                 <!-- left -->
                                 <div class="left-info">
-                                        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"  class="donor-img" />
+                                        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                                                class="donor-img" />
 
                                         <p><b>Name:</b> <span id="dName"></span></p>
                                         <p><b>Email:</b> <span id="dEmail"></span></p>
@@ -249,8 +251,8 @@
                 <div class="mes-body">
                         <p><b>Send Review</b></p>
                         <div id="error-message" class="text-danger mb-3" role="alert" aria-live="polite"></div>
-                        <form id="reviewForm"   >
-                                
+                        <form id="reviewForm">
+
                                 <div class="star-rating" id="starRating">
                                         <i class="bi bi-star-fill" data-value="1"></i>
                                         <i class="bi bi-star-fill" data-value="2"></i>
@@ -259,7 +261,7 @@
                                         <i class="bi bi-star-fill" data-value="5"></i>
                                 </div>
 
-                                <input type="text" id="starInput" hidden value="0"/>
+                                <input type="text" id="starInput" hidden value="0" />
 
                                 <div class="form-floating mb-3 position-relative"
                                         style="border: 1px solid black; border-radius: 8px; width: 90%;">

@@ -271,7 +271,7 @@ body {
         align-items: center;
         justify-content: center;
         flex-direction: column;
-        width: 90%;
+        width: 95%;
 }
 
 #map {
@@ -283,11 +283,29 @@ body {
         display: flex;
         justify-content: center;
         align-items: center;
-        flex-direction: row;
+        flex-direction: column;
         margin-top: 20px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        padding: 20px;
+        border-radius: 12px;
 }
 
-.search-donor{
+.s-donar{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        
+}
+
+.search-donar-outer{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+}
+
+.search-donar{
         display: flex;
         align-items: center;
         justify-content: center;
@@ -295,14 +313,14 @@ body {
         margin-bottom: 20px;
 }
 
-.search-donor input{
+.search-donar input{
         padding: 8px;
         border-radius: 5px;
         border: 2px solid black;
 }
 
 @media (max-width:500px) {
-        .search-donor{
+        .search-donar{
                 flex-direction: column;
         }
 }
