@@ -229,6 +229,7 @@ const errorMessage = document.getElementById("error-message");
 const stars = document.querySelectorAll("#starRating i");
 const starInput = document.getElementById("starInput");
 
+console.log(localStorage.getItem("token"));
 
 stars.forEach((star) => {
   star.addEventListener("click", () => {
