@@ -59,6 +59,8 @@ document.addEventListener("DOMContentLoaded", () => {
     password: password,
   };
 
+  console.log(data);
+
   try {
     const res = await fetch("https://hackathon-project-9jun.onrender.com/api/auth/register", {
       method: "POST",
