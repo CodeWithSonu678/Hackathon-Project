@@ -12,16 +12,18 @@ if (navToggleBtn && navToggleLinks) {
 const registerBtn = document.getElementById("registerBtn");
 const logoutBtn = document.getElementById("logoutBtn");
 const loginBtn = document.getElementById("loginBtn");
+const dashboardLink = document.getElementById("dashboardLink");
 
 // check login state
 const isloginIn = localStorage.getItem("isloginIn");
 const profileSection = document.getElementById("profileSection");
 
-// 🔥 LOGIN CHECK
+//  LOGIN CHECK
 if (isloginIn === "true") {
   // hide login/register
   loginBtn.style.display = "none";
   registerBtn.style.display = "none";
+  dashboardLink.style.display = "block";
 
   // show profile
   profileSection.style.display = "block";
@@ -29,6 +31,7 @@ if (isloginIn === "true") {
   // show login/register
   loginBtn.style.display = "block";
   registerBtn.style.display = "block";
+  dashboardLink.style.display = "none";
 
   // hide profile
   profileSection.style.display = "none";
