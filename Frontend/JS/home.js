@@ -230,6 +230,7 @@ const stars = document.querySelectorAll("#starRating i");
 const starInput = document.getElementById("starInput");
 
 alert(localStorage.getItem("token"));
+alert("Kya hua bhai");
 
 stars.forEach((star) => {
   star.addEventListener("click", () => {
@@ -287,7 +288,7 @@ reviewForm.addEventListener("submit", async (e) => {
     } else {
       errorMessage.className = "text-danger";
 
-      if (result.errors && errors.length >= 0) {
+      if (result.errors && result.errors.length > 0) {
         errorMessage.textContent =
           result.errors[0].msg || "Review add failed ❌";
       } else if (result.msg) {
