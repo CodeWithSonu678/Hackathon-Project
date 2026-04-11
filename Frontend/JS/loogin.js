@@ -60,7 +60,7 @@ form.addEventListener("submit", async (event) => {
       }
     }
   } catch (err) {
-    console.error(err.message);
+    console.error(err);
     errorMessage.textContent = "Server error ❌";
     errorMessage.className = "text-danger";
   }
