@@ -278,6 +278,7 @@
         margin: 10px 40px;
         border-radius: 15px;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: space-around;
 }
