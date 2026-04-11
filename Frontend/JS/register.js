@@ -31,19 +31,20 @@ function ctogglePassword() {
 
 
 //when register form submit
-form.addEventListener("submit", async (event) => {
-  event.preventDefault();
-  errorMessage.textContent = "";
+document.addEventListener("DOMContentLoaded", () => {
 
-  const password = document.getElementById("password").value;
-  const confirmPassword = document.getElementById("confirmPassword").value;
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
 
-  //  match check
-  if (password !== confirmPassword) {
-    errorMessage.textContent = "Passwords do not match ❌";
-    errorMessage.className = "text-danger";
-    return;
-  }
+    errorMessage.textContent = "";
+
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+
+    if (password !== confirmPassword) {
+      errorMessage.textContent = "Passwords do not match ❌";
+      return;
+    }
 
   const data = {
     username: document.getElementById("name").value.toLowerCase(),
@@ -94,4 +95,6 @@ form.addEventListener("submit", async (event) => {
     errorMessage.className = "text-danger";
     errorMessage.textContent = "Server error ❌";
   }
+});
+
 });
