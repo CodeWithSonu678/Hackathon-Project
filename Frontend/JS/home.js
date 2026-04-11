@@ -206,7 +206,7 @@ searchDonor.addEventListener("submit", async (e) => {
       donorContainer.innerHTML += donorCard;
     });
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
   }
 });
 
