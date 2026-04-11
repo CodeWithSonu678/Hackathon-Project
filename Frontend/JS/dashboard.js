@@ -79,7 +79,6 @@ loadInfoUser();
 //All request load
 async function loadAllRequest(){
         const container = document.getElementById("request-container");
-        const card = document.getElementById("request-container");
 
         try {
                 const res = await fetch("https://hackathon-project-9jun.onrender.com/api/auth/all-request", {
@@ -91,6 +90,7 @@ async function loadAllRequest(){
 
                 data.allRequest.forEach(req => {
                 
+                const card = document.createElement("div"); 
                 card.className = "request-blood-card";
 
                 card.innerHTML = `
