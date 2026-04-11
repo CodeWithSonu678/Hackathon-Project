@@ -86,6 +86,8 @@
 
         <!-- Blood Request -->
 
+       
+
         <div class="b-head2">
                 <h3><b>Blood Request</b></h3>
         </div>
@@ -93,7 +95,8 @@
                 <div class="request-blood-card" id="request-container">
 
                 </div>
-                
+
+
 
                 <!-- Search Bar -->
                 <!-- <div class="search-hospital-outer">
@@ -178,6 +181,36 @@
                         <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="0"
                                 aria-valuemin="0" aria-valuemax="100">
                                 <div class="progress-bar" style="width: 50%"></div>
+                        </div>
+                </div>
+        </div>
+
+         <div class="b-head2">
+                <h3><b>Blood Accept</b></h3>
+        </div>
+        <div class="request-blood-outer">
+                <div class="accept-blood-card" id="request-container2">
+                        <div class="request-inner" style="margin-left: 18px;">
+                                <div class="request-img">
+                                        <i class="bi bi-person-circle"></i>
+                                </div>
+                                <div class="request-name">
+                                        <span><b>Name: </b>ATharv Keshari</span>
+                                        <span><b>Age: </b>25</span>
+                                        <span><b>Blood Group: </b>O+</span>
+                                </div>
+                        </div>
+
+                        <div class="request-inner">
+                                <div class="request-info">
+                                        <p><b><i class="bi bi-geo-alt"></i></b> </p>
+                                        <p><b><i class="bi bi-clock"></i></b></p>
+                                </div>
+
+                                <div class="request-btn">
+                                        <button onclick="showTracker('${req._id}')">Accept</button>
+                                        <button onclick="showTracker('${req._id}')">Reject</button>
+                                </div>
                         </div>
                 </div>
         </div>
