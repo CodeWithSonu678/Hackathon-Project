@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if(result.msg){
         errorMessage.textContent = result.msg || "Registration failed ❌";
       }
-      else if(result.errors && errors.length >=0){
+      else if(result.errors && result.errors.length >0){
         errorMessage.textContent = result.errors[0].msg || "Registration failed ❌";
       }
       else{
