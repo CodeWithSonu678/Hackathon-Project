@@ -92,16 +92,17 @@ window.addEventListener("load", () => {
 async function logout() {
   localStorage.removeItem("isloginIn");
   window.location.reload();
-  const res = await fetch("https://hackathon-project-9jun.onrender.com/api/auth/logout", {
-    method: "GET",
-    credentials: "include",
-  });
+  const res = await fetch(
+    "https://hackathon-project-9jun.onrender.com/api/auth/logout",
+    {
+      method: "GET",
+      credentials: "include",
+    },
+  );
 }
 
 //donor info show
 function moreInfo(d) {
-  
-
   document.getElementById("dName").innerText = d.donorName;
   document.getElementById("dPhone").innerText = d.mobileNumber;
   document.getElementById("dBlood").innerText = d.bloodGroup;
@@ -154,17 +155,20 @@ searchDonor.addEventListener("submit", async (e) => {
   const bloodGroup = document.getElementById("bloodGroup").value;
 
   try {
-    const res = await fetch("https://hackathon-project-9jun.onrender.com/api/auth/donor", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+    const res = await fetch(
+      "https://hackathon-project-9jun.onrender.com/api/auth/donor",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          city: city,
+          bloodGroup: bloodGroup,
+        }),
       },
-      credentials: "include",
-      body: JSON.stringify({
-        city: city,
-        bloodGroup: bloodGroup,
-      }),
-    });
+    );
 
     const result = await res.json();
 
@@ -253,14 +257,18 @@ reviewForm.addEventListener("submit", async (e) => {
   };
 
   try {
-    const res = await fetch("https://hackathon-project-9jun.onrender.com/api/auth/review", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+    const res = await fetch(
+      "https://hackathon-project-9jun.onrender.com/api/auth/review",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        credentials: "include",
+        body: JSON.stringify(data),
       },
-      credentials: "include",
-      body: JSON.stringify(data),
-    });
+    );
 
     const result = await res.json();
 
@@ -294,13 +302,16 @@ reviewForm.addEventListener("submit", async (e) => {
 //load review users
 async function loadReviews() {
   try {
-    const res = await fetch("https://hackathon-project-9jun.onrender.com/api/auth/reviews",{
-      method:"GET",
-      headers: {
-        "Content-Type": "application/json",
+    const res = await fetch(
+      "https://hackathon-project-9jun.onrender.com/api/auth/reviews",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
       },
-      credentials: "include",
-    });
+    );
     const result = await res.json();
 
     const reviews = result.data;

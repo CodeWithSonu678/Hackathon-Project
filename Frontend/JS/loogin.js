@@ -40,6 +40,7 @@ form.addEventListener("submit", async (event) => {
 
     if (res.ok && result.success === true) {
       localStorage.setItem("isloginIn", "true");
+      localStorage.setItem("token", result.token);
       errorMessage.className = "text-success";
       errorMessage.textContent = result.msg || "Login successfully ✅";
 
