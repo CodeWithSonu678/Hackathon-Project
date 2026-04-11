@@ -1,9 +1,9 @@
-const form = document.getElementById("registerForm");
+
 const usernameInput = document.getElementById("username");
 const passwordInput = document.getElementById("password");
 const confirmPasswordInput = document.getElementById("confirmPassword");
 const passwordStrengthText = document.getElementById("password-strength");
-const errorMessage = document.getElementById("error-message");
+
 
 function togglePassword() {
   const password = passwordInput;
@@ -33,6 +33,8 @@ function ctogglePassword() {
 //when register form submit
 document.addEventListener("DOMContentLoaded", () => {
 
+  const form = document.getElementById("registerForm");
+  const errorMessage = document.getElementById("error-message");
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
