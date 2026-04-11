@@ -84,11 +84,10 @@ async function userLogin(req,res){
   },process.env.SECRET_KEY);
 
 res.cookie("token", token, {
-  httpOnly: true,   
-  sameSite: "lax",
-  secure: false        
+  httpOnly: true,
+  sameSite: "none",
+  secure: true        
 });
-
 
   res.status(200).json({
     msg:"User logined successfull",
