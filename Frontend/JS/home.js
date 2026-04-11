@@ -324,7 +324,7 @@ async function loadReviews() {
       container.appendChild(card);
     });
   } catch (error) {
-    console.log(error.msg);
+    console.log(error);
   }
 }
 
