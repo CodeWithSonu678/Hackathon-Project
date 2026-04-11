@@ -15,6 +15,7 @@ function togglePassword() {
 }
 
 
+
 //WHEN LOGIN FORM SUBMIT
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -39,6 +40,8 @@ form.addEventListener("submit", async (event) => {
 
     if (res.ok && result.success === true) {
       localStorage.setItem("isloginIn", "true");
+      localStorage.setItem("token", result.token);
+      console.log(localStorage.getItem("token"));
       errorMessage.className = "text-success";
       errorMessage.textContent = result.msg || "Login successfully ✅";
 
@@ -48,7 +51,7 @@ form.addEventListener("submit", async (event) => {
     } else {
       errorMessage.className = "text-danger";
 
-      if(result.errors && errors.length >=0){
+      if(result.errors && result.errors.length >0){
         errorMessage.textContent = result.errors[0].msg || "Login failed ❌";
       }
       else if(result.msg){
@@ -59,7 +62,7 @@ form.addEventListener("submit", async (event) => {
       }
     }
   } catch (err) {
-    console.error(err.message);
+    console.error(err);
     errorMessage.textContent = "Server error ❌";
     errorMessage.className = "text-danger";
   }

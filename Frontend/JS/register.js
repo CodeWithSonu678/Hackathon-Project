@@ -1,9 +1,9 @@
-const form = document.getElementById("registerForm");
+
 const usernameInput = document.getElementById("username");
 const passwordInput = document.getElementById("password");
 const confirmPasswordInput = document.getElementById("confirmPassword");
 const passwordStrengthText = document.getElementById("password-strength");
-const errorMessage = document.getElementById("error-message");
+
 
 function togglePassword() {
   const password = passwordInput;
@@ -31,19 +31,22 @@ function ctogglePassword() {
 
 
 //when register form submit
-form.addEventListener("submit", async (event) => {
-  event.preventDefault();
-  errorMessage.textContent = "";
+document.addEventListener("DOMContentLoaded", () => {
 
-  const password = document.getElementById("password").value;
-  const confirmPassword = document.getElementById("confirmPassword").value;
+  const form = document.getElementById("registerForm");
+  const errorMessage = document.getElementById("error-message");
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
 
-  //  match check
-  if (password !== confirmPassword) {
-    errorMessage.textContent = "Passwords do not match ❌";
-    errorMessage.className = "text-danger";
-    return;
-  }
+    errorMessage.textContent = "";
+
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+
+    if (password !== confirmPassword) {
+      errorMessage.textContent = "Passwords do not match ❌";
+      return;
+    }
 
   const data = {
     username: document.getElementById("name").value.toLowerCase(),
@@ -58,12 +61,15 @@ form.addEventListener("submit", async (event) => {
     password: password,
   };
 
+  console.log(data);
+
   try {
     const res = await fetch("https://hackathon-project-9jun.onrender.com/api/auth/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
+      credentials: "include",
       body: JSON.stringify(data),
     });
 
@@ -82,7 +88,7 @@ form.addEventListener("submit", async (event) => {
       if(result.msg){
         errorMessage.textContent = result.msg || "Registration failed ❌";
       }
-      else if(result.errors && errors.length >=0){
+      else if(result.errors && result.errors.length >0){
         errorMessage.textContent = result.errors[0].msg || "Registration failed ❌";
       }
       else{
@@ -94,4 +100,6 @@ form.addEventListener("submit", async (event) => {
     errorMessage.className = "text-danger";
     errorMessage.textContent = "Server error ❌";
   }
+});
+
 });

@@ -3,6 +3,7 @@ const donorModel = require("../models/donor.model");
 async function isAlreadyReg(req,res,next){
     const token = req.cookies.token;
 
+    console.log(token);
     
     if(!token){
         return res.status(401).json({
