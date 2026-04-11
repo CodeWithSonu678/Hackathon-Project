@@ -88,9 +88,31 @@ window.addEventListener("load", () => {
   }
 });
 
+const userName = document.getElementById("userName");
+const userEmail = document.getElementById("userEmail");
+
+//  load name and email
+window.addEventListener("load", () => {
+  const name = localStorage.getItem("name");
+  const email = localStorage.getItem("email");
+  if (name) {
+    userName.innerText = name;
+  } else {
+    userName.innerText = ".....";
+  }
+
+  if (email) {
+    userEmail.innerText = email;
+  } else {
+    userEmail.innerText = ".....";
+  }
+});
+
 //  logout
 async function logout() {
   localStorage.removeItem("isloginIn");
+  localStorage.removeItem("name");
+  localStorage.removeItem("email");
   window.location.reload();
   const res = await fetch(
     "https://hackathon-project-9jun.onrender.com/api/auth/logout",

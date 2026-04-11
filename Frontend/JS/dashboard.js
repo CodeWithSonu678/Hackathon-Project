@@ -19,7 +19,7 @@ const loadInfoUser = async () => {
     });
 
     const data = await res.json();
-    console.log(data);
+
     const userData = data.userData;
 
     const htmlTemplate = `
@@ -87,6 +87,11 @@ async function loadAllRequest(){
                 });
 
                 const data = await res.json();
+
+                if(!data){
+                        container.innerHTML = "<p>No request found.</p>";
+                        return;
+                }
 
                 data.allRequest.forEach(req => {
                 
