@@ -1,5 +1,6 @@
 const form = document.getElementById("loginForm");
 const errorMessage = document.getElementById("error-message");
+const passwordInput = document.getElementById("password");
 
 function togglePassword() {
   const password = passwordInput;

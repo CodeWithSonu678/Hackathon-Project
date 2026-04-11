@@ -1,6 +1,7 @@
 const form = document.getElementById("registerForm");
 const usernameInput = document.getElementById("username");
 const passwordInput = document.getElementById("password");
+const confirmPasswordInput = document.getElementById("confirmPassword");
 const passwordStrengthText = document.getElementById("password-strength");
 const errorMessage = document.getElementById("error-message");
 
@@ -16,37 +17,18 @@ function togglePassword() {
   }
 }
 
-function checkPasswordStrength(password) {
-  if (!password) return "";
-
-  const hasUpper = /[A-Z]/.test(password);
-  const hasLower = /[a-z]/.test(password);
-  const hasNumber = /[0-9]/.test(password);
-  const hasSymbol = /[!@#$%^&*()_+\-[\]{};':"\\|,.<>\/?]/.test(password);
-  const length = password.length;
-
-  if (length >= 8 && hasUpper && hasLower && hasNumber && hasSymbol) {
-    return "Strong";
+function ctogglePassword() {
+  const cpassword = confirmPasswordInput;
+  const toggle = document.querySelector(".c-toggle-password");
+  if (cpassword.type === "password") {
+    cpassword.type = "text";
+    toggle.textContent = "Hide";
+  } else {
+    cpassword.type = "password";
+    toggle.textContent = "Show";
   }
-  if (length >= 6 && hasUpper && hasNumber) {
-    return "Medium";
-  }
-  return "Weak";
 }
 
-passwordInput.addEventListener("input", () => {
-  const strength = checkPasswordStrength(passwordInput.value);
-  passwordStrengthText.textContent = strength
-    ? `Password Strength: ${strength}`
-    : "Enter a password to see strength.";
-  passwordStrengthText.className =
-    "form-text mb-3 " +
-    (strength === "Strong"
-      ? "text-success"
-      : strength === "Medium"
-        ? "text-warning"
-        : "text-danger");
-});
 
 //when register form submit
 form.addEventListener("submit", async (event) => {

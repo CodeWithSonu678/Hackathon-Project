@@ -250,12 +250,20 @@ body {
 
 /* Form */
 
+.e-form{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column; 
+}
+
 .form-body {
         display: flex;
         align-items: center;
         justify-content: space-evenly;
         flex-direction: row;
-        margin-top: 60px;
+        margin: 60px 0px 40px 0px;
+        width: 100%;
 }
 
 .inner-img {
