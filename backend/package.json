@@ -12,6 +12,7 @@
   "type": "commonjs",
   "dependencies": {
     "audit": "^0.0.6",
+    "axios": "^1.15.0",
     "bcrypt": "^6.0.0",
     "cookie-parser": "^1.4.7",
     "cookies": "^0.9.1",
