@@ -439,6 +439,7 @@ h3 {
 
 /* Footer */
 .f-out{
+        display: none;
         position: fixed;
         bottom: 0px;
         z-index: 1000;
