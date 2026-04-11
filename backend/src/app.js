@@ -11,7 +11,7 @@ app.use(cookieParser());
 
 //hosting ke baad origin mein url dena h taki auothize access na h0
 app.use(cors({
-  origin: "https://codewithsonu678.github.io",
+  origin: "https://hackathon-project-9jun.onrender.com",
   credentials: true
 }));
 

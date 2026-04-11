@@ -15,6 +15,7 @@ function togglePassword() {
 }
 
 
+
 //WHEN LOGIN FORM SUBMIT
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
