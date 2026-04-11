@@ -266,7 +266,6 @@ reviewForm.addEventListener("submit", async (e) => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
-        credentials: "include",
         body: JSON.stringify(data),
       },
     );
@@ -309,6 +308,7 @@ async function loadReviews() {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         credentials: "include",
       },
