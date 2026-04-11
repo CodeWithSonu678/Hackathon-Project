@@ -25,7 +25,7 @@ form.addEventListener("submit", async (event) => {
   };
 
   try {
-    const res = await fetch("http://127.0.0.1:3000/api/auth/login", {
+    const res = await fetch("https://hackathon-project.onrender.com/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

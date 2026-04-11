@@ -130,7 +130,7 @@ donorForm.addEventListener("submit",async (e) => {
   };
 
   try {
-    const res = await fetch("http://127.0.0.1:3000/api/auth/donate-form",{
+    const res = await fetch("https://hackathon-project.onrender.com/api/auth/donate-form",{
         method:"POST",
         headers:{
             "Content-Type":"application/json"

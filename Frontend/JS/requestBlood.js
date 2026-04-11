@@ -96,7 +96,7 @@ let districts = [];
 
 // 🔹 load all districts from DB
 async function loadDistricts() {
-  const res = await fetch("http://127.0.0.1:3000/api/auth/districts");
+  const res = await fetch("https://hackathon-project.onrender.com/api/auth/districts");
   const result = await res.json();
   districts = result.data;
 }
@@ -151,7 +151,7 @@ async function getHospitals() {
   if (!district) return;
 
   const res = await fetch(
-    `http://127.0.0.1:3000/api/auth/hospitals?district=${district}`,
+    `https://hackathon-project.onrender.com/api/auth/hospitals?district=${district}`,
   );
   const result = await res.json();
   const data = result.data;
@@ -244,7 +244,7 @@ requestBloodForm.addEventListener("submit", async (e) => {
   console.log(data);
 
   try {
-    const res = await fetch("http://127.0.0.1:3000/api/auth/request-blood", {
+    const res = await fetch("https://hackathon-project.onrender.com/api/auth/request-blood", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
