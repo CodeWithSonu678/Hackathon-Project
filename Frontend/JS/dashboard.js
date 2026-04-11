@@ -108,11 +108,11 @@ async function loadAllRequest(){
                         <div class="request-inner">
                         <div class="request-info">
                                 <p><b><i class="bi bi-geo-alt"></i></b> ${req.hospitals.join(", ")}</p>
-                                <p><b><i class="bi bi-clock"></i></b> ${new Date(req._id).toLocaleDateString()}</p>
+                                <p><b><i class="bi bi-clock"></i></b> ${new Date(req.createdAt).toLocaleDateString()}</p>
                         </div>
 
                         <div class="request-btn">
-                                <button onclick="showTracker()">Tracker</button>
+                                <button onclick="showTracker('${req._id}')">Tracker</button>
                         </div>
                         </div>
                 `;
