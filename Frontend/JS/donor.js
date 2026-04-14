@@ -1,15 +1,16 @@
-const navToggleBtn = document.getElementById("navToggleBtn");
-const navToggleLinks = document.getElementById("navToggleLinks");
-const donorForm = document.getElementById("donorForm");
-const errorMessage = document.getElementById("error-message");
+const navToggleBtn = document.getElementById('navToggleBtn');
+const navToggleLinks = document.querySelector('.nav-links-url');
 
 if (navToggleBtn && navToggleLinks) {
   navToggleBtn.addEventListener("click", () => {
-    const isOpen = navToggleLinks.classList.toggle("active");
-    navToggleBtn.setAttribute("aria-expanded", String(isOpen));
-    navToggleLinks.setAttribute("aria-hidden", String(!isOpen));
+    navToggleLinks.classList.toggle('active');
   });
 }
+
+
+const donorForm = document.getElementById("donorForm");
+const errorMessage = document.getElementById("error-message");
+
 
 const registerBtn = document.getElementById("registerBtn");
 const logoutBtn = document.getElementById("logoutBtn");

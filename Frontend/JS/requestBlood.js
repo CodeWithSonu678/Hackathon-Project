@@ -1,11 +1,9 @@
-const navToggleBtn = document.getElementById("navToggleBtn");
-const navToggleLinks = document.getElementById("navToggleLinks");
+const navToggleBtn = document.getElementById('navToggleBtn');
+const navToggleLinks = document.querySelector('.nav-links-url');
 
 if (navToggleBtn && navToggleLinks) {
   navToggleBtn.addEventListener("click", () => {
-    const isOpen = navToggleLinks.classList.toggle("active");
-    navToggleBtn.setAttribute("aria-expanded", String(isOpen));
-    navToggleLinks.setAttribute("aria-hidden", String(!isOpen));
+    navToggleLinks.classList.toggle('active');
   });
 }
 
