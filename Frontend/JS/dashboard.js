@@ -1,4 +1,29 @@
-const BASE_URL = "http://127.0.0.1:3000";
+const BASE_URL="http://127.0.0.1:3000"
+const navToggleBtn = document.getElementById('navToggleBtn');
+const navToggleLinks = document.querySelector('.nav-links-url');
+
+if (navToggleBtn && navToggleLinks) {
+  navToggleBtn.addEventListener("click", () => {
+    navToggleLinks.classList.toggle('active');
+  });
+}
+
+const editButton = document.getElementById('edit-btn');
+const editBody = document.querySelector('.edit-form');
+const cancelButton = document.getElementById('cancel-btn');
+
+if(editBody && editButton){
+        editButton.addEventListener("click", () => {
+                editBody.style.display = 'flex';
+        });
+}
+
+if(cancelButton && editBody){
+        cancelButton.addEventListener("click", () => {
+                editBody.style.display = 'none';
+        });
+}
+
 const infoSection = document.getElementById("info-section");
 
 //  load image

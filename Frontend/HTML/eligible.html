@@ -20,33 +20,35 @@
                 <div class="nav-links-url">
                         <ul class="link-li">
                                 <li><a href="../index.html">Home</a></li>
-                                <li><a href="../index.html#aboutUs">About</a></li>
+                                <li><a href="dashboard.html" id="dashboardLink"
+                                                style="display:none;">Dashboard</a></li>
+                                <li><a href="#aboutUs">About</a></li>
                                 <li><a href="#f-con">Contact</a></li>
-                                <li><a href="HTML/loogin.html"><button class="bl-btn" id="loginBtn">Login</button></a>
+                                <li><a href="loogin.html"><button class="bl-btn" id="loginBtn">Login</button></a>
                                 </li>
-                                <li><a href="HTML/register.html"><button class="bl-btn"
+                                <li><a href="register.html"><button class="bl-btn"
                                                         id="registerBtn">Register</button></a></li>
 
                                 <li id="profileSection" style="display: none;">
                                         <div class="profile-container">
 
-                                                <!-- 🔥 icon -->
-                                                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"  id="profileBtn"
-                                                        class="profile-img" />
+                                                <!--  icon -->
+                                                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                                                        id="profileBtn" class="profile-img" />
 
-                                                <!-- 🔽 dropdown -->
+                                                <!--  dropdown -->
                                                 <div class="profile-dropdown" id="profileDropdown">
 
                                                         <div class="profile-info">
-                                                                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" 
+                                                                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
                                                                         id="profileLarge" class="profile-img-large" />
 
-                                                                <!-- 🔥 change image button -->
+                                                                <!--  change image button -->
                                                                 <button id="changeImgBtn">Change Image</button>
                                                                 <input type="file" id="uploadImg" hidden />
 
-                                                                <h4 id="userName">Sonu Yadav</h4>
-                                                                <p id="userEmail">sonu@gmail.com</p>
+                                                                <h4 id="userName">.....</h4>
+                                                                <p id="userEmail">.....</p>
                                                         </div>
 
                                                         <button onclick="logout()">Logout</button>
@@ -59,32 +61,26 @@
                 <div class="nav-link-toggle">
                         <button id="navToggleBtn" aria-label="Toggle navigation" aria-controls="navToggleLinks"
                                 aria-expanded="false">☰</button>
-
                 </div>
 
 
         </div>
-       <div class="nav-links-url">
-                        <ul class="link-li">
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="../index.html#aboutUs">About</a></li>
-                                <li><a href="#f-con">Contact</a></li>
-                                <li><a href="HTML/loogin.html"><button class="bl-btn" id="loginBtn">Login</button></a></li>
-                                <li><a href="HTML/register.html"><button class="bl-btn" id="registerBtn">Register</button></a></li>
-                                <li><a href="#"><button class="bl-btn" id="logoutBtn">Logout</button></a></li>
-                        </ul>
-                </div>
+
+
+        </div>
+
         <!-- Form -->
         <div class="form-body">
                 <div class="login-box">
                         <div class="h-txt">
-                        <p >Check Your Blood Donation Eligibility </p>
+                                <p>Check Your Blood Donation Eligibility </p>
                         </div>
                         <div id="error-message" class="text-danger mb-3 MT-4" role="alert" aria-live="polite"></div>
-                                <form id="eligibleForm" method="post" class="e-form">
+                        <form id="eligibleForm" method="post" class="e-form">
                                 <table style="margin: 15px 50px;">
                                         <tr style="border-bottom: 1px solid black;">
-                                                <th id="out"><label for="q1_yes" class="mt-3 mb-1">Are you between 18 and 65 years old:</label></th>
+                                                <th id="out"><label for="q1_yes" class="mt-3 mb-1">Are you between 18
+                                                                and 65 years old:</label></th>
                                                 <td>
                                                         <input type="radio" name="age" id="q1_yes" value="true" class="mt-3 mb-1">
                                                         <label for="q1_yes" style="font-weight: bold;" >Yes</label>
@@ -93,7 +89,8 @@
                                                 </td>
                                         </tr>
                                         <tr style="border-bottom: 1px solid black;">
-                                                <th id="out"><label for="q2_yes" class="mt-3 mb-1">Do you weigh over 50 kg?:</label></th>
+                                                <th id="out"><label for="q2_yes" class="mt-3 mb-1">Do you weigh over 50
+                                                                kg?:</label></th>
                                                 <td>
                                                         <input type="radio" name="weight" id="q2_yes" value="true" class="mt-3 mb-1">
                                                         <label for="q2_yes" style="font-weight: bold;">Yes</label>
@@ -102,7 +99,8 @@
                                                 </td>
                                         </tr>
                                         <tr style="border-bottom: 1px solid black;">
-                                                <th id="out"><label for="q3_yes" class="mt-3 mb-1">Have you been ill in last two weeks?:</label></th>
+                                                <th id="out"><label for="q3_yes" class="mt-3 mb-1">Have you been ill in
+                                                                last two weeks?:</label></th>
                                                 <td>
                                                         <input type="radio" name="healthCondition" id="q3_yes" value="true" class="mt-3 mb-1">
                                                         <label for="q3_yes" style="font-weight: bold;">Yes</label>
@@ -110,8 +108,9 @@
                                                         <label for="q3_no" style="font-weight: bold;">No</label>
                                                 </td>
                                         </tr>
-                                        <tr style="border-bottom: 1px solid black;" >
-                                                <th id="out"><label for="q4_yes" class="mt-3 mb-1">Are you currently taking any medicine?:</label></th>
+                                        <tr style="border-bottom: 1px solid black;">
+                                                <th id="out"><label for="q4_yes" class="mt-3 mb-1">Are you currently
+                                                                taking any medicine?:</label></th>
                                                 <td>
                                                         <input type="radio" name="takeMedicine" id="q4_yes" value="true" class="mt-3 px-4 mb-1">
                                                         <label for="q4_yes" style="font-weight: bold;">Yes</label>
@@ -119,8 +118,9 @@
                                                         <label for="q4_no" style="font-weight: bold;">No</label>
                                                 </td>
                                         </tr>
-                                        <tr style="border-bottom: 1px solid black;" >
-                                                <th id="out"><label for="q5_yes" class="mt-3 mb-1">Have you donated blood before?:</label></th>
+                                        <tr style="border-bottom: 1px solid black;">
+                                                <th id="out"><label for="q5_yes" class="mt-3 mb-1">Have you donated
+                                                                blood before?:</label></th>
                                                 <td>
                                                         <input type="radio" name="haveDonated" id="q5_yes" value="true" class="mt-3 px-4 mb-1">
                                                         <label for="q5_yes" style="font-weight: bold;">Yes</label>
@@ -129,13 +129,15 @@
                                                 </td>
                                         </tr>
                                         <tr style="border-bottom: 1px solid black;" class="p-2" id="donate-date">
-                                                <th id="out"><label for="last_donation" class="mt-3">Date of your last blood donation:</label></th>
-                                                <td >
-                                                        <input type="date" name="lastDonation" id="last_donation" class="mt-3 mb-1">
+                                                <th id="out"><label for="last_donation" class="mt-3">Date of your last
+                                                                blood donation:</label></th>
+                                                <td>
+                                                        <input type="date" name="lastDonation" id="last_donation"
+                                                                class="mt-3 mb-1">
                                                 </td>
                                         </tr>
                                 </table>
-                                
+
                                 <button type="submit" class="btn btn-primary mt-2 mb-4">Submit</button>
                         </form>
                 </div>
@@ -158,7 +160,8 @@
                         </p>
                         <ul class="q-links-urls">
                                 <li><a href="../index.html"><i class="bi bi-house"></i> Home</a></li>
-                                <li><a href="../index.html #about-us"><i class="bi bi-exclamation-lg"></i> About</a></li>
+                                <li><a href="../index.html #about-us"><i class="bi bi-exclamation-lg"></i> About</a>
+                                </li>
                                 <li><a href="#f-con"><i class="bi bi-telephone-fill"></i> Contact</a></li>
                                 <li><a href="HTML/loogin.html"><i class="bi bi-house-lock-fill"></i> Login</a></li>
                                 <li><a href="HTML/register.html"><i class="bi bi-journal-check"></i> Register</a></li>
@@ -184,6 +187,7 @@
         <p class="c-txt"><i class="bi bi-c-circle"></i> 2026 Blood Bank | All right reserved</p>
 
 </body>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="../JS/eligible.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../JS/eligible.js"></script>
+
 </html>

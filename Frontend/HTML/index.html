@@ -7,83 +7,23 @@
         <title>Blood Bank Website</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
-        <link rel="stylesheet" href="CSS/style.css">
+        <link rel="stylesheet" href="../CSS/style.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
         <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-        <link rel="icon" href="CSS/img/new-logo.jpeg">
+        <link rel="icon" href="../CSS/img/new-logo.jpeg">
 </head>
 
 <body>
         <!-- Navbar-Section -->
-        <div class="outer-navbody">
-                <div class="nav-logo-img">
-                        <img src="CSS/img/new-logo.jpeg" alt="">
-                </div>
-                <div class="nav-links-url">
-                        <ul class="link-li">
-                                <li><a href="index.html">Home</a></li>
-                                <li><a href="./HTML/dashboard.html" id="dashboardLink" style="display:none;">Dashboard</a></li>
-                                <li><a href="#aboutUs">About</a></li>
-                                <li><a href="#f-con">Contact</a></li>
-                                <li><a href="HTML/loogin.html"><button class="bl-btn" id="loginBtn">Login</button></a>
-                                </li>
-                                <li><a href="HTML/register.html"><button class="bl-btn"
-                                                        id="registerBtn">Register</button></a></li>
-
-                                <li id="profileSection" style="display: none;">
-                                        <div class="profile-container">
-
-                                                <!--  icon -->
-                                                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"  id="profileBtn"
-                                                        class="profile-img"/>
-
-                                                <!--  dropdown -->
-                                                <div class="profile-dropdown" id="profileDropdown">
-
-                                                        <div class="profile-info">
-                                                                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
-                                                                        id="profileLarge" class="profile-img-large" />
-
-                                                                <!--  change image button -->
-                                                                <button id="changeImgBtn">Change Image</button>
-                                                                <input type="file" id="uploadImg" hidden />
-
-                                                                <h4 id="userName">.....</h4>
-                                                                <p id="userEmail">.....</p>
-                                                        </div>
-
-                                                        <button onclick="logout()">Logout</button>
-
-                                                </div>
-                                        </div>
-                                </li>
-                        </ul>
-                </div>
-                <div class="nav-link-toggle">
-                        <button id="navToggleBtn" aria-label="Toggle navigation" aria-controls="navToggleLinks"
-                                aria-expanded="false">☰</button>
-
-                </div>
-
-
-        </div>
-        <div class="nav-toggle-links" id="navToggleLinks" aria-hidden="true">
-                <ul class="toggle-li">
-                        <li><a href="">Home</a></li>
-                        <li><a href="#about-us">About</a></li>
-                        <li><a href="./HTML/dashboard.html" id="dashboardLink" style="display:none;">Dashboard</a></li>
-                        <li><a href="#f-con">Contact</a></li>
-                        <li><a href="./HTML/loogin.html"><button class="bl-btn">Login</button></a></li>
-                        <li><a href="./HTML/register.html"><button class="bl-btn">Register</button></a></li>
-                </ul>
-        </div>
+        <div id="header"></div>
+        
 
         <!-- Banner-->
         <div class="banner">
                 <div class="banner-text">
                         <p class="banner-p1">Save Life, Donate Blood</p>
                         <p class="banner-p2">Every drop counts. Join our community of heroes today</p>
-                        <a href="./HTML/eligible.html"> <button class="bl-btn">Donate Blood</button></a>
+                        <a href="eligible.html"> <button class="bl-btn">Donate Blood</button></a>
                         <a href="#searchBlood"><button class="bl-btn ">Search Blood</button></a>
                 </div>
         </div>
@@ -322,8 +262,8 @@
 
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="./JS/home.js"></script>
-<script src="./JS/common.js"></script>
+<script src="../JS/home.js"></script>
+<script src="../JS/nav.js"></script>
 
 
 </html>

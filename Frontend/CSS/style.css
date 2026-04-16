@@ -58,14 +58,11 @@ body {
 .nav-link-toggle button {
         font-size: 30px;
         background-color: #880015;
-        border: 1px solid white;
+        border: none;
         color: white;
         border-radius: 8px;
 }
 
-.nav-toggle-links {
-        display: none;
-}
 
 /* profile image */
 .profile-img {
@@ -150,50 +147,33 @@ body {
         .outer-navbody{
                 display: flex;
                 align-items: center;
-                justify-content: space-around;
+                justify-content: space-between;
+                padding: 0px 20px;
         }
 
-        .nav-links-url ul {
+        .nav-link-toggle{
+                display: block;
+        }
+
+        .nav-links-url{
+                flex-direction: column;
                 display: none;
         }
 
-        .nav-link-toggle {
-                display: flex;
+        .nav-links-url ul{
                 flex-direction: column;
-                align-items: flex-start;
+                gap: 20px;
         }
 
-        .nav-toggle-links {
-                display: none;
-        }
-
-        .nav-toggle-links.active{
-                display: flex;
-                align-items: start;
-                justify-content: space-evenly;
-                flex-direction: column;
-                position: fixed;
-                z-index: 1000;
-                right: 5px;
+        .nav-links-url.active{
+                display: block;
+                position: absolute;
+                z-index: 999;
+                right: 0px;
+                top: 70px;
                 background-color: #880015;
                 border-radius: 8px;
-                top: 80px;
-                font-weight: bold;
-        }
-
-        .toggle-li{
-                margin: 0px;
-        }
-
-        .toggle-li li a {
-                text-decoration: none;
-                color: white;
-                font-size: 15px;
-        }
-
-        .toggle-li li {
-                list-style: none;
-                margin: 20px 15px;
+                padding: 10px 20px;
         }
 
         .banner {
@@ -317,6 +297,11 @@ body {
         padding: 8px;
         border-radius: 5px;
         border: 2px solid black;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.search-donar select{
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 @media (max-width:500px) {
@@ -421,6 +406,7 @@ body {
         background-color: white;
         font-weight: bold;
         color:#333;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .bl-btn a{
