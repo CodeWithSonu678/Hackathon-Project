@@ -1,0 +1,53 @@
+<header>
+        <div class="outer-navbody">
+                <div class="nav-logo-img">
+                        <img src="../CSS/img/new-logo.jpeg" alt="">
+                </div>
+                <div class="nav-links-url">
+                        <ul class="link-li">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="dashboard.html" id="dashboardLink" style="display:none;">Dashboard</a></li>
+                                <li><a href="about.html">About</a></li>
+                                <li><a href="#f-con">Contact</a></li>
+                                <li><a href="loogin.html"><button class="bl-btn" id="loginBtn">Login</button></a>
+                                </li>
+                                <li><a href="register.html"><button class="bl-btn"
+                                                        id="registerBtn">Register</button></a></li>
+
+                                <li id="profileSection" style="display: none;">
+                                        <div class="profile-container">
+
+                                                <!--  icon -->
+                                                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"  id="profileBtn"
+                                                        class="profile-img"/>
+
+                                                <!--  dropdown -->
+                                                <div class="profile-dropdown" id="profileDropdown">
+
+                                                        <div class="profile-info">
+                                                                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                                                                        id="profileLarge" class="profile-img-large" />
+
+                                                                <!--  change image button -->
+                                                                <button id="changeImgBtn">Change Image</button>
+                                                                <input type="file" id="uploadImg" hidden />
+
+                                                                <h4 id="userName">.....</h4>
+                                                                <p id="userEmail">.....</p>
+                                                        </div>
+
+                                                        <button onclick="logout()">Logout</button>
+
+                                                </div>
+                                        </div>
+                                </li>
+                        </ul>
+                </div>
+                <div class="nav-link-toggle">
+                        <button id="navToggleBtn" aria-label="Toggle navigation" aria-controls="navToggleLinks"
+                                aria-expanded="false">☰</button>
+                </div>
+
+
+        </div>
+</header>

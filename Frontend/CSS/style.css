@@ -297,6 +297,11 @@ body {
         padding: 8px;
         border-radius: 5px;
         border: 2px solid black;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.search-donar select{
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 @media (max-width:500px) {
@@ -401,6 +406,7 @@ body {
         background-color: white;
         font-weight: bold;
         color:#333;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .bl-btn a{
