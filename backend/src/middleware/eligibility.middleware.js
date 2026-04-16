@@ -23,10 +23,7 @@ const eligibiltyRules = [
     .isBoolean()
     .withMessage("Take medicine should be boolean"),
   body("lastDonation")
-    .notEmpty()
-    .withMessage("Last donation date is required")
-    .isDate()
-    .withMessage("Last donation should be date"),
+    .optional(),
 ];
 
 // Eligibility Validate

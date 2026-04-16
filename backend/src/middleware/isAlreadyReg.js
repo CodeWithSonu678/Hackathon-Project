@@ -31,8 +31,6 @@ async function isAlreadyReg(req,res,next){
       return res.status(401).json({ msg: "Login required" });
     }
 
-    console.log("SECRET:", process.env.SECRET_KEY);
-
     try {
         const decoded = jwt.verify(token,process.env.SECRET_KEY);
 

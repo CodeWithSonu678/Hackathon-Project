@@ -569,6 +569,13 @@ body {
   transition: 1s;
 }
 
+.stars{
+        display: flex;
+        justify-content: space-between;
+        font-size: 35px;
+        gap: 1px;
+}
+
 .reviewer-profile {
   display: flex;
   align-items: center;   
@@ -629,6 +636,9 @@ body {
 
 .mes-img img{
         height: 300px;
+        width:500px;
+        border-radius: 15px;
+        opacity: .8;
 }
 
 .mes-body p{

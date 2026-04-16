@@ -1,4 +1,4 @@
-
+const BASE_URL = "http://127.0.0.1:3000";
 const usernameInput = document.getElementById("username");
 const passwordInput = document.getElementById("password");
 const confirmPasswordInput = document.getElementById("confirmPassword");
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log(data);
 
   try {
-    const res = await fetch("https://hackathon-project-9jun.onrender.com/api/auth/register", {
+    const res = await fetch(BASE_URL+"/api/auth/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -1,7 +1,8 @@
+const BASE_URL = "http://127.0.0.1:3000";
 // logout function
 async function logout() {
   try {
-    const res = await fetch("https://hackathon-project-9jun.onrender.com/api/auth/logout", {
+    const res = await fetch(BASE_URL+"/api/auth/logout", {
       method: "GET",
       credentials: "include"
     });

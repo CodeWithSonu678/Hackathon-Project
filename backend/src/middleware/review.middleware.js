@@ -3,9 +3,9 @@ const {body, validationResult} = require("express-validator");
 //set rules of review
 
 const reviewRules = [
-    body("starInput")
+    body("rating")
         .notEmpty()
-        .withMessage("Star is acceept only number"),
+        .withMessage("Star is required"),
     body("reviewMessage")
         .notEmpty().withMessage("Review message is required")
         .isString().withMessage("Review message should be string"),

@@ -32,7 +32,7 @@ router.post("/donate-form",isAlreadyReg,donorRules,donorValidate,donorController
 router.post("/donor",searchDonors);
 
 //reviews
-router.post("/review",reviewRules,reviewValidate,reviewController)
+router.post("/review",isAlreadyReg,reviewRules,reviewValidate,reviewController)
 router.get("/reviews",getAllReviews);
 
 //request blood

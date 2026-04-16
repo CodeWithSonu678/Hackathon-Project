@@ -2,13 +2,16 @@ const userModel = require("../models/user.model");
 const reviewModel = require("../models/review.model");
 
 async function reviewController(req, res) {
-  const { user,starInput,reviewMessage } = req.body;
+  const { rating,reviewMessage } = req.body;
 
-  
+  const user = req.user;
+  const authHeader = req.headers.authorization;
+
+  const token = authHeader.split(" ")[1];
 
   try {
 
-    if (!user) {
+    if (!authHeader) {
       return res.status(401).json({
         msg: "Register/Login is required !",
         success: false,
@@ -16,9 +19,9 @@ async function reviewController(req, res) {
     }
 
     const review = await reviewModel.create({
-      starInput,
+      rating,
       reviewMessage,
-      user:user._id
+      user:user.id
     });
 
     res.status(201).json({
@@ -42,6 +45,7 @@ async function getAllReviews(req, res) {
   try {
     const reviews = await reviewModel
       .find()
+      .populate("user","username")
       .sort({ createdAt: -1 })
       .select("-__v");
 

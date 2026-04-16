@@ -1,8 +1,8 @@
+const BASE_URL = "http://127.0.0.1:3000";
 const navToggleBtn = document.getElementById("navToggleBtn");
 const navToggleLinks = document.getElementById("navToggleLinks");
 const eligibleForm = document.getElementById("eligibleForm");
 const errorMessage = document.getElementById("error-message");
-
 
 if (navToggleBtn && navToggleLinks) {
   navToggleBtn.addEventListener("click", () => {
@@ -28,7 +28,6 @@ if (isloginIn === "true") {
 
   // show profile
   profileSection.style.display = "block";
-
 } else {
   // show login/register
   loginBtn.style.display = "block";
@@ -43,9 +42,6 @@ const dropdown = document.getElementById("profileDropdown");
 const fileInput = document.getElementById("uploadImg");
 const changeImgBtn = document.getElementById("changeImgBtn");
 const profileLarge = document.getElementById("profileLarge");
-
-
-
 
 //  ONLY dropdown open
 profileBtn.addEventListener("click", (e) => {
@@ -103,33 +99,45 @@ if (eligibleForm) {
     e.preventDefault();
     errorMessage.textContent = "";
 
-    console.log("working ✅");
+    let lastDonation = document.getElementById("last_donation").value;
+    let checkLastDonation = document.querySelector(
+      'input[name="haveDonated"]:checked',
+    )?.value;
 
+    if (checkLastDonation === "true" && !lastDonation) {
+      errorMessage.textContent = "Please select last donation date ❌";
+      return;
+    }
     const data = {
-      age: document.querySelector('input[name="age"]:checked')?.value === "yes",
+      age:
+        document.querySelector('input[name="age"]:checked')?.value === "true",
       weight:
-        document.querySelector('input[name="weight"]:checked')?.value === "yes",
+        document.querySelector('input[name="weight"]:checked')?.value ===
+        "true",
       healthCondition:
         document.querySelector('input[name="healthCondition"]:checked')
-          ?.value === "yes",
+          ?.value === "true",
       takeMedicine:
         document.querySelector('input[name="takeMedicine"]:checked')?.value ===
-        "yes",
-      lastDonation: document.getElementById("last_donation")?.value,
+        "true",
+      lastDonation,
     };
 
+    // 🔥 validation
     if (
-  data.age == null ||
-  data.weight == null ||
-  data.healthCondition == null ||
-  data.takeMedicine == null
-) {
-  errorMessage.textContent = "Please answer all questions ❌";
-  return;
-}
+      document.querySelector('input[name="age"]:checked') === null ||
+      document.querySelector('input[name="weight"]:checked') === null ||
+      document.querySelector('input[name="healthCondition"]:checked') ===
+        null ||
+      document.querySelector('input[name="takeMedicine"]:checked') === null ||
+      document.querySelector('input[name="haveDonated"]:checked') === null
+    ) {
+      errorMessage.textContent = "Please answer all questions ❌";
+      return;
+    }
 
     try {
-      const res = await fetch("https://hackathon-project-9jun.onrender.com/api/auth/eligibility", {
+      const res = await fetch(BASE_URL + "/api/auth/eligibility", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -149,16 +157,13 @@ if (eligibleForm) {
       } else {
         errorMessage.className = "text-danger";
 
-        if(result.msg){
+        if (result.msg) {
           errorMessage.textContent = result.msg || "Not eligible ❌";
-        }
-        else if(result.errors && errors.length >= 0){
+        } else if (result.errors && result.errors.length >= 0) {
           errorMessage.textContent = result.errors[0].msg || "Not eligible ❌";
+        } else {
+          errorMessage.textContent = "Not eligible ❌";
         }
-        else{
-          errorMessage.textContent ="Not eligible ❌";
-        }
-        
       }
     } catch (err) {
       console.error(err);
@@ -168,18 +173,18 @@ if (eligibleForm) {
   });
 }
 
-const questionBlood = document.getElementById('donate-date');
-const hideDate = document.getElementById('q5_no');
-const showDate = document.getElementById('q5_yes');
+const questionBlood = document.getElementById("donate-date");
+const hideDate = document.getElementById("q5_no");
+const showDate = document.getElementById("q5_yes");
 
-if(questionBlood && hideDate){
-  hideDate.addEventListener('click', () => {
-    questionBlood.style.display = 'none';
-  } );
+if (questionBlood && hideDate) {
+  hideDate.addEventListener("click", () => {
+    questionBlood.style.display = "none";
+  });
 }
 
-if(questionBlood && showDate){
-  showDate.addEventListener('click', () => {
-    questionBlood.style.display = 'flex';
-  } );
+if (questionBlood && showDate) {
+  showDate.addEventListener("click", () => {
+    questionBlood.style.display = "flex";
+  });
 }

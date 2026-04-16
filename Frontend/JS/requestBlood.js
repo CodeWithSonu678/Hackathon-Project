@@ -1,3 +1,4 @@
+const BASE_URL = "http://127.0.0.1:3000";
 const navToggleBtn = document.getElementById("navToggleBtn");
 const navToggleLinks = document.getElementById("navToggleLinks");
 
@@ -96,7 +97,7 @@ let districts = [];
 
 // 🔹 load all districts from DB
 async function loadDistricts() {
-  const res = await fetch("https://hackathon-project-9jun.onrender.com/api/auth/districts");
+  const res = await fetch(BASE_URL+"/api/auth/districts");
   const result = await res.json();
   districts = result.data;
 }
@@ -151,7 +152,7 @@ async function getHospitals() {
   if (!district) return;
 
   const res = await fetch(
-    `https://hackathon-project-9jun.onrender.com/api/auth/hospitals?district=${district}`,
+    BASE_URL+`/api/auth/hospitals?district=${district}`,
   );
   const result = await res.json();
   const data = result.data;
@@ -244,7 +245,7 @@ requestBloodForm.addEventListener("submit", async (e) => {
   console.log(data);
 
   try {
-    const res = await fetch("https://hackathon-project-9jun.onrender.com/api/auth/request-blood", {
+    const res = await fetch(BASE_URL+"/api/auth/request-blood", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -1,3 +1,4 @@
+const BASE_URL = "http://127.0.0.1:3000";
 const navToggleBtn = document.getElementById("navToggleBtn");
 const navToggleLinks = document.getElementById("navToggleLinks");
 
@@ -112,21 +113,22 @@ window.addEventListener("load", () => {
 async function logout() {
   localStorage.removeItem("isloginIn");
   localStorage.removeItem("name");
+  localStorage.removeItem("profileImg");
+
   localStorage.removeItem("email");
   window.location.reload();
-  const res = await fetch(
-    "https://hackathon-project-9jun.onrender.com/api/auth/logout",
-    {
-      method: "GET",
-      credentials: "include",
-    },
-  );
+  const res = await fetch(BASE_URL + "/api/auth/logout", {
+    method: "GET",
+    credentials: "include",
+  });
 }
 
 //donor info show
 function moreInfo(d) {
   document.getElementById("dName").innerText = d.donorName;
   document.getElementById("dPhone").innerText = d.mobileNumber;
+  document.getElementById("dEmail").innerText = d.userData.email;
+
   document.getElementById("dBlood").innerText = d.bloodGroup;
   document.getElementById("dCity").innerText = d.city;
   document.getElementById("dDistance").innerText =
@@ -177,20 +179,17 @@ searchDonor.addEventListener("submit", async (e) => {
   const bloodGroup = document.getElementById("bloodGroup").value;
 
   try {
-    const res = await fetch(
-      "https://hackathon-project-9jun.onrender.com/api/auth/donor",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify({
-          city: city,
-          bloodGroup: bloodGroup,
-        }),
+    const res = await fetch(BASE_URL + "/api/auth/donor", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-    );
+      credentials: "include",
+      body: JSON.stringify({
+        city: city,
+        bloodGroup: bloodGroup,
+      }),
+    });
 
     const result = await res.json();
 
@@ -251,8 +250,6 @@ const errorMessage = document.getElementById("error-message");
 const stars = document.querySelectorAll("#starRating i");
 const starInput = document.getElementById("starInput");
 
-console.log(localStorage.getItem("token"));
-
 stars.forEach((star) => {
   star.addEventListener("click", () => {
     const value = star.getAttribute("data-value");
@@ -275,23 +272,22 @@ stars.forEach((star) => {
 reviewForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   errorMessage.textContent = "";
+
   const data = {
-    starInput: starInput,
+    rating: starInput.value,
     reviewMessage: document.getElementById("reviewMessage").value,
   };
 
   try {
-    const res = await fetch(
-      "https://hackathon-project-9jun.onrender.com/api/auth/review",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        body: JSON.stringify(data),
+    const res = await fetch(BASE_URL + "/api/auth/review", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
-    );
+      credentials: "include",
+      body: JSON.stringify(data),
+    });
 
     const result = await res.json();
 
@@ -301,9 +297,16 @@ reviewForm.addEventListener("submit", async (e) => {
 
       errorMessage.style.transition = "opacity 0.5s";
       errorMessage.style.opacity = "1";
+
+      reviewForm.reset();
+      document.getElementById("starInput").value = 0;
+
+      const stars = document.querySelectorAll("#starRating i");
+      stars.forEach((s) => s.classList.remove("active"));
       setTimeout(() => {
         window.location.href = "#reviewList";
         errorMessage.textContent = "";
+        loadReviews();
       }, 2000);
     } else {
       errorMessage.className = "text-danger";
@@ -325,17 +328,14 @@ reviewForm.addEventListener("submit", async (e) => {
 //load review users
 async function loadReviews() {
   try {
-    const res = await fetch(
-      "https://hackathon-project-9jun.onrender.com/api/auth/reviews",
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        credentials: "include",
+    const res = await fetch(BASE_URL + "/api/auth/reviews", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
-    );
+      credentials: "include",
+    });
     const result = await res.json();
 
     const reviews = result.data;
@@ -350,7 +350,7 @@ async function loadReviews() {
       const stars = "⭐".repeat(r.rating);
       card.innerHTML = `
         <div class="review-star">
-          <div>${stars}</div>
+          <div class="stars">${stars}</div>
           <hr>
         </div>
 
@@ -365,7 +365,7 @@ async function loadReviews() {
           </div>
 
           <div class="reviwer-info">
-            <p style="margin: 0px;"><b>${r.username}</b></p>
+            <p style="margin: 0px;"><b>${r.user.username}</b></p>
             <p style="margin: 0px;">Donor</p>
           </div>
         </div>

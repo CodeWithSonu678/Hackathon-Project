@@ -1,3 +1,4 @@
+const BASE_URL = "http://127.0.0.1:3000";
 const navToggleBtn = document.getElementById("navToggleBtn");
 const navToggleLinks = document.getElementById("navToggleLinks");
 const donorForm = document.getElementById("donorForm");
@@ -130,14 +131,13 @@ donorForm.addEventListener("submit",async (e) => {
   };
 
   try {
-    const res = await fetch("https://hackathon-project-9jun.onrender.com/api/auth/donate-form",{
+    const res = await fetch(BASE_URL+"/api/auth/donate-form",{
         method:"POST",
         headers:{
             "Content-Type":"application/json"
         },
-        body:JSON.stringify(data),
-        credentials: "include"
-
+        credentials: "include",
+        body:JSON.stringify(data)
     });
 
     const result = await res.json();
@@ -167,8 +167,8 @@ donorForm.addEventListener("submit",async (e) => {
         errorMessage.textContent ="Somthing want worng ❌";
       }
     }
-  } catch (err) {
-    console.log(err.message)
+  } catch (error) {
+    console.log(error)
   }
 });
 

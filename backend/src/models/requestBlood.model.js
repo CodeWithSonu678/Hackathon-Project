@@ -11,8 +11,7 @@ const requestBloodSchema = new mongoose.Schema({
     },
     aadharNumber: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     timePeriod: {
         type: String,
