@@ -49,7 +49,7 @@ form.addEventListener("submit", async (event) => {
       errorMessage.textContent = result.msg || "Login successfully ✅";
 
       setTimeout(() => {
-        window.location.href = "../index.html";
+        window.location.href = "../HTML/index.html";
       }, 2000);
     } else {
       errorMessage.className = "text-danger";
