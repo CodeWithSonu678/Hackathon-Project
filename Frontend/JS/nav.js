@@ -123,35 +123,35 @@ function initNavbar() {
   });
 
   //  logout
-//   async function logout() {
-//     try {
-//       const res = await fetch("http://127.0.0.1:3000/api/auth/logout", {
-//         method: "GET",
-//         credentials: "include",
-//       });
+  // async function logout() {
+  //   try {
+  //     const res = await fetch("http://127.0.0.1:3000/api/auth/logout", {
+  //       method: "GET",
+  //       credentials: "include",
+  //     });
 
-//       const result = await res.json();
-//       console.log(result);
+  //     const result = await res.json();
+  //     console.log(result);
 
-//       localStorage.removeItem("isloginIn");
-//       window.location.href = "./index.html";
-//     } catch (error) {
-//       console.log(error.message);
-//     }
-//   }
+  //     localStorage.removeItem("isloginIn");
+  //     window.location.href = "./index.html";
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // }
 
-  async function logout() {
-    localStorage.removeItem("isloginIn");
-    localStorage.removeItem("name");
-    localStorage.removeItem("profileImg");
+  // async function logout() {
+  //   localStorage.removeItem("isloginIn");
+  //   localStorage.removeItem("name");
+  //   localStorage.removeItem("profileImg");
 
-    localStorage.removeItem("email");
-    window.location.reload();
-    const res = await fetch(BASE_URL + "/api/auth/logout", {
-      method: "GET",
-      credentials: "include",
-    });
-  }
+  //   localStorage.removeItem("email");
+  //   window.location.reload();
+  //   const res = await fetch(BASE_URL + "/api/auth/logout", {
+  //     method: "GET",
+  //     credentials: "include",
+  //   });
+  // }
 
   // check login state
   function checkAuth() {

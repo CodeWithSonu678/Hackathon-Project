@@ -149,7 +149,7 @@ donorForm.addEventListener("submit",async (e) => {
         errorMessage.textContent = result.msg || "Now You are donor";
 
         setInterval(()=>{
-            window.location.href = "../index.html"
+            window.location.href = "index.html"
         },2000);
     }else{
         errorMessage.className = "text-danger";

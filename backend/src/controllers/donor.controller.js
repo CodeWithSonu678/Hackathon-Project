@@ -1,5 +1,6 @@
 const donorModel = require("../models/donor.model");
 const { getCordination } = require("../utils/geoCoding");
+const {sendMailDonor} = require("../services/email.service");
 
 
 async function donorController(req, res) {
@@ -39,6 +40,8 @@ async function donorController(req, res) {
         coordinates: [Number(lng), Number(lat)],
       },
     });
+
+    const info = sendMailDonor(req.user.email,req.user.username);
 
     res.status(201).json({
       msg: "Donation registered successfully 🩸",
