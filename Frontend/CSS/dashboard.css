@@ -143,6 +143,14 @@
         justify-content: space-around;
 }
 
+.b-card-outer{
+        justify-self: center;
+        width: 95%;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        padding: 20px;
+        border-radius: 12px;
+}
+
 .request-cards{
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         padding: 20px;
@@ -165,14 +173,19 @@
 
 .request-inner {
         display: flex;
-        align-items: center;
-        justify-content: space-around;
-        width: 50%;
+        align-items: start;
+        justify-content: space-between;
+        gap: 40px;
+        width: 90%;
 }
 
 .request-info p {
         font-size: 14px;
         margin: 10px;
+}
+
+.request-btn {
+        width: 90%;
 }
 
 .request-btn button {
@@ -182,6 +195,7 @@
         background-color: white;
         font-weight: bold;
         margin: 5px 10px;
+        width: 100%;
 }
 
 .request-btn button:hover {
@@ -200,6 +214,8 @@ h3 {
 
         .request-inner {
                 width: 100%;
+                gap: 0px;
+                align-items: start;
         }
 
 }

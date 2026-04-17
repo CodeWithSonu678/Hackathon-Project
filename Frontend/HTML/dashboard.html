@@ -41,14 +41,36 @@
 
         <!-- Blood Request -->
 
-
-
-        <div class="b-head2">
-                <h3><b>Blood Request</b></h3>
-        </div>
         <div class="request-blood-outer">
-                <div class="request-blood-card" id="request-container">
 
+                <div class="b-card-outer mt-5">
+               <div class="d-card-head">
+                                <i class="bi bi-droplet"></i>
+                                <div class="d-in-txt">
+                                        <p><b>Blood Requests</b></p>
+                                        <span>See your donor</span>
+                                </div>
+                        </div>
+
+                <div class="request-blood-card" id="request-container">
+                        <div class="request-inner" style="margin-left: 18px;">
+                                <div class="request-name">
+                                        <span><b>Name: </b>${req.donor.donorName}</span>
+                                        <span><b>Age: </b>${req.donor.age}</span>
+                                        <span><b>Blood Group: </b>${req.donor.bloodGroup}</span>
+                                </div>
+                                <div class="request-info">
+                                        <p><b><i class="bi bi-geo-alt"></i></b> ${req.hospitals.join(", ")}</p>
+                                        <p><b><i class="bi bi-clock"></i></b> ${new
+                                                Date(req.createdAt).toLocaleDateString()}</p>
+                                </div>
+                        </div>
+
+
+                        <div class="request-btn">
+                                <button onclick="showTracker('${req._id}')">Tracker</button>
+                        </div>
+                </div>
                 </div>
 
 
@@ -71,7 +93,7 @@
 
 
                 <!-- Tracker -->
-                <div class="donar-tracker" id="tracker-section">
+                <div class="donar-tracker mt-3" id="tracker-section">
                         <div class="search-header">
                                 <div class="search-icon">
                                         <p><i class="bi bi-heart"></i></p>
@@ -179,7 +201,7 @@
                 </div>
         </div>
 
-       <!-- Edit form -->
+        <!-- Edit form -->
         <div class="edit-form mt-5">
                 <div class="edit-form-head">
                         <p>Edit Details</p>
