@@ -6,6 +6,7 @@
         margin-top: 15vh;
         gap: 30px;
         background-color: rgba(255, 0, 0, 0.03);
+        width: 100%;
 }
 
 .about-banner p {
@@ -14,14 +15,23 @@
         font-size: 22px;
 }
 
-.about-banner-img {
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.about-banner-img img{
+        height: 40vh;
+        border-radius: 12px;
 }
 
 
 @media (max-width:900px) {
         .about-banner {
                 flex-direction: column;
+                gap: 0px;
+                width: 100%;
+                padding: 15px;
+        }
+
+        .about-banner-img img{
+                height: 35vh;
+                overflow: hidden;
         }
 }
 
