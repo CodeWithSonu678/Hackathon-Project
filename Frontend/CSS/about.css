@@ -16,7 +16,7 @@
 }
 
 .about-banner-img img{
-        height: 40vh;
+        width: 100vh;
         border-radius: 12px;
 }
 
@@ -30,7 +30,7 @@
         }
 
         .about-banner-img img{
-                height: 35vh;
+                width: 70vh;
                 overflow: hidden;
         }
 }
