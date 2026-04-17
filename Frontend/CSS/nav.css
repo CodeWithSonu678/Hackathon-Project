@@ -11,7 +11,7 @@
         padding: 5px 0px;
 }
 
-.nav-logo-img img{
+.nav-logo-img img {
         width: 150px;
 }
 
@@ -29,7 +29,7 @@
         font-weight: bold;
 }
 
-.link-li{
+.link-li {
         padding: 0px;
 }
 
@@ -50,7 +50,7 @@
 .nav-link-toggle button {
         font-size: 30px;
         background-color: #880015;
-        border: 1px solid white;
+        border: none;
         color: white;
         border-radius: 8px;
 }
@@ -61,114 +61,118 @@
 
 /* profile image */
 .profile-img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  cursor: pointer;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
 }
 
 /* dropdown */
 .profile-dropdown {
-  position: absolute;
-  top: 50px;
-  right: 0;
-  width: 220px;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-  padding: 15px;
+        position: absolute;
+        top: 50px;
+        right: 0;
+        width: 220px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        padding: 15px;
 
-  opacity: 0;
-  transform: translateY(-10px);
-  transition: all 0.3s ease;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: all 0.3s ease;
 
-  pointer-events: none;
-  z-index: 1000;
+        pointer-events: none;
+        z-index: 1000;
 }
 
 .profile-dropdown.active {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
 }
 
 .profile-container {
-  position: relative;
+        position: relative;
 }
 
 /* profile info */
 .profile-info {
-  text-align: center;
+        text-align: center;
 }
 
 .profile-info h4 {
-  margin: 8px 0 2px;
-  font-size: 18px;
+        margin: 8px 0 2px;
+        font-size: 18px;
 }
 
 .profile-info p {
-  margin: 0;
-  font-size: 13px;
-  color: #666;
+        margin: 0;
+        font-size: 13px;
+        color: #666;
 }
+
 .profile-img-large {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
 }
 
 .profile-dropdown button {
-  width: 100%;
-  margin-top: 10px;
-  padding: 8px;
-  border: none;
-  background: red;
-  color: white;
-  border-radius: 6px;
+        width: 100%;
+        margin-top: 10px;
+        padding: 8px;
+        border: none;
+        background: red;
+        color: white;
+        border-radius: 6px;
 }
 
 #changeImgBtn {
-  margin-top: 6px;
-  padding: 4px 10px;
-  font-size: 12px;
-  border: none;
-  background: #444;
-  color: white;
-  border-radius: 20px;
-  cursor: pointer;
-  display: inline-block;
+        margin-top: 6px;
+        padding: 4px 10px;
+        font-size: 12px;
+        border: none;
+        background: #444;
+        color: white;
+        border-radius: 20px;
+        cursor: pointer;
+        display: inline-block;
 }
+
+.nav-links-url.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        z-index: 999;
+        left: 0;
+        right: 0;
+        top: 70px;
+        background-color: #880015;
+        border-radius: 8px;
+        padding: 10px 20px;
+}
+
 @media (max-width:768px) {
-        .outer-navbody{
+        .outer-navbody {
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
                 padding: 0px 20px;
         }
 
-        .nav-link-toggle{
+        .nav-link-toggle {
                 display: block;
         }
 
-        .nav-links-url{
+        .nav-links-url {
                 flex-direction: column;
                 display: none;
         }
 
-        .nav-links-url ul{
+        .nav-links-url ul {
                 flex-direction: column;
                 gap: 20px;
-        }
-
-        .nav-links-url.active{
-                display: block;
-                position: absolute;
-                z-index: 999;
-                right: 0px;
-                top: 70px;
-                background-color: #880015;
-                border-radius: 8px;
-                padding: 10px 20px;
         }
 
 }
@@ -261,7 +265,7 @@
 }
 
 @media (max-width:650px) {
-         .foot-body {
+        .foot-body {
                 flex-direction: column;
         }
 
@@ -277,7 +281,7 @@
 }
 
 @media (max-width:1000px) {
-         .link-head {
+        .link-head {
                 font-size: 25px;
         }
 

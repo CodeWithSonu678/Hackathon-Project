@@ -11,15 +11,17 @@ function loadHTML(id, file) {
 
 document.addEventListener("DOMContentLoaded", () => {
   loadHTML("header", "nav.html");
+  loadHTML("footer", "foot.html");
 });
 
 function initNavbar() {
   const navToggleBtn = document.getElementById("navToggleBtn");
-  const navToggleLinks = document.querySelector(".nav-links-url");
+  const navToggleLinks = document.getElementById("navToggleLinks");
 
   if (navToggleBtn && navToggleLinks) {
     navToggleBtn.addEventListener("click", () => {
-      navToggleLinks.classList.toggle("active");
+      const isActive = navToggleLinks.classList.toggle("active");
+      navToggleBtn.setAttribute("aria-expanded", isActive);
     });
   }
 
