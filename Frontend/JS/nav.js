@@ -11,6 +11,7 @@ function loadHTML(id, file) {
 
 document.addEventListener("DOMContentLoaded", () => {
   loadHTML("header", "nav.html");
+  loadHTML("footer", "foot.html");
 });
 
 function initNavbar() {
