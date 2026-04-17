@@ -7,7 +7,7 @@ body {
 
 /* Container */
 .containers {
-    width: 500px;
+    width: 40%;
     margin: 80px auto;
     text-align: center;
 }
@@ -104,17 +104,30 @@ body {
 .otp-box {
     display: flex;
     justify-content: space-between;
+    gap: 10px;
     margin-bottom: 20px;
 }
 
 .otp-box input {
-    width: 50px;
+    width: 15%;
     height: 50px;
     text-align: center;
     font-size: 18px;
     border: 1px solid #ddd;
     border-radius: 10px;
     outline: none;
+}
+
+@media (max-width:800px) {
+    .containers{
+        width: 80%;
+    }
+
+    .otp-box input{
+        width: 70%;
+        height: 40px;
+        border-radius: 8px;
+    }
 }
 
 /* Other */
