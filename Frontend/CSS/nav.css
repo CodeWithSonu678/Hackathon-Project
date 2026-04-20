@@ -262,6 +262,7 @@
         background-color: #880015;
         font-weight: 100;
         color: white;
+        margin: 0%;
 }
 
 @media (max-width:650px) {

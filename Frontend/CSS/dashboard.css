@@ -1,3 +1,8 @@
+html{
+        padding: 0%;
+        margin: 0%;
+}
+
 .dash-info-outer{
         background-color: white;
         width: 95%;
@@ -379,7 +384,18 @@ h3 {
         border-radius: 15px;
 }
 
-.search-header {
+.search-header{
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+}
+
+.search-header button{
+        background: none;
+        border: none;
+}
+
+.s-head-upper {
         display: flex;
         align-items: start;
         justify-content: start;
@@ -407,6 +423,24 @@ h3 {
 }
 
 /* Tracker */
+
+#tracker-section{
+        background-color: #fff;
+        display: none;
+}
+
+.show{
+        animation: show 0.3s ease-in-out;
+}
+
+@keyframes show{
+        0%{
+                opacity: 0;
+        }
+        100%{
+                opacity: 1;
+        }
+}
 
 .donar-tracker {
         margin: 10px 40px;
