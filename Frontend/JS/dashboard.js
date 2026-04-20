@@ -225,6 +225,16 @@ async function loadOutcomingRequest() {
   }
 }
 
+function timeAgo(date) {
+  const seconds = Math.floor((new Date() - new Date(date)) / 1000);
+
+  if (seconds < 60) return "Just now";
+  if (seconds < 3600) return Math.floor(seconds / 60) + " min ago";
+  if (seconds < 86400) return Math.floor(seconds / 3600) + " hrs ago";
+
+  return Math.floor(seconds / 86400) + " days ago";
+}
+
 async function loadIncomingRequest() {
   const container = document.getElementById("incomingRequest");
 
@@ -255,7 +265,7 @@ async function loadIncomingRequest() {
                                 <div class="d-request-inner" style="margin-left: 18px;">
                                         <p><i class="bi bi-exclamation-circle"></i> Blood Group : ${req.bloodGroup}</p>
                                         <p><i class="bi bi-geo-alt"></i> ${req.user.address} </p>
-                                        <p><i class="bi bi-clock"></i> ${new Date(req.createdAt).toLocaleString("en-IN")}</p>
+                                        <p><i class="bi bi-clock"></i>  ${timeAgo(req.createdAt)}</p>
 
                                 </div>
 
@@ -284,7 +294,8 @@ async function showTracker() {
 }
 
 const trackerBtn = document.querySelector('#tracker-btn');
-const cancelTracker = document.querySelector('#tracker-cancel');
+const cancelTracker = document.getElementById('tracker-cancel');
+console.log(cancelTracker)
 const trackerSection = document.querySelector('#tracker-section');
 
 if (trackerBtn && cancelTracker && trackerSection){
@@ -294,6 +305,7 @@ if (trackerBtn && cancelTracker && trackerSection){
   });
 
   cancelTracker.addEventListener('click', () => {
+    console.log("Clicked babey");
     trackerSection.style.display = 'none';
     trackerSection.classList.add('show');
   });
