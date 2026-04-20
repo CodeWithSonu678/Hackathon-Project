@@ -12,6 +12,8 @@ const {reviewRules, reviewValidate} = require("../middleware/review.middleware")
 const {reqBloodRules, reqBloodValidation} = require("../middleware/reqBlood.middleware");
 const {reqBloodControlle} = require("../controllers/requestBlood.controller");
 const hospitalControlller = require("../controllers/hospital.controller");
+const {editProfileMiddleware, validateEditProfile} = require("../middleware/editProfile.middleware");
+const forgotController = require('../controllers/forgotPass.controller');
 
 const Hospital = require("../models/hospitals.model");
 
@@ -21,6 +23,13 @@ const router = express.Router();
 router.post("/register", regUserMiddleware, validateRegUser,userController.userRegister);
 router.post("/login", loginUserMiddleware, validateLoginUser,userController.userLogin);
 router.get("/logout",userController.logoutController);
+
+//forgot Password
+router.post("/send-otp",forgotController.sendOtpforgotPass);
+router.post("/verify-otp",forgotController.verifyOtp);
+router.post("/forgot-password",forgotController.saveNewPass);
+
+
 
 //check eligibility
 router.post("/eligibility", eligibiltyRules, eligibiltyValidate,elgiControlller.eligibiltyController);
@@ -40,6 +49,8 @@ router.post("/request-blood",isAlreadyReg,reqBloodRules,reqBloodValidation,reqBl
 
 //fetch user info for dashboard
 router.get("/get-user-info",isAlreadyReg,userController.fetchDashboard)
+router.post("/edit-user-info",isAlreadyReg,editProfileMiddleware, validateEditProfile,userController.editDashboard)
+
 
 //fetch hospital list
 router.get("/hospitals",hospitalControlller.getHospitals);
@@ -48,7 +59,8 @@ router.get("/hospitals",hospitalControlller.getHospitals);
 router.get("/districts",hospitalControlller.getDistrict);
 
 //fetch all request
-router.get("/all-request",isAlreadyReg,userController.fetchAllRequest);
+router.get("/all-request-outgoing",isAlreadyReg,userController.fetchAllRequest);
+router.get("/all-request-incoming",isAlreadyReg,userController.fetchAllRequestByUser);
 
 
 

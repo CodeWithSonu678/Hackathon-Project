@@ -1,19 +1,21 @@
-function loadHTML(id, file) {
+//  HTML loader
+function loadHTML(id, file, callback) {
   fetch(file)
-    .then((response) => response.text())
+    .then((res) => res.text())
     .then((data) => {
       document.getElementById(id).innerHTML = data;
-
-      // 👉 Call function AFTER loading
-      initNavbar();
-    });
+      if (callback) callback(); // only header ke baad init
+    })
+    .catch((err) => console.log(err));
 }
 
+//  load header + footer
 document.addEventListener("DOMContentLoaded", () => {
-  loadHTML("header", "nav.html");
+  loadHTML("header", "nav.html", initNavbar);
   loadHTML("footer", "foot.html");
 });
 
+//  NAVBAR INIT
 function initNavbar() {
   const navToggleBtn = document.getElementById("navToggleBtn");
   const navToggleLinks = document.getElementById("navToggleLinks");
@@ -25,153 +27,99 @@ function initNavbar() {
     });
   }
 
-  const registerBtn = document.getElementById("registerBtn");
-  const logoutBtn = document.getElementById("logoutBtn");
   const loginBtn = document.getElementById("loginBtn");
+  const registerBtn = document.getElementById("registerBtn");
   const dashboardLink = document.getElementById("dashboardLink");
-
-  // check login state
-  const isloginIn = localStorage.getItem("isloginIn");
   const profileSection = document.getElementById("profileSection");
 
-  //  LOGIN CHECK
+  const isloginIn = localStorage.getItem("isloginIn");
+
+  //  LOGIN STATE
   if (isloginIn === "true") {
-    // hide login/register
-    loginBtn.style.display = "none";
-    registerBtn.style.display = "none";
-    dashboardLink.style.display = "block";
-
-    // show profile
-    profileSection.style.display = "block";
+    if (loginBtn) loginBtn.style.display = "none";
+    if (registerBtn) registerBtn.style.display = "none";
+    if (dashboardLink) dashboardLink.style.display = "block";
+    if (profileSection) profileSection.style.display = "block";
   } else {
-    // show login/register
-    loginBtn.style.display = "block";
-    registerBtn.style.display = "block";
-    dashboardLink.style.display = "none";
-
-    // hide profile
-    profileSection.style.display = "none";
+    if (loginBtn) loginBtn.style.display = "block";
+    if (registerBtn) registerBtn.style.display = "block";
+    if (dashboardLink) dashboardLink.style.display = "none";
+    if (profileSection) profileSection.style.display = "none";
   }
 
+  //  PROFILE DROPDOWN
   const profileBtn = document.getElementById("profileBtn");
   const dropdown = document.getElementById("profileDropdown");
+
+  if (profileBtn && dropdown) {
+    profileBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      dropdown.classList.toggle("active");
+    });
+
+    document.addEventListener("click", () => {
+      dropdown.classList.remove("active");
+    });
+  }
+
+  //  IMAGE UPLOAD
   const fileInput = document.getElementById("uploadImg");
   const changeImgBtn = document.getElementById("changeImgBtn");
   const profileLarge = document.getElementById("profileLarge");
 
-  //  ONLY dropdown open
-  profileBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    dropdown.classList.toggle("active");
-  });
+  if (changeImgBtn && fileInput) {
+    changeImgBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      fileInput.click();
+    });
 
-  //  outside click close
-  document.addEventListener("click", () => {
-    dropdown.classList.remove("active");
-  });
+    fileInput.addEventListener("change", (e) => {
+      const file = e.target.files[0];
 
-  //  ONLY button triggers upload
-  changeImgBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    fileInput.click();
-  });
+      if (file) {
+        const reader = new FileReader();
 
-  //  upload logic
-  fileInput.addEventListener("change", (e) => {
-    const file = e.target.files[0];
+        reader.onload = function () {
+          if (profileBtn) profileBtn.src = reader.result;
+          if (profileLarge) profileLarge.src = reader.result;
 
-    if (file) {
-      const reader = new FileReader();
+          localStorage.setItem("profileImg", reader.result);
+        };
 
-      reader.onload = function () {
-        profileBtn.src = reader.result;
-        profileLarge.src = reader.result;
+        reader.readAsDataURL(file);
+      }
+    });
+  }
 
-        localStorage.setItem("profileImg", reader.result);
-      };
+  //  LOAD IMAGE
+  const savedImg = localStorage.getItem("profileImg");
+  if (savedImg) {
+    if (profileBtn) profileBtn.src = savedImg;
+    if (profileLarge) profileLarge.src = savedImg;
+  }
 
-      reader.readAsDataURL(file);
-    }
-  });
-
-  //  load image
-  window.addEventListener("load", () => {
-    const savedImg = localStorage.getItem("profileImg");
-
-    if (savedImg) {
-      profileBtn.src = savedImg;
-      profileLarge.src = savedImg;
-    }
-  });
-
+  // 👤 USER INFO
   const userName = document.getElementById("userName");
   const userEmail = document.getElementById("userEmail");
 
-  //  load name and email
-  window.addEventListener("load", () => {
-    const name = localStorage.getItem("name");
-    const email = localStorage.getItem("email");
-    if (name) {
-      userName.innerText = name;
-    } else {
-      userName.innerText = ".....";
-    }
+  const name = localStorage.getItem("name");
+  const email = localStorage.getItem("email");
 
-    if (email) {
-      userEmail.innerText = email;
-    } else {
-      userEmail.innerText = ".....";
-    }
-  });
+  if (userName) userName.innerText = name || ".....";
+  if (userEmail) userEmail.innerText = email || ".....";
+}
 
-  //  logout
-  // async function logout() {
-  //   try {
-  //     const res = await fetch("http://127.0.0.1:3000/api/auth/logout", {
-  //       method: "GET",
-  //       credentials: "include",
-  //     });
-
-  //     const result = await res.json();
-  //     console.log(result);
-
-  //     localStorage.removeItem("isloginIn");
-  //     window.location.href = "./index.html";
-  //   } catch (error) {
-  //     console.log(error.message);
-  //   }
-  // }
-
-  // async function logout() {
-  //   localStorage.removeItem("isloginIn");
-  //   localStorage.removeItem("name");
-  //   localStorage.removeItem("profileImg");
-
-  //   localStorage.removeItem("email");
-  //   window.location.reload();
-  //   const res = await fetch(BASE_URL + "/api/auth/logout", {
-  //     method: "GET",
-  //     credentials: "include",
-  //   });
-  // }
-
-  // check login state
-  function checkAuth() {
-    const isloginIn = localStorage.getItem("isloginIn");
-
-    const loginBtn = document.getElementById("loginBtn");
-    const registerBtn = document.getElementById("registerBtn");
-    const profile = document.getElementById("profileSection");
-
-    if (isloginIn) {
-      loginBtn.style.display = "none";
-      registerBtn.style.display = "none";
-      profile.style.display = "block";
-    } else {
-      profile.style.display = "none";
-    }
+//  LOGOUT
+async function logout() {
+  try {
+    await fetch(BASE_URL + "/api/auth/logout", {
+      method: "GET",
+      credentials: "include",
+    });
+  } catch (err) {
+    console.log(err.message);
   }
 
-  // auto run
-  window.addEventListener("load", checkAuth);
+  localStorage.clear();
+  window.location.reload();
 }

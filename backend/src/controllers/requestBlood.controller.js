@@ -1,6 +1,7 @@
-const  requestBloodModel = require("../models/requestBlood.model");
+const requestBloodModel = require("../models/requestBlood.model");
 const donorModel = require("../models/donor.model");
 const userModel = require("../models/user.model");
+const { sendRequestMailDonor } = require("../services/email.service");
 
 async function reqBloodControlle(req, res) {
   const {
@@ -15,8 +16,7 @@ async function reqBloodControlle(req, res) {
     donorId,
   } = req.body;
 
-  const donordata = await donorModel
-    .findById(donorId);
+  const donordata = await donorModel.findById(donorId);
 
   if (!donordata) {
     return res.status(404).json({
@@ -24,7 +24,6 @@ async function reqBloodControlle(req, res) {
       msg: "Donor not found !",
     });
   }
-
 
   try {
     const patient = await requestBloodModel.create({
@@ -36,9 +35,27 @@ async function reqBloodControlle(req, res) {
       district,
       hospitals,
       unit,
-      donor:donorId,
-      user:req.user.id
+      donor: donorId,
+      user: req.user.id,
     });
+
+    const donorinfo = await donorModel.findById(donorId).populate("user", "email");
+    const donorEmail = donorinfo.user.email;
+
+    const userinfo = await userModel.findById(req.user.id).select("email mobileNumber");
+    const pateintEmail = userinfo.email;
+    const phone = userinfo.mobileNumber;
+
+    
+    const info = sendRequestMailDonor(
+      pateintEmail,
+      donorEmail,
+      patientName,
+      bloodGroup,
+      district,
+      phone,
+      timePeriod,
+    );
 
     res.status(201).json({
       success: true,

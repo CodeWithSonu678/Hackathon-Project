@@ -30,7 +30,7 @@
                                 </div>
                         </div>
                         <div class="edit-btn" id="edit-btn">
-                                <button>Edit</button>
+                                <button id="editBtn">Edit</button>
                         </div>
                 </div>
                 <div class="user-info-outer" id="info-section">
@@ -44,7 +44,7 @@
         <div class="request-blood-outer">
 
                 <div class="b-card-outer mt-5">
-               <div class="d-card-head">
+                        <div class="d-card-head">
                                 <i class="bi bi-droplet"></i>
                                 <div class="d-in-txt">
                                         <p><b>Blood Requests</b></p>
@@ -52,25 +52,9 @@
                                 </div>
                         </div>
 
-                <div class="request-blood-card" id="request-container">
-                        <div class="request-inner" style="margin-left: 18px;">
-                                <div class="request-name">
-                                        <span><b>Name: </b>${req.donor.donorName}</span>
-                                        <span><b>Age: </b>${req.donor.age}</span>
-                                        <span><b>Blood Group: </b>${req.donor.bloodGroup}</span>
-                                </div>
-                                <div class="request-info">
-                                        <p><b><i class="bi bi-geo-alt"></i></b> ${req.hospitals.join(", ")}</p>
-                                        <p><b><i class="bi bi-clock"></i></b> ${new
-                                                Date(req.createdAt).toLocaleDateString()}</p>
-                                </div>
-                        </div>
+                        <div class="request-blood-card" id="request-container">
 
-
-                        <div class="request-btn">
-                                <button onclick="showTracker('${req._id}')">Tracker</button>
                         </div>
-                </div>
                 </div>
 
 
@@ -97,10 +81,11 @@
                         <div class="search-header">
                                 <div class="search-icon">
                                         <p><i class="bi bi-heart"></i></p>
-                                </div>
-                                <div class="search-txt">
                                         <p><b>Donation Tracking</b></p>
                                         <span>Track your donation progress</span>
+                                </div>
+                                <div class="search-txt">
+                                        
                                 </div>
                         </div>
                         <div class="t-out">
@@ -179,8 +164,10 @@
                                         <p>Accept/Reject incoming requests</p>
                                 </div>
                         </div>
-                        <div class="d-card-body">
-                                <div class="d-request-head">
+                        <div id="incomingRequest">
+                                <!-- <div class="d-card-body m-3" > -->
+
+                                <!-- <div class="d-request-head">
                                         <span><b>Atharv Keshari</b></span>
                                         <span id="c-badge">Critical</span>
                                 </div>
@@ -196,7 +183,8 @@
                                                 style="background-color: rgb(0, 100, 0); color: white;">Accept</button>
                                         <button onclick="showTracker('${req._id}')" style="background-color: #880015;
                                         color: white;">Reject</button>
-                                </div>
+                                </div> -->
+                                <!-- </div> -->
                         </div>
                 </div>
         </div>
@@ -207,55 +195,97 @@
                         <p>Edit Details</p>
                         <button id="cancel-btn"><i class="bi bi-x-circle"></i></button>
                 </div>
+                <div id="error-message" class="text-danger mb-3" role="alert" aria-live="polite"></div>
                 <div class="rows">
+
                         <div class="input">
                                 <label for="">Name:</label>
-                                <input type="text" name="" id="">
+                                <input type="text" name="name" id="nameInput">
                         </div>
                         <div class="input">
                                 <label for="">DOB:</label>
-                                <input type="date" name="" id="">
+                                <input type="date" name="dob" id="dobInput">
                         </div>
                 </div>
                 <div class="rows">
                         <div class="input">
                                 <label for="">Age:</label>
-                                <input type="tel" name="" id="">
+                                <input type="tel" name="age" id="ageInput">
                         </div>
                         <div class="input">
                                 <label for="">Gender:</label>
-                                <select name="" id="">
-                                        <option value="">Male</option>
-                                        <option value="">Female</option>
+                                <select name="gender" id="genderInput">
+                                        <option value="male">Male</option>
+                                        <option value="femail">Female</option>
                                 </select>
                         </div>
                 </div>
                 <div class="rows">
                         <div class="input">
                                 <label for="">Email:</label>
-                                <input type="email" name="" id="">
+                                <input type="email" name="email" id="emailInput">
                         </div>
                         <div class="input">
                                 <label for="">Blood Group:</label>
-                                <input type="text" name="" id="">
+                                <input type="text" name="bloodGroup" id="bloodInput">
                         </div>
                 </div>
                 <div class="rows">
                         <div class="input">
                                 <label for="">Phone Number:</label>
-                                <input type="tel" name="" id="">
+                                <input type="tel" name="phone" id="phoneInput">
                         </div>
                         <div class="input">
                                 <label for="">Address:</label>
-                                <input type="text" name="" id="">
+                                <input type="text" name="address" id="addressInput">
                         </div>
                 </div>
                 <div class="save-btn">
-                        <button class="bl-btn">Save Change</button>
+                        <button class="bl-btn" id="saveChange">Save Change</button>
                 </div>
         </div>
 
-        <div id="footer"></div>
+        <div class="recent-outer m-3">
+                <div class="recent-head">
+                        <i class="bi bi-clock-history"></i>
+                        <p><b>Recent Activity</b></p>
+                </div>
+                <div class="recent-date">
+                        <p>Today</p>
+                </div>
+                <div class="recent-body">
+                        <div class="recent-tab">
+                                <div class="user-detail-tab">
+                                        <i class="bi bi-person-fill-up" style="color: green;"></i>
+                                        <div class="tab-detail">
+                                                <p>Name</p>
+                                                <span>Location of user</span>
+                                        </div>
+                                </div>
+                                <div class="detail-status">
+                                        <p id="a-status">Accept</p>
+                                        <span>Date</span>
+                                </div>
+                        </div>
+                </div>
+                <div class="recent-body">
+                        <div class="recent-tab">
+                                <div class="user-detail-tab">
+                                        <i class="bi bi-person-fill-down" style="color: red;"></i>
+                                        <div class="tab-detail">
+                                                <p>Name</p>
+                                                <span>Location of user</span>
+                                        </div>
+                                </div>
+                                <div class="detail-status">
+                                        <p id="r-status" >Reject</p>
+                                        <span>Date</span>
+                                </div>
+                        </div>
+                </div>
+        </div>
+
+        <div id="footer" class="mt-3"></div>
 
 </body>
 <script src="../JS/dashboard.js"></script>

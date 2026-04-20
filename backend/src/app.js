@@ -18,6 +18,8 @@ app.use(cors({
   credentials: true
 }));
 
+
+
 //Routes
 
 app.use("/api/auth",userRoute);

@@ -41,6 +41,10 @@ body {
     color: #880015;
 }
 
+.step.complete {
+    color: rgb(0, 100, 0);
+}
+
 .step.active .circle {
     border-color: #880015;
     color: #880015;

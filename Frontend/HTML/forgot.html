@@ -16,18 +16,18 @@
     <div class="containers">
 
         <!-- Steps -->
-        <div class="steps">
-            <div class="step active">
+        <div class="steps active" id="emailVarify">
+            <div class="step">
                 <div class="circle">1</div>
                 <p>Email Verification</p>
             </div>
 
-            <div class="step">
+            <div class="step" id="otpVerify">
                 <div class="circle">2</div>
                 <p>OTP Verification</p>
             </div>
 
-            <div class="step">
+            <div class="step" id="passwordVerify">
                 <div class="circle">3</div>
                 <p>Reset Password</p>
             </div>
@@ -40,74 +40,78 @@
     <!-- Card -->
     <div class="containers mail" id="mail">
         <div class="card">
+            <div id="error-message" class="text-danger mb-3 MT-4" role="alert" aria-live="polite"></div>
             <div class="input-box">
                 <span class="icon"><i class="bi bi-envelope"></i></span>
-                <input type="email" placeholder="Enter your email">
+                <input type="email" placeholder="Enter your email" id="emailInput" required>
             </div>
 
-            <button class="btn-1">Continue</button>
+            <button class="btn-1" id="sendMail">Continue</button>
         </div>
 
         <!-- Footer -->
         <div class="footer">
-            Remember your password? <span>Sign in</span>
+            Remember your password? <span><a href="loogin.html">Sign in</a></span>
         </div>
 
     </div>
 
 
     <!-- OTP -->
-    <div class="containers otp-verify" id="otp">
-
+    <div class="containers otp-verify" id="otpBox">
         <!-- Card -->
         <div class="card">
+            <div id="otp-error-message" class="text-danger mb-3 MT-4" role="alert" aria-live="polite"></div>
             <p class="title">Enter OTP</p>
 
             <div class="otp-box">
-                <input type="tel" maxlength="1">
-                <input type="tel" maxlength="1">
-                <input type="tel" maxlength="1">
-                <input type="tel" maxlength="1">
-                <input type="tel" maxlength="1">
-                <input type="tel" maxlength="1">
+                <input type="tel" maxlength="1" required>
+                <input type="tel" maxlength="1" required>
+                <input type="tel" maxlength="1" required>
+                <input type="tel" maxlength="1" required>
+                <input type="tel" maxlength="1" required>
+                <input type="tel" maxlength="1" required>
             </div>
 
-            <button class="btn-1">Verify</button>
+            <button class="btn-1" id="verifyOtp">Verify</button>
         </div>
 
         <!-- Footer -->
         <div class="footer">
-            Didn’t receive code? <span>Resend</span>
+            Didn’t receive code? <span id="resendOtp">Resend</span>
         </div>
     </div>
 
 
     <!-- Password -->
 
-    <div class="containers pass" id="pass">
-
+    <div class="containers pass" id="passwordBox">
+        
         <!-- Card -->
         <div class="card">
+            <div id="pass-error-message" class="text-danger mb-3 MT-4" role="alert" aria-live="polite"></div>
             <p class="title">Create New Password</p>
 
             <!-- New Password -->
             <div class="input-box">
                 <span><i class="bi bi-lock"></i></span>
-                <input type="password" placeholder="New Password">
+                <input type="password" placeholder="New Password" id="password" required>
             </div>
 
             <!-- Confirm Password -->
             <div class="input-box">
                 <span><i class="bi bi-lock"></i></span>
-                <input type="password" placeholder="Confirm Password">
+                <input type="password" placeholder="Confirm Password" id="confirmPassword" required>
             </div>
 
-            <button class="btn-1">Password</button>
+            <button class="btn-1" id="savePass">Save Password</button>
         </div>
 
 
 
     </div>
+
+    <script src="../JS/forgotPass.js"></script>
 </body>
 
 </html>

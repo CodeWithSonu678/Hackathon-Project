@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
     password: password,
   };
 
-  console.log(data);
+  
 
   try {
     const res = await fetch(BASE_URL+"/api/auth/register", {

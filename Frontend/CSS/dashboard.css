@@ -123,7 +123,6 @@
 /* Request */
 
 .request-blood-card {
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         padding: 20px;
         margin: 10px 40px;
         border-radius: 15px;
@@ -157,9 +156,10 @@
         margin: 10px 40px;
         border-radius: 15px;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: space-between;
-        width: 90%;
+        width: 100%;
 }
 
 .request-img i {
@@ -545,4 +545,80 @@ h3 {
 
 .save-btn button{
         width: 100%;
+}
+
+/* Recent  */
+
+.recent-outer{
+        justify-self: center;
+        width: 95%;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+        padding: 20px;
+        border-radius: 15px;
+}
+
+.recent-head{
+        display: flex;
+        align-items: center;
+        gap: 5px;
+}
+
+.recent-head i{
+        font-size: 18px;
+        background-color: #880015;
+        color: white;
+        padding: 2px 7px;
+        border-radius: 12px;
+}
+
+.recent-head p{
+        padding: 0px;
+        margin: 0px;
+        font-size: 20px;
+}
+
+.recent-date{
+        justify-self: end;
+}
+
+.recent-tab{
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 20px;
+        border-radius: 12px;
+        margin-top: 10px;
+}
+
+.recent-tab p{
+        margin: 0%;
+}
+
+.user-detail-tab{
+        display: flex;
+}
+
+#a-status,#r-status{
+        font-size: 14px;
+        font-weight: bold;
+        padding: 2px 7px;
+        border-radius: 8px;
+}
+
+#a-status{
+        background-color: rgba(0, 128, 0, 0.2);
+        color: green;
+        border: 1px solid green;
+}
+
+#r-status{
+        background-color: rgba(255, 0, 0, 0.2);
+        color: red;
+        border: 1px solid red;
+}
+
+.user-detail-tab i{
+        font-size: 35px;
+        padding: 0px 10px;
 }

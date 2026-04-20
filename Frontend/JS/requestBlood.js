@@ -150,8 +150,6 @@ requestBloodForm.addEventListener("submit", async (e) => {
     donorId: donorId,
   };
 
-  console.log(data);
-
   try {
     const res = await fetch(BASE_URL+"/api/auth/request-blood", {
       method: "POST",
@@ -169,7 +167,7 @@ requestBloodForm.addEventListener("submit", async (e) => {
       errorMessage.textContent = result.msg || "Registered successfully ✅";
 
       setTimeout(() => {
-        window.location.href = "../index.html";
+        window.location.href = "index.html";
       }, 2000);
     } else {
       errorMessage.className = "text-danger";
