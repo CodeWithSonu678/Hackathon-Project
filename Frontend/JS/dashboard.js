@@ -212,8 +212,8 @@ async function loadOutcomingRequest() {
 
 
                         <div class="request-btn">
-                                <button>Pending..</button>
-                                <button onclick="showTracker('${req._id}')" ; id="tracker-btn" >Tracker</button>
+                                <button>Pending....</button>
+                                <button onclick="showTracker('${req._id}')" ; id="tracker-btn" style="display:none";>Tracker</button>
                         </div>
                 
                 `;
