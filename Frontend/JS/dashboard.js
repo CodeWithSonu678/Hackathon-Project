@@ -212,7 +212,8 @@ async function loadOutcomingRequest() {
 
 
                         <div class="request-btn">
-                                <button onclick="showTracker('${req._id}')">Tracker</button>
+                                <button>Pending..</button>
+                                <button onclick="showTracker('${req._id}')" style="display:none";>Tracker</button>
                         </div>
                 
                 `;
@@ -254,7 +255,7 @@ async function loadIncomingRequest() {
                                 <div class="d-request-inner" style="margin-left: 18px;">
                                         <p><i class="bi bi-exclamation-circle"></i> Blood Group : ${req.bloodGroup}</p>
                                         <p><i class="bi bi-geo-alt"></i> ${req.user.address} </p>
-                                        <p><i class="bi bi-clock"></i> ${req.createdAt}</p>
+                                        <p><i class="bi bi-clock"></i> ${new Date(req.createdAt).toLocaleString("en-IN")}</p>
 
                                 </div>
 
