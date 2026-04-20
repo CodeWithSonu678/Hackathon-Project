@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="../CSS/nav.css">
 </head>
 
-<body>
+<body >
         <!-- Nav -->
         <div id="header"></div>
 
@@ -53,7 +53,7 @@
                         </div>
 
                         <div class="request-blood-card" id="request-container">
-
+                                
                         </div>
                 </div>
 
@@ -79,14 +79,17 @@
                 <!-- Tracker -->
                 <div class="donar-tracker mt-3" id="tracker-section">
                         <div class="search-header">
-                                <div class="search-icon">
-                                        <p><i class="bi bi-heart"></i></p>
-                                        <p><b>Donation Tracking</b></p>
-                                        <span>Track your donation progress</span>
+                                <div class="s-head-upper">
+                                        <div class="search-icon">
+                                                <p><i class="bi bi-heart"></i></p>
+
+                                        </div>
+                                        <div class="search-txt">
+                                                <p><b>Donation Tracking</b></p>
+                                                <span>Track your donation progress</span>
+                                        </div>
                                 </div>
-                                <div class="search-txt">
-                                        
-                                </div>
+                                <button id="tracker-cancel"><i class="bi bi-x-lg"></i></button>
                         </div>
                         <div class="t-out">
                                 <div class="tracker-outer">
@@ -155,7 +158,7 @@
                 </div>
         </div>
 
-        <div class="d-blood-outer">
+        <div class="d-blood-outer mt-5">
                 <div class="d-blood-card" id="request-container2">
                         <div class="d-card-head">
                                 <i class="bi bi-file-earmark-text"></i>
@@ -165,9 +168,9 @@
                                 </div>
                         </div>
                         <div id="incomingRequest">
-                                <!-- <div class="d-card-body m-3" > -->
+                                <!-- <div class="d-card-body m-3" >
 
-                                <!-- <div class="d-request-head">
+                                <div class="d-request-head">
                                         <span><b>Atharv Keshari</b></span>
                                         <span id="c-badge">Critical</span>
                                 </div>
@@ -181,10 +184,10 @@
                                 <div class="d-request-btn">
                                         <button onclick="showTracker('${req._id}')"
                                                 style="background-color: rgb(0, 100, 0); color: white;">Accept</button>
-                                        <button onclick="showTracker('${req._id}')" style="background-color: #880015;
+                                        <button id="tracker-btn" onclick="showTracker('${req._id}')" style="background-color: #880015;
                                         color: white;">Reject</button>
+                                </div>
                                 </div> -->
-                                <!-- </div> -->
                         </div>
                 </div>
         </div>
@@ -245,7 +248,7 @@
                 </div>
         </div>
 
-        <div class="recent-outer m-3">
+        <div class="recent-outer mt-5">
                 <div class="recent-head">
                         <i class="bi bi-clock-history"></i>
                         <p><b>Recent Activity</b></p>
@@ -278,7 +281,7 @@
                                         </div>
                                 </div>
                                 <div class="detail-status">
-                                        <p id="r-status" >Reject</p>
+                                        <p id="r-status">Reject</p>
                                         <span>Date</span>
                                 </div>
                         </div>

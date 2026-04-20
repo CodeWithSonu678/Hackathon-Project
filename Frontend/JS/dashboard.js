@@ -212,7 +212,7 @@ async function loadOutcomingRequest() {
 
 
                         <div class="request-btn">
-                                <button onclick="showTracker('${req._id}')">Tracker</button>
+                                <button id="tracker-btn" onclick="showTracker('${req._id}')">Tracker</button>
                         </div>
                 
                 `;
@@ -280,4 +280,20 @@ loadIncomingRequest();
 async function showTracker() {
   const trackerSection = document.getElementById("tracker-section");
   trackerSection.style.display = "block";
+}
+
+const trackerBtn = document.querySelector('#tracker-btn');
+const cancelTracker = document.querySelector('#tracker-cancel');
+const trackerSection = document.querySelector('#tracker-section');
+
+if (trackerBtn && cancelTracker && trackerSection){
+  trackerBtn.addEventListener('click', () => {
+    trackerSection.style.display = 'block';
+    trackerSection.classList.add('show');
+  });
+
+  cancelTracker.addEventListener('click', () => {
+    trackerSection.style.display = 'none';
+    trackerSection.classList.add('show');
+  });
 }
