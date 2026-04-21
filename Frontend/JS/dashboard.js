@@ -38,6 +38,7 @@ window.addEventListener("load", () => {
 });
 
 let currentDashData = {};
+
 //dashboard info load
 const loadInfoUser = async () => {
   try {
@@ -78,7 +79,7 @@ const loadInfoUser = async () => {
                         <div class="other-info">
                                 <div class="info">
                                         <label for="">DOB:</label>
-                                        <p>${userData.dob}</p>
+                                        <p>${new Date(userData.dob).toLocaleDateString()}</p>
                                 </div>
                                 <div class="info">
                                         <label for="">Gender:</label>
@@ -174,6 +175,7 @@ saveChange.addEventListener("click", async () => {
     console.log(error);
   }
 });
+
 //All request load
 async function loadOutcomingRequest() {
   const container = document.getElementById("request-container");
@@ -187,16 +189,22 @@ async function loadOutcomingRequest() {
     const data = await res.json();
 
     console.log(data);
-    if (!data) {
+    if (!data.allRequest || data.allRequest.length === 0) {
       container.innerHTML = "<p>No request found.</p>";
       return;
     }
 
     data.allRequest.forEach((req) => {
-      const card = document.createElement("div");
-      card.className = "request-cards";
+      if (req.status === "rejected" || req.status === "accepted") {
+        addToRecent(req, "outcoming");
+        return;
+      }
 
-      card.innerHTML = `
+      if (req.status === "pending") {
+        const card = document.createElement("div");
+        card.className = "request-cards";
+
+        card.innerHTML = `
                         
                         <div class="request-inner" style="margin-left: 18px;">
                                 <div class="request-name">
@@ -213,18 +221,19 @@ async function loadOutcomingRequest() {
 
                         <div class="request-btn">
                                 <button>Pending....</button>
-                                <button onclick="showTracker('${req._id}')" ; id="tracker-btn" style="display:none";>Tracker</button>
                         </div>
                 
                 `;
 
-      container.appendChild(card);
+        container.appendChild(card);
+      }
     });
   } catch (error) {
     console.log(error);
   }
 }
 
+//time calculation day ago format
 function timeAgo(date) {
   const seconds = Math.floor((new Date() - new Date(date)) / 1000);
 
@@ -235,6 +244,114 @@ function timeAgo(date) {
   return Math.floor(seconds / 86400) + " days ago";
 }
 
+//fetch all recent data
+async function fetchIncomingRecent() {
+  try {
+    const res = await fetch(BASE_URL + "/api/auth/all-incoming-recent", {
+      method: "GET",
+      credentials: "include",
+    });
+
+    const result = await res.json();
+
+    const data = result.data;
+    console.log(data);
+    data.forEach((req) => {
+      addToRecent(req, "incoming");
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+//Recent mein add code here
+function addToRecent(req, type) {
+  const container = document.getElementById("recentList");
+
+  const isAccepted = req.status === "accepted";
+  const isIncoming = type === "incoming";
+
+  //  icon + color
+  const icon = isIncoming
+    ? "bi bi-person-fill-down" //  incoming
+    : "bi bi-person-fill-up"; //  outgoing
+
+  const iconColor = isIncoming ? "red" : "green";
+
+  const div = document.createElement("div");
+  div.className = "recent-body";
+
+  div.innerHTML = `
+    <div class="recent-tab">
+      
+      <div class="user-detail-tab">
+        <i class="${icon}" style="color:${iconColor}; font-size:18px;"></i>
+
+        <div class="tab-detail">
+          <p>${req.patientName}</p>
+          <span>${req.user.address}</span>
+        </div>
+      </div>
+
+      <div class="detail-status">
+        ${
+          isAccepted
+            ? `<button onclick="openTracker('${req._id}')"
+                 style="background:green;color:white;padding:6px 12px;border:none;border-radius:6px;">
+                 Tracker
+               </button>`
+            : `<p style="color:red;">Rejected</p>`
+        }
+
+        <span>${timeAgo(new Date())}</span>
+      </div>
+
+    </div>
+  `;
+
+  //  Accepted → upar
+  if (isAccepted) {
+    container.prepend(div);
+  }
+  //  Rejected → niche
+  else {
+    container.appendChild(div);
+  }
+}
+
+//Update db on rejected request & update ui fast
+async function handleReject(req, btn) {
+  const res = await fetch(BASE_URL + "/api/auth/reject/" + req._id, {
+    method: "PATCH",
+    credentials: "include",
+  });
+
+  if (!res.ok) return;
+
+  req.status = "rejected";
+
+  btn.closest(".incoming-request-cards")?.remove();
+
+  addToRecent(req, "incoming");
+}
+
+//Update db on accepted request  & update ui fast
+async function handleAccept(req, btn) {
+  const res = await fetch(BASE_URL + "/api/auth/accept/" + req._id, {
+    method: "PATCH",
+    credentials: "include",
+  });
+
+  if (!res.ok) return;
+
+  req.status = "accepted";
+
+  btn.closest(".incoming-request-cards")?.remove();
+
+  addToRecent(req, "incoming");
+}
+
+//all incoming request code here
 async function loadIncomingRequest() {
   const container = document.getElementById("incomingRequest");
 
@@ -246,8 +363,8 @@ async function loadIncomingRequest() {
 
     const data = await res.json();
 
-    console.log(data)
-    if (!data) {
+    console.log(data);
+    if (!data.allRequest || data.allRequest.length === 0) {
       container.innerHTML = "<p>No request found.</p>";
       return;
     }
@@ -270,10 +387,15 @@ async function loadIncomingRequest() {
                                 </div>
 
                                 <div class="d-request-btn">
-                                        <button onclick="showTracker('${req._id}')"
-                                                style="background-color: rgb(0, 100, 0); color: white;">Accept</button>
-                                        <button onclick="showTracker('${req._id}')" style="background-color: #880015;
-                                        color: white;">Reject</button>
+                                        <button onclick='handleAccept(${JSON.stringify(req)}, this)'
+                                          style="background-color: green; color: white;">
+                                          Accept
+                                        </button>
+
+                                        <button onclick='handleReject(${JSON.stringify(req)}, this)'
+                                          style="background-color:#880015;color:white;">
+                                          Reject
+                                        </button>
                                 </div>
                  </div>
                 `;
@@ -287,26 +409,27 @@ async function loadIncomingRequest() {
 
 loadOutcomingRequest();
 loadIncomingRequest();
+fetchIncomingRecent();
 
 async function showTracker() {
   const trackerSection = document.getElementById("tracker-section");
   trackerSection.style.display = "block";
 }
 
-const trackerBtn = document.querySelector('#tracker-btn');
-const cancelTracker = document.getElementById('tracker-cancel');
-console.log(cancelTracker)
-const trackerSection = document.querySelector('#tracker-section');
+const trackerBtn = document.querySelector("#tracker-btn");
+const cancelTracker = document.getElementById("tracker-cancel");
+console.log(cancelTracker);
+const trackerSection = document.querySelector("#tracker-section");
 
-if (trackerBtn && cancelTracker && trackerSection){
-  trackerBtn.addEventListener('click', () => {
-    trackerSection.style.display = 'block';
-    trackerSection.classList.add('show');
+if (trackerBtn && cancelTracker && trackerSection) {
+  trackerBtn.addEventListener("click", () => {
+    trackerSection.style.display = "block";
+    trackerSection.classList.add("show");
   });
 
-  cancelTracker.addEventListener('click', () => {
+  cancelTracker.addEventListener("click", () => {
     console.log("Clicked babey");
-    trackerSection.style.display = 'none';
-    trackerSection.classList.add('show');
+    trackerSection.style.display = "none";
+    trackerSection.classList.add("show");
   });
 }

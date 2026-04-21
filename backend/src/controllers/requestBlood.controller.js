@@ -3,6 +3,7 @@ const donorModel = require("../models/donor.model");
 const userModel = require("../models/user.model");
 const { sendRequestMailDonor } = require("../services/email.service");
 
+//create request 
 async function reqBloodControlle(req, res) {
   const {
     patientName,
@@ -70,4 +71,52 @@ async function reqBloodControlle(req, res) {
   }
 }
 
-module.exports = { reqBloodControlle };
+//if donor reject request
+async function requestReject(req,res){
+  const {id} = req.params;
+
+  try {
+    const info = await requestBloodModel.findByIdAndUpdate(id,{
+      status:"rejected"
+    },{new:true});
+
+    res.status(200).json({
+      success:true,
+      msg:"Request rejected successfull !"
+    });
+  } catch (error) {
+    console.log(error.message)
+    res.status(500).json({
+      success:false,
+      msg:"Server error !"
+    })
+  }
+
+}
+
+//if donor accept request
+async function requestAccept(req,res){
+  const {id} = req.params;
+
+  try {
+    const info = await requestBloodModel.findByIdAndUpdate(id,{
+      status:"accepted"
+    },{new:true});
+
+    res.status(200).json({
+      success:true,
+      msg:"Request accepted successfull !"
+    });
+  } catch (error) {
+    console.log(error.message)
+    res.status(500).json({
+      success:false,
+      msg:"Server error !"
+    })
+  }
+
+}
+
+
+
+module.exports = { reqBloodControlle,requestReject,requestAccept };

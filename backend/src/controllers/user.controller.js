@@ -179,7 +179,8 @@ async function fetchAllRequest(req, res) {
 
   const allRequest = await requestModel
     .find({ user: userId })
-    .populate("donor", "donorName mobileNumber age bloodGroup city");
+    .populate("donor", "donorName mobileNumber age bloodGroup city")
+    .populate("user", "username mobileNumber age bloodGroup address");;
 
   res.status(200).json({
     success: true,
@@ -188,19 +189,19 @@ async function fetchAllRequest(req, res) {
   });
 }
 
-//fetch all request by user
+//fetch all request in panding by user
 async function fetchAllRequestByUser(req, res) {
   const userId = req.user.id;
 
-  const donorInfo = await donorModel.findOne({user:userId});
-  if(!donorInfo){
+  const donorInfo = await donorModel.findOne({ user: userId });
+  if (!donorInfo) {
     return res.status(200).json({
-      success:false,
-      data:[],
-    })
+      success: false,
+      data: [],
+    });
   }
   const allRequest = await requestModel
-    .find({ donor: donorInfo._id })
+    .find({ donor: donorInfo._id, status: "pending" })
     .populate("user", "username mobileNumber age bloodGroup address");
 
   res.status(200).json({
@@ -208,6 +209,40 @@ async function fetchAllRequestByUser(req, res) {
     msg: "By user, All Request Fetch is successful",
     allRequest,
   });
+}
+
+//fetch all request in accepted and rejected by user
+async function incomingRecent(req, res) {
+  const userId = req.user.id;
+
+  try {
+    const donorInfo = await donorModel.findOne({ user: userId });
+    if (!donorInfo) {
+      return res.status(200).json({
+        success: false,
+        data: [],
+      });
+    }
+    const allIncomingRecent = await requestModel
+      .find({
+        donor: donorInfo._id,
+        status: { $in: ["accepted", "rejected"] },
+      })
+      .populate("user", "username address")
+      .sort({ updatedAt: -1 });
+
+    res.status(200).json({
+      success: true,
+      msg: "By user, All Request Rejected & Accepted Fetch is successful",
+      data:allIncomingRecent,
+    });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({
+      success:false,
+      msg:"server error !"
+    })
+  }
 }
 
 module.exports = {
@@ -218,4 +253,5 @@ module.exports = {
   editDashboard,
   fetchAllRequest,
   fetchAllRequestByUser,
+  incomingRecent,
 };

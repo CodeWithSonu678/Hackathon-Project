@@ -426,7 +426,7 @@ h3 {
 
 #tracker-section{
         background-color: #fff;
-        display: none;
+        /* display: none; */
 }
 
 .show{

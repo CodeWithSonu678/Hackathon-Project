@@ -10,7 +10,7 @@ const {searchDonors} = require("../controllers/search.controller");
 const {reviewController,getAllReviews} = require("../controllers/review.controller");
 const {reviewRules, reviewValidate} = require("../middleware/review.middleware");
 const {reqBloodRules, reqBloodValidation} = require("../middleware/reqBlood.middleware");
-const {reqBloodControlle} = require("../controllers/requestBlood.controller");
+const {reqBloodControlle,requestReject,requestAccept} = require("../controllers/requestBlood.controller");
 const hospitalControlller = require("../controllers/hospital.controller");
 const {editProfileMiddleware, validateEditProfile} = require("../middleware/editProfile.middleware");
 const forgotController = require('../controllers/forgotPass.controller');
@@ -61,6 +61,13 @@ router.get("/districts",hospitalControlller.getDistrict);
 //fetch all request
 router.get("/all-request-outgoing",isAlreadyReg,userController.fetchAllRequest);
 router.get("/all-request-incoming",isAlreadyReg,userController.fetchAllRequestByUser);
+
+//if donor reject request then change status in db
+router.patch("/reject/:id",isAlreadyReg,requestReject);
+//if donor accept request then change status in db
+router.patch("/accept/:id",isAlreadyReg,requestAccept);
+
+router.get("/all-incoming-recent",isAlreadyReg,userController.incomingRecent);
 
 
 
