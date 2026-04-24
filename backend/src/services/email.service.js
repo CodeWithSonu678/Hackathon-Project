@@ -1,5 +1,5 @@
 const nodemailer = require("nodemailer");
-const {generateOtp} = require('../utils/generateOtp');
+const { generateOtp } = require("../utils/generateOtp");
 
 //koun bhej rha hai
 const transporter = nodemailer.createTransport({
@@ -207,10 +207,8 @@ const forgotOtpFormat = (otp) => `
     </div>
   </div>
 `;
-const sendForgotOtp = async (to,subject,otp) => {
-
+const sendForgotOtp = async (to, subject, otp) => {
   try {
-    
     const info = await transporter.sendMail({
       from: process.env.AUTH_USER,
       to,
@@ -224,4 +222,188 @@ const sendForgotOtp = async (to,subject,otp) => {
   }
 };
 
-module.exports = { sendMailDonor, sendRequestMailDonor,sendForgotOtp };
+//template for patient code to donor email
+const donorDonationCode = (ddonationCode) => `
+  <!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="UTF-8">
+</head>
+
+<body style="margin:0;padding:0;background:#f4f6f8;font-family:Arial, sans-serif;">
+
+  <table width="100%" cellpadding="0" cellspacing="0" style="padding:20px;">
+    <tr>
+      <td align="center">
+
+
+    <table width="500" style="background:#ffffff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.1);overflow:hidden;">
+
+      <tr>
+        <td style="background:linear-gradient(135deg,#d50000,#ff5252);padding:20px;text-align:center;color:white;">
+          <h2 style="margin:0;">🩸 Blood Donation</h2>
+          <p style="margin:5px 0 0;">Verification Code</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td style="padding:25px;color:#333;">
+
+          <p>Hello <b>Donor</b>,</p>
+
+          <p>
+            Thank you for your willingness to donate blood ❤️<br>
+            Your donation process is almost complete.
+          </p>
+
+          <p>Use the verification code below:</p>
+
+          <div style="text-align:center;margin:20px 0;">
+            <span style="background:#f1f3f5;padding:15px 25px;font-size:22px;font-weight:bold;border-radius:8px;color:#d50000;">
+              ${ddonationCode}
+            </span>
+          </div>
+
+          <div style="background:#fff5f5;padding:15px;border-radius:8px;font-size:13px;">
+            <b>📌 Instructions:</b>
+            <ul>
+              <li>This code belongs to the patient.</li>
+              <li>Ask the patient for their code and enter it in the app.</li>
+              <li>Do NOT share your own code publicly.</li>
+            </ul>
+          </div>
+
+          <p style="color:#777;font-size:13px;">⏳ This code is valid for limited time.</p>
+
+          <p>🙏 You are saving a life.</p>
+
+        </td>
+      </tr>
+
+      <tr>
+        <td style="background:#f8f9fa;padding:15px;text-align:center;font-size:12px;color:#888;">
+          Rakth Seva Team 🩸
+        </td>
+      </tr>
+
+    </table>
+
+  </td>
+</tr>
+
+  </table>
+
+</body>
+</html>
+
+`;
+
+//template for donor code to patient email
+const patientDonationCode = (pdonationCode) => `
+  <!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="UTF-8">
+</head>
+
+<body style="margin:0;padding:0;background:#f4f6f8;font-family:Arial, sans-serif;">
+
+  <table width="100%" cellpadding="0" cellspacing="0" style="padding:20px;">
+    <tr>
+      <td align="center">
+
+
+    <table width="500" style="background:#ffffff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.1);overflow:hidden;">
+
+      <tr>
+        <td style="background:linear-gradient(135deg,#1976d2,#42a5f5);padding:20px;text-align:center;color:white;">
+          <h2 style="margin:0;">🩸 Blood Donation</h2>
+          <p style="margin:5px 0 0;">Verification Code</p>
+        </td>
+      </tr>
+
+      <tr>
+        <td style="padding:25px;color:#333;">
+
+          <p>Hello,</p>
+
+          <p>
+            Good news! A donor is ready to help you ❤️
+          </p>
+
+          <p>Use the verification code below:</p>
+
+          <div style="text-align:center;margin:20px 0;">
+            <span style="background:#f1f3f5;padding:15px 25px;font-size:22px;font-weight:bold;border-radius:8px;color:#1976d2;">
+              ${pdonationCode}
+            </span>
+          </div>
+
+          <div style="background:#eef6ff;padding:15px;border-radius:8px;font-size:13px;">
+            <b>📌 Instructions:</b>
+            <ul>
+              <li>This code belongs to the donor.</li>
+              <li>Share this code with the donor.</li>
+              <li>The donor will use it to confirm donation.</li>
+            </ul>
+          </div>
+
+          <p style="color:#777;font-size:13px;">⏳ This code is valid for limited time.</p>
+
+          <p>💙 Wishing you good health.</p>
+
+        </td>
+      </tr>
+
+      <tr>
+        <td style="background:#f8f9fa;padding:15px;text-align:center;font-size:12px;color:#888;">
+          Rakth Seva Team 🩸
+        </td>
+      </tr>
+
+    </table>
+
+  </td>
+</tr>
+
+  </table>
+
+</body>
+</html>
+
+`;
+
+const sendToDonorDCode = async (to, subject, dCode) => {
+  try {
+    const info = await transporter.sendMail({
+      from: process.env.AUTH_USER,
+      to,
+      subject,
+      html: donorDonationCode(dCode),
+    });
+
+    return info;
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+const sendToPatientDCode = async (to, subject, dCode) => {
+  try {
+    const info = await transporter.sendMail({
+      from: process.env.AUTH_USER,
+      to,
+      subject,
+      html: patientDonationCode(dCode),
+    });
+
+    return info;
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+
+module.exports = { sendMailDonor, sendRequestMailDonor, sendForgotOtp,sendToDonorDCode,sendToPatientDCode };

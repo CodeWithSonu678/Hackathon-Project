@@ -100,7 +100,8 @@ async function requestAccept(req,res){
 
   try {
     const info = await requestBloodModel.findByIdAndUpdate(id,{
-      status:"accepted"
+      status:"accepted",
+      acceptedAt:Date.now(),
     },{new:true});
 
     res.status(200).json({

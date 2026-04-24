@@ -188,7 +188,8 @@ async function loadOutcomingRequest() {
 
     const data = await res.json();
 
-    console.log(data);
+    window.allRequests = [...(window.allRequests || []), ...data.allRequest];
+
     if (!data.allRequest || data.allRequest.length === 0) {
       container.innerHTML = "<p>No request found.</p>";
       return;
@@ -255,9 +256,33 @@ async function fetchIncomingRecent() {
     const result = await res.json();
 
     const data = result.data;
-    console.log(data);
+
+    window.allRequests = [...(window.allRequests || []), ...data];
+
     data.forEach((req) => {
       addToRecent(req, "incoming");
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+//fetch all recent outcoming(me)
+async function fetchOutcomingRecent() {
+  try {
+    const res = await fetch(BASE_URL + "/api/auth/all-outcoming-recent", {
+      method: "GET",
+      credentials: "include",
+    });
+
+    const result = await res.json();
+
+    const data = result.data;
+
+    window.allRequests = [...(window.allRequests || []), ...data];
+
+    data.forEach((req) => {
+      addToRecent(req, "outcoming");
     });
   } catch (error) {
     console.log(error);
@@ -268,7 +293,9 @@ async function fetchIncomingRecent() {
 function addToRecent(req, type) {
   const container = document.getElementById("recentList");
 
-  const isAccepted = req.status === "accepted";
+  const isRejected = req.status === "rejected";
+  const isCompleted = req.status === "completed";
+  const isSuccess = req.status !== "pending" && !isRejected;
   const isIncoming = type === "incoming";
 
   //  icon + color
@@ -295,22 +322,42 @@ function addToRecent(req, type) {
 
       <div class="detail-status">
         ${
-          isAccepted
-            ? `<button onclick="openTracker('${req._id}')"
-                 style="background:green;color:white;padding:6px 12px;border:none;border-radius:6px;">
-                 Tracker
-               </button>`
-            : `<p style="color:red;">Rejected</p>`
+          isCompleted
+            ? `
+      <button 
+        style="
+          background: linear-gradient(135deg, #00c853, #64dd17);
+          color:white;
+          padding:6px 12px;
+          border:none;
+          border-radius:20px;
+          font-weight:bold;
+          box-shadow:0 2px 6px rgba(0,0,0,0.2);
+          cursor:default;
+        ">
+         Completed
+      </button>
+    `
+            : isSuccess
+              ? `
+        <button 
+          class="tracker-btn"
+          data-id="${req._id}"
+          style="background:green;color:white;padding:6px 12px;border:none;border-radius:6px;">
+          Tracker
+        </button>
+      `
+              : `<p style="color:red;">Rejected</p>`
         }
 
-        <span>${timeAgo(new Date())}</span>
+        <span>${timeAgo(req.createdAt)}</span>
       </div>
 
     </div>
   `;
 
   //  Accepted → upar
-  if (isAccepted) {
+  if (isSuccess) {
     container.prepend(div);
   }
   //  Rejected → niche
@@ -363,7 +410,8 @@ async function loadIncomingRequest() {
 
     const data = await res.json();
 
-    console.log(data);
+    window.allRequests = [...(window.allRequests || []), ...data.allRequest];
+
     if (!data.allRequest || data.allRequest.length === 0) {
       container.innerHTML = "<p>No request found.</p>";
       return;
@@ -410,26 +458,639 @@ async function loadIncomingRequest() {
 loadOutcomingRequest();
 loadIncomingRequest();
 fetchIncomingRecent();
+fetchOutcomingRecent();
 
-async function showTracker() {
+//Tracker open code here
+function openTracker(id) {
+  if (!window.allRequests) {
+    console.log("No data loaded ❌");
+    return;
+  }
+  const req = window.allRequests.find((r) => String(r._id) === String(id));
+
+  if (!req) {
+    console.log("Data not found ❌");
+    return;
+  }
+
   const trackerSection = document.getElementById("tracker-section");
   trackerSection.style.display = "block";
+  trackerSection.scrollIntoView({
+    behavior: "smooth",
+    block: "start",
+  });
+  document.querySelector(".progress-bar").style.width = "40%";
+  updateTrackerUI(req);
 }
 
-const trackerBtn = document.querySelector("#tracker-btn");
-const cancelTracker = document.getElementById("tracker-cancel");
-console.log(cancelTracker);
-const trackerSection = document.querySelector("#tracker-section");
+//current user ka id
+const currentId = localStorage.getItem("currentId");
 
-if (trackerBtn && cancelTracker && trackerSection) {
-  trackerBtn.addEventListener("click", () => {
-    trackerSection.style.display = "block";
-    trackerSection.classList.add("show");
-  });
+//define role tracker
+function getRole(req) {
+  if (String(currentId) === String(req?.donor?.user?._id)) {
+    return "donor";
+  }
+  if (String(currentId) === String(req?.user?._id)) {
+    return "patient";
+  }
 
-  cancelTracker.addEventListener("click", () => {
-    console.log("Clicked babey");
-    trackerSection.style.display = "none";
-    trackerSection.classList.add("show");
+  return "unknown";
+}
+
+//Donor mein hospitals list show
+const lists = document.getElementById("lists");
+function hospitalDetails(hospitals) {
+  lists.innerHTML = "";
+
+  if (hospitals.length === 0) {
+    lists.innerHTML = `<p>No hospital Select Patient</p>`;
+    return;
+  }
+  hospitals.forEach((element) => {
+    const div = document.createElement("div");
+
+    div.className = "rule";
+
+    div.innerHTML = `
+      <li>${element}</li>
+      <li class="r-checkbox">
+        <input type="radio" name="hospital" value="${element}">
+      </li>
+    `;
+
+    lists.appendChild(div);
   });
 }
+
+const hContactSection = document.getElementById("hospital-contact");
+const dCompleteSection = document.getElementById("donation-complete");
+const dCompleteBtn = document.getElementById("dCompleteBtn");
+const cSubmit = document.getElementById("c-submit");
+const hSubmit = document.getElementById("h-submit");
+
+//db mein selected hospital save
+async function saveSelectedHospital(id) {
+  const selected = document.querySelector('input[name="hospital"]:checked');
+  if (!selected) {
+    alert("Select One Hospital Where are you want to donate blood");
+    return;
+  }
+
+  const selectHospital = selected.value;
+
+  try {
+    const res = await fetch(BASE_URL + "/api/auth/select-hospital/" + id, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({ selectHospital }),
+    });
+
+    const result = await res.json();
+    console.log(result);
+    if (res.ok && result.success === true) {
+      alert("Hospital selected ✅");
+
+      //  local data update (IMPORTANT)
+      const req = window.allRequests.find((r) => String(r._id) === String(id));
+
+      if (req) {
+        req.selectedHospital = selectHospital;
+        req.status = "confirmed";
+      }
+
+      //  UI re-render
+      updateTrackerUI(req);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+//update contact details
+async function saveContactDetails(id) {
+  const date = document.getElementById("donation-date").value;
+
+  if (!date) {
+    alert("Select donation date ❌");
+    return;
+  }
+
+  try {
+    const res = await fetch(BASE_URL + "/api/auth/update-contact/" + id, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({
+        donationDate: date,
+      }),
+    });
+
+    const result = await res.json();
+
+    if (res.ok && result.success) {
+      alert("Contact details saved ✅");
+
+      //  local update (IMPORTANT)
+      const req = window.allRequests.find((r) => String(r._id) === String(id));
+
+      if (req) {
+        req.donationDate = date;
+        req.contactedAt = new Date();
+        req.status = "contacted";
+      }
+
+      //  UI update
+      updateTrackerUI(req);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+// //update complete donation details
+// async function saveCompleteDonation(id) {
+//   const code = document.getElementById("dCode").value;
+
+//   if (!code) {
+//     alert("Enter Donation Code ❌");
+//     return;
+//   }
+
+//   try {
+//     const res = await fetch(BASE_URL + "/api/auth/complete-donation/" + id, {
+//       method: "PATCH",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       credentials: "include",
+//       body: JSON.stringify({
+//         dCode: code,
+//       }),
+//     });
+
+//     const result = await res.json();
+
+//     if (res.ok && result.success) {
+//       alert("Donation complete Thank you.. ✅");
+
+//       //  local update (IMPORTANT)
+//       const req = window.allRequests.find((r) => String(r._id) === String(id));
+
+//       if (req) {
+//         req.status = "completed";
+//       }
+
+//       //  UI update
+//       updateTrackerUI(req);
+//     }
+//   } catch (error) {
+//     console.log(error);
+//   }
+// }
+
+//call feature code here
+function makeCall(number) {
+  window.location.href = `tel:${number}`;
+}
+
+//whatsapp send message feature here
+function sendWhatsApp(number) {
+  const msg = "Hello, I am contacting regarding Rakht Seva.";
+
+  const url = `https://wa.me/91${number}?text=${encodeURIComponent(msg)}`;
+
+  window.open(url, "_blank");
+}
+
+//get remanining time
+function getRemainingTime(contactedAt) {
+  const now = new Date();
+  const start = new Date(contactedAt);
+  const target = new Date(start.getTime() + 24 * 60 * 60 * 1000);
+
+  const diff = target - now;
+
+  if (diff <= 0) return null;
+
+  return {
+    hours: Math.floor(diff / (1000 * 60 * 60)),
+    minutes: Math.floor((diff / (1000 * 60)) % 60),
+    seconds: Math.floor((diff / 1000) % 60),
+  };
+}
+
+//counter code here
+function startCountdown(contactedAt, elId) {
+  const el = document.getElementById(elId);
+
+  function update() {
+    const time = getRemainingTime(contactedAt);
+
+    if (!time) {
+      el.innerText = "Ready to send code ✅";
+      return;
+    }
+
+    el.innerText = `${time.hours}h ${time.minutes}m ${time.seconds}s`;
+  }
+
+  update();
+  setInterval(update, 1000);
+}
+
+//check code send kar skte h ki nhi
+function isReady(contactedAt) {
+  const now = new Date();
+  const start = new Date(contactedAt);
+
+  const diff = now - start;
+
+  const hours = diff / (1000 * 60 * 60);
+
+  return hours >= 24;
+}
+
+//send donation code here
+async function sendByDonorCode(id, email, req) {
+  try {
+    const res = await fetch(BASE_URL + "/api/auth/donor-send/" + id, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({ patientEmail: email }),
+    });
+
+    const result = await res.json();
+    alert(result.msg);
+    if (res.ok && result.success) {
+      verifyOpen = true;
+      updateTrackerUI(req);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function sendByPatientCode(id, email, req) {
+  try {
+    const res = await fetch(BASE_URL + "/api/auth/patient-send/" + id, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({ donorEmail: email }),
+    });
+
+    const result = await res.json();
+    alert(result.msg);
+    if (res.ok && result.success) {
+      verifyOpen = true;
+      updateTrackerUI(req);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function verifyMyCode(id, role, req) {
+  const input = hContactSection.querySelector("#verify-input");
+  const DCode = input.value;
+
+  try {
+    const res = await fetch(BASE_URL + "/api/auth/verify-donation-code/" + id, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+      body: JSON.stringify({ donationCode: DCode, role: role }),
+    });
+    const result = await res.json();
+
+    if (res.ok && result.success === true) {
+      req.donorCodeSent = true;
+      req.status = "completed";
+      updateTrackerUI(req);
+    } else {
+      alert(result.msg);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+//tracker UI code here
+const stepsMap = {
+  pending: 1,
+  accepted: 2,
+  confirmed: 3,
+  contacted: 4,
+  completed: 5,
+};
+
+function updateTrackerUI(req) {
+  const role = getRole(req);
+  const isVerifyOpen =
+    role === "donor" ? req.donorCodeSent : req.patientCodeSent;
+
+  //  sab section hide (reset)
+  document.getElementById("lists").style.display = "none";
+  document.getElementById("h-submit").style.display = "none";
+  document.getElementById("hospital-contact").style.display = "none";
+  dCompleteSection.style.display = "none";
+
+  //  STEP BASED UI
+  switch (req.status) {
+    //  STEP 2 → accepted (hospital select)
+    case "accepted":
+      if (role === "donor") {
+        hospitalDetails(req.hospitals);
+        lists.style.display = "block";
+        hSubmit.style.display = "block";
+
+        hSubmit.onclick = () => {
+          saveSelectedHospital(req._id);
+        };
+      }
+
+      if (role === "patient") {
+        lists.innerHTML = "⏳ Donor not selected hospital yet";
+        lists.style.display = "block";
+      }
+      break;
+
+    //  STEP 3 → confirmed (hospital selected)
+    case "confirmed":
+      if (role === "donor") {
+        hContactSection.style.display = "block";
+        const contactBtnBox = document.getElementById("call-message-btn");
+        contactBtnBox.innerHTML = `
+                <button onclick="makeCall('${req.user.mobileNumber}')" style="background-color: rgb(0, 198, 0);"><i
+                  class="bi bi-telephone"></i> Call</button>
+                <button onclick="sendWhatsApp('${req.user.mobileNumber}')" style="background-color: rgb(78, 78, 224);"><i class="bi bi-chat"></i>
+                  Message
+                </button>
+        `;
+        cSubmit.onclick = () => {
+          saveContactDetails(req._id);
+        };
+      }
+
+      if (role === "patient") {
+        lists.innerHTML = `🏥 ${req.selectedHospital}`;
+        lists.style.display = "block";
+      }
+      break;
+
+    //  STEP 4 → contacted
+    case "contacted":
+      const ready = isReady(req.contactedAt);
+      const date = new Date(req.donationDate);
+
+      const formatted = date.toLocaleString("en-IN", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      });
+      hContactSection.style.display = "block";
+
+      if (role === "donor") {
+        hContactSection.innerHTML = `
+          <p><b>Contact Details</b></p>
+
+        <p>📍 ${req.user.username}</p>
+        <p>📍 ${req.user.address}</p>
+        <p>🏥 ${req.selectedHospital}</p>
+        <p>📅 ${formatted}</p>
+
+        <div class="contact-btn">
+          <button onclick="makeCall('${req.user.mobileNumber}')" style="background-color: rgb(0, 198, 0);">📞 Call</button>
+          <button onclick="sendWhatsApp('${req.user.mobileNumber}')" style="background-color: rgb(78, 78, 224);">💬 Message</button>
+        </div>
+
+        <hr>
+
+        <p>⏳ Donation Code will be sent in: <b><span id="donor-timer"></span></b></p>
+        <button id="donor-code-btn"
+          style="
+            margin-top:10px;
+            padding:8px 16px;
+            border:none;
+            border-radius:8px;
+            color:white;
+            background:${ready ? "green" : "gray"};
+            opacity:${ready ? "1" : "0.5"};
+            cursor:${ready ? "pointer" : "not-allowed"};
+          ">
+          Send Donation Code
+        </button>
+        <div id="verify-section" style="display:${isVerifyOpen ? "block" : "none"}">
+          <input type="text" id="verify-input" placeholder="Enter Code">
+          <button id="verify-btn">Verify Code</button>
+        </div>
+        `;
+
+        const verifyBtn = hContactSection.querySelector("#verify-btn");
+
+        verifyBtn.onclick = () => {
+          verifyMyCode(req._id, role, req);
+        };
+
+        startCountdown(req.contactedAt, "donor-timer");
+
+        //when donor click donation code send
+        const donorBtn = document.getElementById("donor-code-btn");
+        if (ready) {
+          donorBtn.onclick = () =>
+            sendByDonorCode(req._id, req.user.email, req);
+        } else {
+          donorBtn.onclick = null;
+        }
+      }
+
+      if (role === "patient") {
+        hContactSection.innerHTML = `
+          <p><b>Contact Details</b></p>
+
+        <p>📍 ${req.donor.donorName}</p>
+        <p>📍 ${req.donor.city}</p>
+        <p>🏥 ${req.selectedHospital}</p>
+        <h2>🏥 ${formatted}</h2>
+
+        <div class="contact-btn">
+          <button onclick="makeCall('${req.donor.mobileNumber}')" style="background-color: rgb(0, 198, 0);">📞 Call</button>
+          <button onclick="sendWhatsApp('${req.donor.mobileNumber}')" style="background-color: rgb(78, 78, 224);">💬 Message</button>
+        </div>
+
+        <hr>
+
+        <p>⏳ Donation Code will be sent in: <b><span id="patient-timer"></span></b></p>
+        <button id="patient-code-btn"
+          style="
+            margin-top:10px;
+            padding:8px 16px;
+            border:none;
+            border-radius:8px;
+            color:white;
+            background:${ready ? "green" : "gray"};
+            opacity:${ready ? "1" : "0.5"};
+            cursor:${ready ? "pointer" : "not-allowed"};
+          ">
+          Send Donation Code
+        </button>
+
+        <div id="verify-section" style="display:${isVerifyOpen ? "block" : "none"};">
+          <input type="text" id="verify-input" placeholder="Enter Code">
+          <button id="verify-btn">Verify Code</button>
+        </div>
+        `;
+
+        const verifyBtn = hContactSection.querySelector("#verify-btn");
+
+        verifyBtn.onclick = () => {
+          verifyMyCode(req._id, role, req);
+        };
+        startCountdown(req.contactedAt, "patient-timer");
+
+        //when patient click donation code send
+        const patientBtn = document.getElementById("patient-code-btn");
+
+        if (ready) {
+          patientBtn.onclick = () =>
+            sendByPatientCode(req._id, req.donor.user.email, req);
+        } else {
+          patientBtn.onclick = null;
+        }
+      }
+
+      break;
+
+    //  STEP 5 → completed
+    case "completed":
+      dCompleteSection.style.display = "block";
+
+      const box = document.getElementById("complete-box");
+
+      const isDonor = role === "donor";
+
+      const title = "🩸 Donation Completed";
+
+      const mainLine = isDonor
+        ? "You just saved a life ❤️"
+        : "You received help successfully ❤️";
+
+      const desc = isDonor
+        ? "Your kindness and courage made a real difference today. Every drop of blood you donated brings hope to someone in need."
+        : "A donor stepped forward and helped you in your time of need. Humanity still shines through such acts of kindness.";
+
+      const quote = isDonor
+        ? "🌟 “Heroes don’t wear capes, they donate blood.”"
+        : "🙏 “Kindness of strangers creates miracles.”";
+
+      box.innerHTML = `
+        <div style="
+          text-align:center;
+          padding:25px;
+          border-radius:16px;
+          background:linear-gradient(135deg,#e8f5e9,#c8e6c9);
+          box-shadow:0 6px 20px rgba(0,0,0,0.1);
+          margin-top:20px;
+        ">
+
+          <h2 style="color:#1b5e20;margin-bottom:10px;">
+            ${title}
+          </h2>
+
+          <p style="font-size:16px;color:#2e7d32;margin-bottom:15px;">
+            ${mainLine}
+          </p>
+
+          <p style="font-size:14px;color:#555;line-height:1.6;">
+            ${desc}
+          </p>
+
+          <div style="
+            margin:20px auto;
+            padding:10px 15px;
+            background:#ffffff;
+            border-radius:10px;
+            display:inline-block;
+            font-size:13px;
+            color:#666;
+          ">
+            ${quote}
+          </div>
+
+          <div style="margin-top:20px;">
+            <button onclick="window.location.reload()"
+              style="
+                padding:10px 18px;
+                border:none;
+                border-radius:10px;
+                background:#2e7d32;
+                color:white;
+                font-size:14px;
+                cursor:pointer;
+              ">
+              Back to Dashboard
+            </button>
+          </div>
+
+        </div>
+      `;
+      break;
+  }
+
+  //  PROGRESS BAR
+  const step = stepsMap[req.status] || 1;
+  const progress = (step / 5) * 100;
+
+  document.querySelector(".progress-bar").style.width = progress + "%";
+
+  //step par green 
+  const currentStep = stepsMap[req.status] || 1;
+  const buttons = document.querySelectorAll(".track-btn button");
+  const lines = document.querySelectorAll(".line-div");
+
+  buttons.forEach((btn, index) => {
+    if (index < currentStep) {
+      btn.style.backgroundColor = "green";
+      btn.style.color = "white";
+    } else {
+      btn.style.backgroundColor = "lightgray";
+      btn.style.color = "black";
+    }
+  });
+
+  lines.forEach((line, index) => {
+    if (index < currentStep - 1) {
+      line.style.backgroundColor = "green";
+    } else {
+      line.style.backgroundColor = "lightgray";
+    }
+  });
+}
+
+document.getElementById("tracker-cancel").addEventListener("click", () => {
+  document.getElementById("tracker-section").style.display = "none";
+});
+
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("tracker-btn")) {
+    const id = e.target.dataset.id;
+
+    openTracker(id);
+  }
+});

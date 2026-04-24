@@ -116,7 +116,6 @@ function logoutController(req, res) {
     path: "/",
   });
 
-  console.log(req.cookies.token);
   return res.status(200).json({
     success: true,
     msg: "Logout successful",
@@ -179,8 +178,15 @@ async function fetchAllRequest(req, res) {
 
   const allRequest = await requestModel
     .find({ user: userId })
-    .populate("donor", "donorName mobileNumber age bloodGroup city")
-    .populate("user", "username mobileNumber age bloodGroup address");;
+    .populate({
+      path: "donor",
+      select: "donorName mobileNumber age bloodGroup city user",
+      populate: {
+        path: "user",
+        select: "username email mobileNumber",
+      },
+    })
+    .populate("user", "username mobileNumber age bloodGroup address");
 
   res.status(200).json({
     success: true,
@@ -202,6 +208,14 @@ async function fetchAllRequestByUser(req, res) {
   }
   const allRequest = await requestModel
     .find({ donor: donorInfo._id, status: "pending" })
+    .populate({
+      path: "donor",
+      select: "donorName mobileNumber age bloodGroup city user",
+      populate: {
+        path: "user",
+        select: "username email mobileNumber",
+      },
+    })
     .populate("user", "username mobileNumber age bloodGroup address");
 
   res.status(200).json({
@@ -211,7 +225,7 @@ async function fetchAllRequestByUser(req, res) {
   });
 }
 
-//fetch all request in accepted and rejected by user
+//fetch all recent request by user(incoming)
 async function incomingRecent(req, res) {
   const userId = req.user.id;
 
@@ -226,22 +240,65 @@ async function incomingRecent(req, res) {
     const allIncomingRecent = await requestModel
       .find({
         donor: donorInfo._id,
-        status: { $in: ["accepted", "rejected"] },
+        status: { $in: ["accepted", "rejected","confirmed","contacted","completed"] },
       })
-      .populate("user", "username address")
+      .populate({
+        path: "donor",
+        select: "donorName mobileNumber age bloodGroup city user",
+        populate: {
+          path: "user",
+          select: "username email mobileNumber",
+        },
+      })
+      .populate("user", "username mobileNumber email age bloodGroup address")
       .sort({ updatedAt: -1 });
 
     res.status(200).json({
       success: true,
       msg: "By user, All Request Rejected & Accepted Fetch is successful",
-      data:allIncomingRecent,
+      data: allIncomingRecent,
     });
   } catch (error) {
     console.log(error.message);
     res.status(500).json({
-      success:false,
-      msg:"server error !"
-    })
+      success: false,
+      msg: "server error !",
+    });
+  }
+}
+
+//fetch all recent request by me(outcoming)
+async function outcomingRecent(req, res) {
+  const userId = req.user.id;
+
+  try {
+    const allOutcomingRecent = await requestModel
+      .find({
+        user: userId,
+        status: { $in: ["accepted", "rejected","confirmed","contacted","completed"] },
+      })
+      .populate({
+        path: "donor",
+        select: "donorName mobileNumber age bloodGroup city user",
+        populate: {
+          path: "user",
+          select: "username email mobileNumber",
+        },
+      })
+      .populate("user", "username mobileNumber age email bloodGroup address")
+      .sort({ updatedAt: -1 });
+
+    res.status(200).json({
+      success: true,
+      msg: "By me, All Request Rejected & Accepted Fetch is successful",
+      data: allOutcomingRecent,
+    });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json({
+      success: false,
+      msg: "server error !",
+    });
   }
 }
 
@@ -254,4 +311,5 @@ module.exports = {
   fetchAllRequest,
   fetchAllRequestByUser,
   incomingRecent,
+  outcomingRecent,
 };

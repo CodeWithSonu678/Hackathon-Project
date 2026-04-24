@@ -444,7 +444,7 @@ h3 {
 
 #tracker-section {
         background-color: #fff;
-        /* display: none; */
+        display: none;
 }
 
 .show {
@@ -482,6 +482,7 @@ h3 {
         background: none;
         border: none;
         padding: 5px 10px;
+        border-radius: 50%;
 }
 
 .track-btn i {

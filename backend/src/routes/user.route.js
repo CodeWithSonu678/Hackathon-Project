@@ -14,6 +14,7 @@ const {reqBloodControlle,requestReject,requestAccept} = require("../controllers/
 const hospitalControlller = require("../controllers/hospital.controller");
 const {editProfileMiddleware, validateEditProfile} = require("../middleware/editProfile.middleware");
 const forgotController = require('../controllers/forgotPass.controller');
+const trackerController = require('../controllers/tracker.controller');
 
 const Hospital = require("../models/hospitals.model");
 
@@ -68,6 +69,19 @@ router.patch("/reject/:id",isAlreadyReg,requestReject);
 router.patch("/accept/:id",isAlreadyReg,requestAccept);
 
 router.get("/all-incoming-recent",isAlreadyReg,userController.incomingRecent);
+
+router.get("/all-outcoming-recent",isAlreadyReg,userController.outcomingRecent);
+
+//donor select hospitals
+router.patch("/select-hospital/:id",isAlreadyReg,trackerController.updateHospital);
+router.patch("/update-contact/:id",isAlreadyReg,trackerController.updateContact);
+
+//donation code send api here
+router.patch("/donor-send/:id",isAlreadyReg,trackerController.codeSendToDonor);
+router.patch("/patient-send/:id",isAlreadyReg,trackerController.codeSendToPatient);
+router.patch("/verify-donation-code/:id",isAlreadyReg,trackerController.verifyDonationCode);
+
+
 
 
 
