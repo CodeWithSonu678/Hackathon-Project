@@ -390,7 +390,13 @@ h3 {
         justify-content: space-between;
 }
 
-.search-header button {
+.can-btn{
+        display: flex;
+        align-items: end;
+        justify-content: end;
+}
+
+.donar-tracker button {
         background: none;
         border: none;
 }
@@ -461,11 +467,11 @@ h3 {
 }
 
 .donar-tracker {
-        margin: 10px 40px;
         padding: 20px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         border-radius: 15px;
-        display: block;
+        justify-self: center;
+        width: 95%;
 }
 
 
@@ -473,7 +479,6 @@ h3 {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 100%;
 }
 
 
@@ -579,26 +584,21 @@ h3 {
 }
 
 @media (max-width:600px) {
-        .tracker-outer {
-                flex-direction: column;
-                align-items: center;
-                justify-content: start;
+        .t-out {
+                overflow: scroll;
         }
 
-        .t-out {
-                display: flex;
-                align-items: start;
-                justify-content: start;
+        .track-btn i {
+                font-size: 18px;
+        }
+
+        .track-btn button{
+                padding: 2px 7px;
         }
 
         .line-div {
-                width: 5px;
-                height: 100px;
-        }
-
-        .track-info {
-                flex-direction: column;
-                gap: 85px;
+                width: 100%;
+                height: 5px;
         }
 
         .input-code {
@@ -612,7 +612,17 @@ h3 {
         .contact-btn button {
                 width: 80%;
         }
+
+        .track-info p {
+                font-size: 12px;
+        }
 }
+
+@media (max-width:450px){
+        .track-info{
+                display: none;
+        }
+} 
 
 
 /* Edit form */
