@@ -30,8 +30,14 @@
         }
 
         .about-banner-img img{
-                width: 70vh;
+                width: 580px;
                 overflow: hidden;
+        }
+}
+
+@media (max-width:630px) {
+        .about-banner-img img{
+                width: 280px;
         }
 }
 

@@ -312,7 +312,7 @@ function addToRecent(req, type) {
     <div class="recent-tab">
       
       <div class="user-detail-tab">
-        <i class="${icon}" style="color:${iconColor}; font-size:18px;"></i>
+        <i class="${icon}" style="color:${iconColor}; font-size:35px;"></i>
 
         <div class="tab-detail">
           <p>${req.patientName}</p>
@@ -321,9 +321,8 @@ function addToRecent(req, type) {
       </div>
 
       <div class="detail-status">
-        ${
-          isCompleted
-            ? `
+        ${isCompleted
+      ? `
       <button 
         style="
           background: linear-gradient(135deg, #00c853, #64dd17);
@@ -338,8 +337,8 @@ function addToRecent(req, type) {
          Completed
       </button>
     `
-            : isSuccess
-              ? `
+      : isSuccess
+        ? `
         <button 
           class="tracker-btn"
           data-id="${req._id}"
@@ -347,8 +346,8 @@ function addToRecent(req, type) {
           Tracker
         </button>
       `
-              : `<p style="color:red;">Rejected</p>`
-        }
+        : `<p style="color:red;">Rejected</p>`
+    }
 
         <span>${timeAgo(req.createdAt)}</span>
       </div>
@@ -846,7 +845,7 @@ function updateTrackerUI(req) {
       }
 
       if (role === "patient") {
-        lists.innerHTML = `🏥 ${req.selectedHospital}`;
+        lists.innerHTML = `<i class="bi bi-hospital"></i> ${req.selectedHospital}`;
         lists.style.display = "block";
       }
       break;
@@ -868,38 +867,36 @@ function updateTrackerUI(req) {
 
       if (role === "donor") {
         hContactSection.innerHTML = `
-          <p><b>Contact Details</b></p>
+         <p><b>Contact Details</b></p>
 
-        <p>📍 ${req.user.username}</p>
-        <p>📍 ${req.user.address}</p>
-        <p>🏥 ${req.selectedHospital}</p>
-        <p>📅 ${formatted}</p>
+                                <p><i class="bi bi-person"></i> ${req.user.username}</p>
+                                <p><i class="bi bi-geo-alt"></i> ${req.user.address}</p>
+                                <p><i class="bi bi-hospital"></i> ${req.selectedHospital}</p>
+                                <p><i class="bi bi-calendar-check"></i> ${formatted}</p>
 
-        <div class="contact-btn">
-          <button onclick="makeCall('${req.user.mobileNumber}')" style="background-color: rgb(0, 198, 0);">📞 Call</button>
-          <button onclick="sendWhatsApp('${req.user.mobileNumber}')" style="background-color: rgb(78, 78, 224);">💬 Message</button>
-        </div>
+                                <div class="contact-btn">
+                                        <button onclick="makeCall('${req.user.mobileNumber}')"
+                                                style="background-color: rgb(0, 198, 0);"><i
+                                                        class="bi bi-telephone-outbound"></i> Call</button>
+                                        <button onclick="sendWhatsApp('${req.user.mobileNumber}')"
+                                                style="background-color: rgb(78, 78, 224);"><i
+                                                        class="bi bi-chat-dots"></i> Message</button>
+                                </div>
 
-        <hr>
+                                <hr>
 
-        <p>⏳ Donation Code will be sent in: <b><span id="donor-timer"></span></b></p>
-        <button id="donor-code-btn"
-          style="
-            margin-top:10px;
-            padding:8px 16px;
-            border:none;
-            border-radius:8px;
-            color:white;
-            background:${ready ? "green" : "gray"};
-            opacity:${ready ? "1" : "0.5"};
-            cursor:${ready ? "pointer" : "not-allowed"};
-          ">
+                                <p><i class="bi bi-hourglass-split"></i> Donation Code will be sent in: <b><span
+                                                        id="donor-timer"></span></b></p>
+                                <button id="donor-code-btn" style="
+            
+            background:${ready ? " green" : "gray" }; opacity:${ready ? "1" : "0.5" }; cursor:${ready ? "pointer"
+                                        : "not-allowed" }; ">
           Send Donation Code
         </button>
-        <div id="verify-section" style="display:${isVerifyOpen ? "block" : "none"}">
-          <input type="text" id="verify-input" placeholder="Enter Code">
-          <button id="verify-btn">Verify Code</button>
-        </div>
+        <div id="verify-section" style="display:${isVerifyOpen ? " block" : "none" }">
+                                        <input type="text" id="verify-input" placeholder="Enter Code">
+                                        <button id="verify-btn" class="bl-btn mt-3">Verify Code</button>
+                        </div>
         `;
 
         const verifyBtn = hContactSection.querySelector("#verify-btn");
@@ -924,19 +921,19 @@ function updateTrackerUI(req) {
         hContactSection.innerHTML = `
           <p><b>Contact Details</b></p>
 
-        <p>📍 ${req.donor.donorName}</p>
-        <p>📍 ${req.donor.city}</p>
-        <p>🏥 ${req.selectedHospital}</p>
-        <h2>🏥 ${formatted}</h2>
+        <p><i class="bi bi-person"></i> ${req.donor.donorName}</p>
+        <p><i class="bi bi-geo-alt"></i> ${req.donor.city}</p>
+        <p><i class="bi bi-hospital"></i> ${req.selectedHospital}</p>
+        <h2><i class="bi bi-calendar-check"></i> ${formatted}</h2>
 
         <div class="contact-btn">
-          <button onclick="makeCall('${req.donor.mobileNumber}')" style="background-color: rgb(0, 198, 0);">📞 Call</button>
-          <button onclick="sendWhatsApp('${req.donor.mobileNumber}')" style="background-color: rgb(78, 78, 224);">💬 Message</button>
+          <button onclick="makeCall('${req.donor.mobileNumber}')" style="background-color: rgb(0, 198, 0);"><i class="bi bi-telephone-outbound"></i> Call</button>
+          <button onclick="sendWhatsApp('${req.donor.mobileNumber}')" style="background-color: rgb(78, 78, 224);"><i class="bi bi-chat-dots"></i> Message</button>
         </div>
 
         <hr>
 
-        <p>⏳ Donation Code will be sent in: <b><span id="patient-timer"></span></b></p>
+        <p><i class="bi bi-hourglass-split"></i> Donation Code will be sent in: <b><span id="patient-timer"></span></b></p>
         <button id="patient-code-btn"
           style="
             margin-top:10px;
@@ -953,7 +950,7 @@ function updateTrackerUI(req) {
 
         <div id="verify-section" style="display:${isVerifyOpen ? "block" : "none"};">
           <input type="text" id="verify-input" placeholder="Enter Code">
-          <button id="verify-btn">Verify Code</button>
+          <button id="verify-btn" class="bl-btn mt-3">Verify Code</button>
         </div>
         `;
 

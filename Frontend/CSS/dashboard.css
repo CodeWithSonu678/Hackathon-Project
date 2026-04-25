@@ -89,7 +89,6 @@ html {
 .decImg {
         width: 150px;
         height: 150px;
-        ;
         border-radius: 15px;
         object-fit: cover;
 }
@@ -506,20 +505,20 @@ h3 {
         gap: 20px;
 }
 
-.contact-outer{
+.contact-outer {
         justify-self: center;
         width: 100%;
         display: none;
 }
 
-.contact-btn{
+.contact-btn {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 10px;
 }
 
-.contact-btn button{
+.contact-btn button {
         color: #fff;
         border: none;
         width: 30%;
@@ -528,11 +527,11 @@ h3 {
         border-radius: 8px;
 }
 
-.donation-date input{
+.donation-date input {
         padding: 5px;
 }
 
-.donation-confirm{
+.donation-confirm {
         display: none;
 }
 
@@ -572,8 +571,8 @@ h3 {
         justify-self: center;
 }
 
-#code-btn{
-        justify-self: center; 
+#code-btn {
+        justify-self: center;
         margin-top: 10px;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.56), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
         border-radius: 8px;
@@ -602,8 +601,16 @@ h3 {
                 gap: 85px;
         }
 
-        .input-code{
+        .input-code {
                 width: 100%;
+        }
+
+        .contact-btn {
+                flex-direction: column;
+        }
+
+        .contact-btn button {
+                width: 80%;
         }
 }
 
@@ -677,6 +684,18 @@ select:focus {
 
 .save-btn button {
         width: 100%;
+}
+
+@media (max-width:760px) {
+        .rows {
+                gap: 0px;
+                margin-bottom: 0px;
+                flex-direction: column;
+        }
+
+        .input {
+                margin-bottom: 10px;
+        }
 }
 
 /* Recent  */
@@ -754,4 +773,19 @@ select:focus {
 .user-detail-tab i {
         font-size: 35px;
         padding: 0px 10px;
+}
+
+@media (max-width:500px) {
+        .recent-tab {
+                gap: 20px;
+                flex-direction: column;
+        }
+}
+
+#donor-code-btn {
+        margin-top: 10px;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 8px;
+        color: white;
 }

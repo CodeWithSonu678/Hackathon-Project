@@ -10,7 +10,7 @@ body {
         .banner {
                 margin-top: 90px;
                 min-height: 40vh;
-                padding: 5vh 1rem;
+                padding: 50px 60px;
         }
 
         .banner-p1 {
@@ -182,6 +182,7 @@ body {
         display: grid;
         grid-template-columns: repeat(4,1fr);
         gap: 20px;
+        padding: 0px 30px;
 }
 
 .body-dash-card {
