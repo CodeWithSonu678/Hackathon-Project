@@ -1,11 +1,11 @@
 const { searchDonorsService } = require("../services/search.service");
-const {getCordination} = require("../utils/geoCoding");
+// const {getCordination} = require("../utils/geoCoding");
 
 const searchDonors = async (req, res, next) => {
   try {
-    const { bloodGroup, city } = req.body;
+    const { bloodGroup,lat, lng,city } = req.body;
 
-    const {lat,lng} = await getCordination(city);
+    // const {lat,lng} = await getCordination(city);
 
     if (!bloodGroup || !lat || !lng) {
       return res.status(400).json({
@@ -14,7 +14,7 @@ const searchDonors = async (req, res, next) => {
       });
     }
 
-    const donors = await searchDonorsService({ bloodGroup, lat, lng });
+    const donors = await searchDonorsService({ bloodGroup, lat, lng,city });
 
     res.status(200).json({
       success: true,

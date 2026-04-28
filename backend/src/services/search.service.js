@@ -1,6 +1,6 @@
 const donorModel = require("../models/donor.model");
 
-const searchDonorsService = async ({ bloodGroup, lat, lng }) => {
+const searchDonorsService = async ({ bloodGroup, lat, lng,city }) => {
   const latitude = parseFloat(lat);
   const longitude = parseFloat(lng);
 
@@ -16,8 +16,12 @@ const searchDonorsService = async ({ bloodGroup, lat, lng }) => {
           coordinates: [longitude, latitude],
         },
         distanceField: "distance",
-        maxDistance: 50000,
+        maxDistance: 20000,
         spherical: true,
+
+        query: {
+          bloodGroup: bloodGroup.toUpperCase()
+        }
       },
     },
     {
@@ -50,15 +54,15 @@ const searchDonorsService = async ({ bloodGroup, lat, lng }) => {
     },
   ]);
 
-  const result = donors.filter((d) => {
-    return (
-      d.bloodGroup &&
-      bloodGroup &&
-      d.bloodGroup.trim().toUpperCase() === bloodGroup.trim().toUpperCase()
-    );
-  });
+  // const result = donors.filter((d) => {
+  //   return (
+  //     d.bloodGroup &&
+  //     bloodGroup &&
+  //     d.bloodGroup.trim().toUpperCase() === bloodGroup.trim().toUpperCase()
+  //   );
+  // });
 
-  return result;
+  return donors;
 };
 
 module.exports = { searchDonorsService };

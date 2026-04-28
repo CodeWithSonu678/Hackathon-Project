@@ -32,6 +32,7 @@ function initNavbar() {
   const dashboardLink = document.getElementById("dashboardLink");
   const profileSection = document.getElementById("profileSection");
 
+
   const isloginIn = localStorage.getItem("isloginIn");
 
   //  LOGIN STATE
@@ -40,6 +41,7 @@ function initNavbar() {
     if (registerBtn) registerBtn.style.display = "none";
     if (dashboardLink) dashboardLink.style.display = "block";
     if (profileSection) profileSection.style.display = "block";
+
   } else {
     if (loginBtn) loginBtn.style.display = "block";
     if (registerBtn) registerBtn.style.display = "block";
@@ -57,8 +59,13 @@ function initNavbar() {
       dropdown.classList.toggle("active");
     });
 
-    document.addEventListener("click", () => {
-      dropdown.classList.remove("active");
+    // document.addEventListener("click", () => {
+    //   dropdown.classList.remove("active");
+    // });
+    document.addEventListener("click", (e) => {
+      if (!profileBtn.contains(e.target) && !dropdown.contains(e.target)) {
+        dropdown.classList.remove("active");
+      }
     });
   }
 

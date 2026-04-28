@@ -59,11 +59,11 @@ donorForm.addEventListener("submit", async (e) => {
 
       if (result.errors && result.errors.length >= 0) {
         errorMessage.textContent =
-          result.errors[0].msg || "Somtheing went wrong ❌";
+          result.errors[0].msg || "Something went wrong ❌";
       } else if (result.msg) {
         errorMessage.textContent = result.msg || "Server Error try again";
       } else {
-        errorMessage.textContent = "Somthing want worng ❌";
+        errorMessage.textContent = "Something want worng ❌";
       }
     }
   } catch (error) {

@@ -34,7 +34,6 @@ const requestBloodSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-
     user: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
@@ -67,7 +66,7 @@ const requestBloodSchema = new mongoose.Schema(
     },
     contactedAt: {
       type: Date,
-      deafult: null,
+      default: null,
     },
     hospitalSelectedAt: {
       type: Date,

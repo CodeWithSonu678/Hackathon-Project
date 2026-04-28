@@ -174,7 +174,6 @@
                 flex-direction: column;
                 gap: 20px;
         }
-
 }
 
 .bl-btn {
@@ -245,7 +244,7 @@
 
 .q-links-urls li a {
         text-decoration: none;
-        color: white;
+         color: #333; /*change white to black */
 }
 
 .links-url {

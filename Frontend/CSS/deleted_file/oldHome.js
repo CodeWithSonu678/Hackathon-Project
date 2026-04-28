@@ -19,42 +19,22 @@ function closeModal() {
   document.getElementById("donorModal").style.display = "none";
 }
 
-async function getCoordsSmart(query) {
+//user ke city ka lng aur lat niklna
+async function getCordination(city) {
+  const url = `https://nominatim.openstreetmap.org/search?q=${city}&format=json`;
+
   try {
-    //  1st try (full query)
-    let res = await fetch(
-      `https://nominatim.openstreetmap.org/search?q=${query}&format=json&addressdetails=1`
-    );
-    let data = await res.json();
+    const res = await axios.get(url);
+    const data = res.data;
 
-    //  2nd try (last word = city)
-    if (!data.length) {
-      const words = query.trim().split(" ");
-      const city = words[words.length - 1];
-
-      res = await fetch(
-        `https://nominatim.openstreetmap.org/search?q=${city}&format=json`
-      );
-      data = await res.json();
+    if (data.length > 0) {
+      return {
+        lat: parseFloat(data[0].lat),
+        lng: parseFloat(data[0].lon),
+      };
+    } else {
+      return null;
     }
-
-    if (!data.length) return null;
-
-    const place =
-      data.find(p =>
-        ["city", "town", "village"].includes(p.type)
-      ) ||
-      data.find(p =>
-        ["college", "hospital", "school", "university"].includes(p.type)
-      ) ||
-      data[0];
-
-    return {
-      lat: parseFloat(place.lat),
-      lng: parseFloat(place.lon),
-      name: place.display_name,
-    };
-
   } catch (error) {
     console.log(error);
     return null;
@@ -75,32 +55,7 @@ searchDonor.addEventListener("submit", async (e) => {
   const city = document.getElementById("cityInput").value;
   const bloodGroup = document.getElementById("bloodGroup").value;
 
-  let searchLat, searchLng;
-
   try {
-
-    //  STEP 1: SEARCH LOCATION
-    if (city) {
-      const coords = await getCoordsSmart(city);
-      if (!coords) {
-        alert("Location not found");
-        return;
-      }
-      searchLat = coords.lat;
-      searchLng = coords.lng;
-    } else {
-      const pos = await new Promise((resolve, reject) => {
-        navigator.geolocation.getCurrentPosition(resolve, reject);
-      });
-
-      searchLat = pos.coords.latitude;
-      searchLng = pos.coords.longitude;
-    }
-
-    //  STEP 2: MAP CENTER
-    map.flyTo([searchLat, searchLng], 12);
-
-    //  STEP 3: API CALL
     const res = await fetch(BASE_URL + "/api/auth/donor", {
       method: "POST",
       headers: {
@@ -108,70 +63,63 @@ searchDonor.addEventListener("submit", async (e) => {
       },
       credentials: "include",
       body: JSON.stringify({
-        bloodGroup,
-        lat: searchLat,
-        lng: searchLng,
-        city,
+        city: city,
+        bloodGroup: bloodGroup,
       }),
     });
 
     const result = await res.json();
-    const donors = result.data;
 
-    console.log("Donors:", donors);
+    const doners = result.data;
 
-    //  STEP 4: CLEAR OLD MARKERS
-    map.eachLayer((layer) => {
-      if (layer instanceof L.Marker) {
-        map.removeLayer(layer);
-      }
-    });
+    //return user lng AUR LAT
+    const coords = await getCordination(city);
 
-    //  STEP 5: UI
-    const donorContainer = document.getElementById("donorContainer");
-    donorContainer.style.display = "block";
-    donorContainer.innerHTML = "";
-
-    if (donors.length === 0) {
-      donorContainer.innerHTML = "<p>No donor found!</p>";
-      return;
+    if (coords) {
+      map.flyTo([coords.lat, coords.lng], 12);
     }
 
-    //  STEP 6: MARKERS + CARDS
-    donors.forEach((element) => {
+    //Donor list Show
+    const donorContainer = document.getElementById("donorContainer");
+    donorContainer.style.display = "block";
+    if (doners.length === 0) {
+      donorContainer.innerHTML = "<p> No donor find yet ! </p>";
+    } else {
+      donorContainer.innerHTML = "";
+    }
+
+    doners.forEach((element) => {
       const lng = element.location.coordinates[0];
       const lat = element.location.coordinates[1];
 
-      L.marker([lat, lng]).addTo(map)
-        .bindPopup(`
-          <b>${element.donorName}</b><br/>
-          ${element.distanceInKm.toFixed(2)} km away
-        `);
+      const marker = L.marker([lat, lng]).addTo(map);
+      marker.bindPopup(
+        `<b>${element.donorName}</b><br/>
+        ${element.distanceInKm.toFixed(2)} km away
+        `,
+      );
 
-      donorContainer.innerHTML += `
-        <div class="donor-card">
+      const donorCard = `
+      <div class="donor-card">
           <div class="donor-id">
             <i class="bi bi-person-circle" style="font-size: 60px;"></i>
 
-            <p><b>${element.donorName}</b></p>
-            <p>${element.distanceInKm.toFixed(2)} km away</p>
+            <p class="mt-3"><b>${element.donorName}</b></p>
+            <p class="mt-3">${element.distanceInKm.toFixed(2)} km away</p>
 
-            <button class="bl-btn">
-              <a href="requestBlood.html?donorId=${element._id}">Request</a>
-            </button>
-
-            <button onclick='moreInfo(${JSON.stringify(element)})' class="bl-btn">
-              More Info
-            </button>
+            <button class="bl-btn"><a href="requestBlood.html?donorId=${element._id}">Request</a></button>
+            <button onclick='moreInfo(${JSON.stringify(element)})' class="bl-btn">More Info</button>
           </div>
-        </div>
-      `;
-    });
+      </div>
+    `;
 
+      donorContainer.innerHTML += donorCard;
+    });
   } catch (error) {
     console.log(error);
   }
 });
+
 //Review code here
 
 const reviewForm = document.getElementById("reviewForm");
