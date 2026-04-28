@@ -1,9 +1,9 @@
 .about-banner {
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
         padding: 20px;
-        margin-top: 15vh;
+        margin-top: 50px;
         gap: 30px;
         background-color: rgba(255, 0, 0, 0.03);
         width: 100%;
@@ -16,7 +16,7 @@
 }
 
 .about-banner-img img{
-        width: 100vh;
+        width: 80%;
         border-radius: 12px;
 }
 
@@ -30,10 +30,11 @@
         }
 
         .about-banner-img img{
-                width: 70vh;
+                width: 100%;
                 overflow: hidden;
         }
 }
+
 
 /* About Card */
 
