@@ -612,47 +612,6 @@ async function saveContactDetails(id) {
   }
 }
 
-// //update complete donation details
-// async function saveCompleteDonation(id) {
-//   const code = document.getElementById("dCode").value;
-
-//   if (!code) {
-//     alert("Enter Donation Code ❌");
-//     return;
-//   }
-
-//   try {
-//     const res = await fetch(BASE_URL + "/api/auth/complete-donation/" + id, {
-//       method: "PATCH",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       credentials: "include",
-//       body: JSON.stringify({
-//         dCode: code,
-//       }),
-//     });
-
-//     const result = await res.json();
-
-//     if (res.ok && result.success) {
-//       alert("Donation complete Thank you.. ✅");
-
-//       //  local update (IMPORTANT)
-//       const req = window.allRequests.find((r) => String(r._id) === String(id));
-
-//       if (req) {
-//         req.status = "completed";
-//       }
-
-//       //  UI update
-//       updateTrackerUI(req);
-//     }
-//   } catch (error) {
-//     console.log(error);
-//   }
-// }
-
 //call feature code here
 function makeCall(number) {
   window.location.href = `tel:${number}`;
@@ -667,7 +626,7 @@ function sendWhatsApp(number) {
   window.open(url, "_blank");
 }
 
-//get remanining time
+//get remmanining time
 function getRemainingTime(contactedAt) {
   const now = new Date();
   const start = new Date(contactedAt);

@@ -12,9 +12,6 @@ async function updateHospital(req, res) {
   const { selectHospital } = req.body;
   const { id } = req.params;
 
-  console.log(selectHospital, id);
-  console.log(req.body);
-
   try {
     const info = await requestBloodModel.findByIdAndUpdate(
       id,
@@ -67,34 +64,6 @@ async function updateContact(req, res) {
     });
   }
 }
-
-//Donation Code save in db
-// async function updateDonationCode(req, res) {
-//   const { dCode } = req.body;
-//   const { id } = req.params;
-
-//   try {
-//     const info = await requestBloodModel.findByIdAndUpdate(
-//       id,
-//       {
-//         donationCode: dCode,
-//         status: "completed",
-//       },
-//       { returnDocument: "after" } ,
-//     );
-
-//     res.status(201).json({
-//       success: true,
-//       msg: "Thank You, For donate blood..",
-//     });
-//   } catch (error) {
-//     console.log(error.message);
-//     res.status(500).json({
-//       success: false,
-//       msg: "Server Error",
-//     });
-//   }
-// }
 
 //donor send to patient
 async function codeSendToDonor(req, res) {
