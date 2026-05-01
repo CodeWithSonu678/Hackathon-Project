@@ -1,4 +1,4 @@
-const BASE_URL = "http://127.0.0.1:3000";
+const BASE_URL = "https://rakht-seva.onrender.com";
 
 const errorMessage = document.getElementById("error-message");
 const mailBox = document.getElementById("mail");

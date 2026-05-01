@@ -1,4 +1,4 @@
-const BASE_URL = "http://127.0.0.1:3000";
+const BASE_URL = "https://rakht-seva.onrender.com";
 const form = document.getElementById("loginForm");
 const errorMessage = document.getElementById("error-message");
 const passwordInput = document.getElementById("password");
