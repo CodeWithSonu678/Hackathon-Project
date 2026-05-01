@@ -281,6 +281,7 @@ async function fetchOutcomingRecent() {
 
     window.allRequests = [...(window.allRequests || []), ...data];
 
+
     data.forEach((req) => {
       addToRecent(req, "outcoming");
     });
@@ -292,7 +293,7 @@ async function fetchOutcomingRecent() {
 //Recent mein add code here
 function addToRecent(req, type) {
   const container = document.getElementById("recentList");
-
+  // container.innerHTML="";
   const isRejected = req.status === "rejected";
   const isCompleted = req.status === "completed";
   const isSuccess = req.status !== "pending" && !isRejected;

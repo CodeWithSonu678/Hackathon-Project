@@ -163,8 +163,9 @@ requestBloodForm.addEventListener("submit", async (e) => {
     const result = await res.json();
 
     if (res.ok && result.success === true) {
-      errorMessage.className = "text-success";
-      errorMessage.textContent = result.msg || "Registered successfully ✅";
+      alert(result.msg);
+      // errorMessage.className = "text-success";
+      // errorMessage.textContent = result.msg || "Registered successfully ✅";
 
       setTimeout(() => {
         window.location.href = "index.html";

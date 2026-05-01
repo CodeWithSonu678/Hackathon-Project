@@ -203,7 +203,7 @@ async function saveNewPass() {
     email: localStorage.getItem("OtpEmail"),
     newPassword: password,
   };
-  console.log(data);
+  
   try {
     const res = await fetch(BASE_URL + "/api/auth/forgot-password", {
       method: "POST",
